@@ -1,16 +1,17 @@
 import re
 import torch
 
-from attacut import utils, models, dataloaders, pipeline
+from attacut import utils, models, dataloaders, pipeline, artifacts
 from typing import Dict
 
 
 class Tokenizer:
-    def __init__(self, model_path: str):
-        # load artifact
-        # load data configuration
-        # load model
+    def __init__(self, model: str):
+        # resolve model's directory
+        model_path = artifacts.get_path(model)
+
         params: Dict = utils.load_training_params(model_path)
+
         model_name = params["model_name"]
         print("loading model %s" % model_name)
 
@@ -28,8 +29,6 @@ class Tokenizer:
             data_config,
             params["model_params"] # architecture of the model
         )
-
-        self.model.eval()
 
         self.dataset = dataset
 

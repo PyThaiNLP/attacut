@@ -30,12 +30,15 @@ if __name__ == "__main__":
     src = arguments["<src>"]
     model = arguments["--model"]
 
+    # for a custom model, use the last dir's name.
+    model_name = model.split("/")[-1]
+
     dest = get_argument(
         arguments,
         "--dest",
         utils.add_suffix_to_file_path(
             src,
-            f"-tokenized-by-{model}"
+            f"-tokenized-by-{model_name}"
         )
     )
 
@@ -43,10 +46,9 @@ if __name__ == "__main__":
     print(f"using {model}")
     print(f"Output: {dest}")
 
-    model_path = artifacts.get_path(model)
     # # todo: fall back to model_dir if None
 
-    tokenizer = Tokenizer(model_path)
+    tokenizer = Tokenizer(model)
     total_lines = utils.wc_l(src)
 
     with torch.no_grad(), \
