@@ -13,6 +13,7 @@ numpy = "*"
 nptyping = "*"
 pyyaml = "*"
 pythainlp = "*"
+ssg = "*"
 
 [requires]
 python_version = "3.7"

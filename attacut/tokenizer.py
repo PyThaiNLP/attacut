@@ -23,19 +23,22 @@ class Tokenizer:
         data_config: Dict  = dataset.setup_featurizer(model_path)
 
         # instantiate model
-        model = model_cls.load(
+        self.model = model_cls.load(
             model_path,
             data_config,
             params["model_params"] # architecture of the model
         )
 
-        self.model = model
+        self.model.eval()
+
         self.dataset = dataset
 
     def tokenize(self, txt:str, sep="|", device="cpu", pred_threshold=0.5):
         tokens, features = self.dataset.make_feature(txt)
-
-        inputs = (features, torch.Tensor(0))
+        inputs = (
+            features,
+            torch.Tensor(0) # dummy label when won't need it here
+        )
         x, _, _ = self.dataset.prepare_model_inputs(inputs, device=device)
         preds = torch.sigmoid(self.model(x)).cpu().numpy() > pred_threshold
 

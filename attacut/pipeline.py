@@ -1,8 +1,9 @@
 import re
 import string
 
+import ssg
+
 from pythainlp.util import thai_digit_to_arabic_digit
-# from attacut.featurizer import syllable_tokenize
 
 ARABIC_RX = re.compile(r"[A-Za-z]+")
 CAMEL_CASE_RX = re.compile(r"([a-z])([A-Z])([a-z])")
@@ -131,3 +132,18 @@ def find_words_from_preds(tokens, preds):
     words.append(curr_word)
 
     return words
+
+
+def syllable_tokenize(txt):
+    seps = txt.split(" ")
+
+    new_tokens = []
+
+    for i, s in enumerate(seps):
+        tokens = ssg.syllable_tokenize(s)
+        new_tokens.extend(tokens)
+
+        if i < len(seps) - 1:
+            new_tokens.append(' ')
+
+    return new_tokens
