@@ -1,0 +1,7 @@
+batch_size: 256
+dataset: SyllableCharacterSeqDataset
+lr: 0.002
+model_name: seq_sy_ch_conv_concat
+model_params: embc:32|embs:16|conv:64|l1:32|do:0.0
+num_char_tokens: 139
+num_tokens: 6227
