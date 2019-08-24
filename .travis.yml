@@ -8,4 +8,4 @@ install:
 
 script:
   # - pylint **/*.py
-  - python -m pytest 
+  - python -m pytest tests/*
