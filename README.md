@@ -6,8 +6,17 @@
 ## Usage
 ### Command-Line Interface
 ```
-$ attacut-cli ../docker-thai-tokenizers/data/komped-poem.txt \
-   --model=attacut-sc 
+$ attacut-cli -h
+AttaCut: Fast and Reasonably Accurate Tokenizer for Thai
+
+Usage:
+  attacut-cli <src> [--dest=<dest>] [--model=<model>]
+  attacut-cli (-h | --help)
+
+Options:
+  -h --help         Show this screen.
+  --model=<model>   Model to be used [default: attacut-sc].
+  --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
 ```
 
 ### Higher-Level Inferface
