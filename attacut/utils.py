@@ -36,7 +36,7 @@ def padding_array(arr, padding_value=-1, padding_size=1):
         + [padding_value]*padding_size
     )
 
-def total_line_from_file(path):
+def wc_l(path):
     s = 0
     with open(path, "r") as f:
         for l in f:
@@ -53,7 +53,7 @@ def save_training_params(dir_path, params):
 
 def load_training_params(path):
     with open("%s/params.yml" % path, "r") as f:
-        return yaml.load(f)
+        return yaml.load(f, Loader=yaml.BaseLoader)
 
 def parse_model_params(ss):
     params = dict()
@@ -67,6 +67,7 @@ def parse_model_params(ss):
     return params
 
 def create_start_stop_indices(seq_lengths):
+    # todo: remove it?
     st_indices, sp_indices = [0], [seq_lengths[0]]
 
     for i, s in enumerate(seq_lengths[1:]):
