@@ -6,11 +6,17 @@
 ## Usage
 ### Command-Line Interface
 ```
+$ attacut-cli ../docker-thai-tokenizers/data/komped-poem.txt \
+   --model=attacut-sc 
 ```
 
 ### Higher-Level Inferface
 aka. module importing
 ```
+from attacut import Tokenizer
+
+tokenizer = Tokenizer(model="attacut-sc")
+tokenizer.tokenizer(txt)
 ```
 
 
