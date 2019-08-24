@@ -3,6 +3,11 @@
 
 **TDLR:** What is it?
 
+## Installation
+```
+$ pip install attacut
+```
+
 ## Usage
 ### Command-Line Interface
 ```
