@@ -6,5 +6,6 @@ install:
   - pip install pipenv
   - pipenv install
 
-test_script:
-  - pipenv run pytest
+script:
+  # - pylint **/*.py
+  - python -m pytest 
