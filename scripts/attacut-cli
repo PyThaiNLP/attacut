@@ -18,7 +18,7 @@ import torch
 from docopt import docopt
 from tqdm import tqdm
 
-from attacut import utils, artifacts, pipeline, Tokenizer
+from attacut import utils, artifacts, preprocessing, Tokenizer
 
 def get_argument(dict, name, default):
     v = dict.get(name)
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         # todo: tokenize by batch and write results
         for line in tqdm(fin, total=total_lines):
 
-            line = pipeline.TRAILING_SPACE_RX.sub("", line)
+            line = preprocessing.TRAILING_SPACE_RX.sub("", line)
 
             if not line:
                 fout.write("\n")

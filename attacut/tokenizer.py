@@ -1,7 +1,7 @@
 import re
 import torch
 
-from attacut import utils, models, dataloaders, pipeline, artifacts
+from attacut import utils, models, dataloaders, preprocessing, artifacts
 from typing import Dict
 
 
@@ -41,7 +41,7 @@ class Tokenizer:
         x, _, _ = self.dataset.prepare_model_inputs(inputs, device=device)
         preds = torch.sigmoid(self.model(x)).cpu().numpy() > pred_threshold
 
-        words = pipeline.find_words_from_preds(tokens, preds)
+        words = preprocessing.find_words_from_preds(tokens, preds)
 
         return sep.join(words)
 

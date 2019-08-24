@@ -6,7 +6,7 @@ import re
 
 from pythainlp.tokenize import syllable_tokenize
 
-from attacut import pipeline
+from attacut import preprocessing
 
 @pytest.mark.parametrize(
     ("txt", "expected", "steps"),
@@ -21,14 +21,14 @@ from attacut import pipeline
         (
             "<AZ>ผมชอบทะเล no ๑,๒๐๐ </AZ>",
             "ผมเกลียดทะเล no 1,200 ",
-            pipeline.DEFAULT_PREPROCESSING_STEPS + [
+            preprocessing.DEFAULT_PREPROCESSING_STEPS + [
                 lambda x: re.sub(r"ชอบ", "เกลียด", x)
             ]
         )
     ]
 )
 def test_preprocessing(txt, expected, steps):
-    act = pipeline.preprocess(txt, steps=steps)
+    act = preprocessing.preprocess(txt, steps=steps)
 
     assert act == expected
 
@@ -49,7 +49,7 @@ def test_preprocessing(txt, expected, steps):
     ]
 )
 def test_long_txt_sequences(txt, expected, max_length):
-    sequences = pipeline.long_txt_to_sequences(txt, max_length=max_length)
+    sequences = preprocessing.long_txt_to_sequences(txt, max_length=max_length)
 
     assert len(sequences) == len(expected)
 
@@ -67,7 +67,7 @@ def test_long_txt_sequences(txt, expected, max_length):
     ]
 )
 def test_rx_email(txt, expected):
-    is_matched = pipeline.EMAIL_RX.match(txt)
+    is_matched = preprocessing.EMAIL_RX.match(txt)
     assert bool(is_matched) == expected
 
 @pytest.mark.parametrize(
@@ -83,7 +83,7 @@ def test_rx_email(txt, expected):
     ]
 )
 def test_rx_url(txt, expected):
-    is_matched = pipeline.URL_RX.match(txt)
+    is_matched = preprocessing.URL_RX.match(txt)
     assert bool(is_matched) == expected
 
 @pytest.mark.parametrize(
@@ -104,7 +104,7 @@ def test_rx_url(txt, expected):
     ]
 )
 def test_camel_case_expansion(txt, expected):
-    actual = pipeline.expand_camel_case_to_tokens(txt)
+    actual = preprocessing.expand_camel_case_to_tokens(txt)
     assert " ".join(actual) == expected
 
 @pytest.mark.parametrize(
@@ -117,7 +117,7 @@ def test_camel_case_expansion(txt, expected):
 def test_find_words_from_preds(tokens, preds, expected):
 
     preds = np.array(list(preds)).astype(int)
-    act = pipeline.find_words_from_preds(tokens, preds)
+    act = preprocessing.find_words_from_preds(tokens, preds)
     exp = expected.split("|")
 
     assert act == exp
