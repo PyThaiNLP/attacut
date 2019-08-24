@@ -53,7 +53,7 @@ class ConvolutionLayer(nn.Module):
 
 class BaseModel(nn.Module):
     @classmethod
-    def load(cls, path, data_config, model_config):
+    def load(cls, path, data_config, model_config, with_eval=True):
         model = cls(data_config, model_config)
 
         model_path = "%s/model.pth" % path
@@ -64,6 +64,10 @@ class BaseModel(nn.Module):
             model_config,
             model.total_trainable_params()
         ))
+
+        if with_eval:
+            print("setting model to eval mode")
+            model.eval()
 
         return model
 
