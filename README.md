@@ -1,4 +1,6 @@
 # AttaCut
+[![](https://api.travis-ci.com/heytitle/attacut.svg?token=fKbtMgf3jUWLccnyVsDw&branch=master)](https://travis-ci.com/heytitle/attacut)
+
 **TDLR:** What is it?
 
 ## Usage
@@ -13,9 +15,15 @@ aka. module importing
 
 
 ## Development
+We use `pipenv`.
+To enable virenv
+```
+$ pipenv shell
+```
 ### Data Preparation (WIP)
 
 ### Training (...)
+
 - Local
 - FloydHub
 

@@ -5,11 +5,14 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+fire = "*"
 
 [packages]
 torch = "*"
 numpy = "*"
 nptyping = "*"
+pyyaml = "*"
+pythainlp = "*"
 
 [requires]
 python_version = "3.7"
