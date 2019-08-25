@@ -7,7 +7,7 @@
 
 ```
 # only for beta version
-$ pip install git+https://github.com/heytitle/attacut/archive/v0.3.zip
+$ pip install git+https://github.com/heytitle/attacut/archive/v0.4.zip
 ```
 
 ## Usage
@@ -48,6 +48,11 @@ $ pipenv shell
 
 - Local
 - FloydHub
+
+### Releasing
+```
+$ bumpversion [major|minor] && git push && git push --tags
+```
 
 ## Related Resources
 - Visualization
