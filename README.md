@@ -14,7 +14,7 @@
 
 ```
 # only for beta version
-$ pip install https://github.com/heytitle/attacut/archive/v0.0.3-dev.zip
+$ pip install attacut==0.0.3.dev0
 ```
 
 ## Usage
