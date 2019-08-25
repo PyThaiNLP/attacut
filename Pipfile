@@ -12,8 +12,8 @@ torch = "*"
 numpy = "*"
 nptyping = "*"
 pyyaml = "*"
-pythainlp = "*"
 ssg = "*"
+docopt = "*"
 
 [requires]
 python_version = "3.7"

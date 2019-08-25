@@ -1,9 +1,7 @@
 from setuptools import setup
 
-with open("./deps.txt", "r") as f:
-    dependencies = map(lambda x: x.strip(), f.readlines())
-
-print(dependencies)
+with open("./requirements.txt", "r") as f:
+    requirements = list(map(lambda x: x.strip(), f.readlines()))
 
 setup(
    name="attacut",
@@ -12,6 +10,6 @@ setup(
    author="Man Foo",
    author_email="foomail@foo.com",
    packages=["attacut"],  #same as name
-   install_requires=dependencies,
+   install_requires=requirements,
    scripts=["scripts/attacut-cli"]
 )
