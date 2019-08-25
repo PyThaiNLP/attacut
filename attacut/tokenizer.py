@@ -48,7 +48,7 @@ class Tokenizer:
 
         words = preprocessing.find_words_from_preds(tokens, preds)
 
-        return sep.join(words)
+        return words
 
 
     # todo: tokenize_batch(self, generator):

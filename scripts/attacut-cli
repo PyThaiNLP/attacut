@@ -21,8 +21,9 @@ import torch
 from docopt import docopt
 from tqdm import tqdm
 
-
 from attacut import utils, artifacts, preprocessing, Tokenizer, __version__
+
+SEP = "|"
 
 def get_argument(dict, name, default):
     v = dict.get(name)
@@ -70,6 +71,7 @@ if __name__ == "__main__":
                 fout.write("\n")
                 continue
 
-            result = tokenizer.tokenize(line)
+            words = tokenizer.tokenize(line)
+            tokenized_line = SEP.join(words)
 
-            fout.write(f"{result}\n")
+            fout.write(f"{tokenized_line}\n")
