@@ -1,7 +1,14 @@
 # AttaCut
 [![](https://api.travis-ci.com/heytitle/attacut.svg?token=fKbtMgf3jUWLccnyVsDw&branch=master)](https://travis-ci.com/heytitle/attacut)
+[![](https://img.shields.io/badge/-presentation-informational)](https://drive.google.com/file/d/16AUNZv1HXVmERgryfBf4JpCo1QrQyHHE/view?usp=sharing)
+![](https://img.shields.io/badge/doi-WIP-informational)
 
-**TDLR:** What is it?
+<div style="text-align: center">
+    <img src="https://i.imgur.com/8yMq7IB.png" width="300px"/>
+    <br/>
+    <b>TLDR:</b> 
+3-Layer dilated CNN on character and syllable features
+</div>
 
 ## Installation
 
@@ -35,27 +42,22 @@ atta = Tokenizer(model="attacut-sc")
 atta.tokenizer(txt)
 ```
 
-
 ## Development
-We use `pipenv`.
-To enable virenv
-```
-$ pipenv shell
-```
-### Data Preparation (WIP)
-
-### Training (...)
-
-- Local
-- FloydHub
-
-### Releasing
-```
-$ bumpversion [major|minor] && git push && git push --tags
-```
+Please refer to [DEVELOPMENT.md](./docs/DEVELOPMENT.md)
 
 ## Related Resources
-- Visualization
+- [Tokenization Visualization][tovis]
+- [Thai Tokenizer Dockers][docker]
 
-## Acknowledgement
-- A.Te, PyThaiNLP Team, ...
+## Acknowledgements
+- This repository was initially done by [Pattarawat Chormai][pat], while interning at [Dr. Attapol Thamrongrattanarit's NLP Lab][ate], Chulalongkorn University, Bangkok, Thailand.
+- Many thanks to my collegeus at Dr. Attapol's lab, PyThaiNLP team, [Ekapol Chuangsuwanich ][ake], [Noom][noom], [Can][can] for comments and feedback.
+
+
+[pat]: http://pat.chormai.org
+[ate]: https://attapol.github.io/lab.html
+[noom]: https://github.com/Ekkalak-T
+[can]: https://github.com/c4n
+[ake]: https://github.com/ekapolc
+[tovis]: https://pythainlp.github.io/tokenization-benchmark-visualization/
+[docker]: https://github.com/PyThaiNLP/docker-thai-tokenizers
