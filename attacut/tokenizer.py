@@ -6,8 +6,8 @@ from typing import Dict
 
 
 class Tokenizer:
-    def __init__(self, model: str):
-        # resolve model's directory
+    def __init__(self, model: str="attacut-sc"):
+        # resolve model's path
         model_path = artifacts.get_path(model)
 
         params: Dict = utils.load_training_params(model_path)
@@ -34,12 +34,16 @@ class Tokenizer:
 
     def tokenize(self, txt:str, sep="|", device="cpu", pred_threshold=0.5):
         tokens, features = self.dataset.make_feature(txt)
+
         inputs = (
             features,
             torch.Tensor(0) # dummy label when won't need it here
         )
+
         x, _, _ = self.dataset.prepare_model_inputs(inputs, device=device)
-        preds = torch.sigmoid(self.model(x)).cpu().numpy() > pred_threshold
+        logits = torch.sigmoid(self.model(x))
+
+        preds = logits.cpu().detach().numpy() > pred_threshold
 
         words = preprocessing.find_words_from_preds(tokens, preds)
 
