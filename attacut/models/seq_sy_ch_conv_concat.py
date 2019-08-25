@@ -3,9 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
-from attacut import utils, dataloaders
+from attacut import utils, dataloaders, logger
 from . import SyllableCharacterSeqBaseModel, ConvolutionBatchNorm
 
+log = logger.get_logger(__name__)
 
 class Model(SyllableCharacterSeqBaseModel):
     dataset = dataloaders.SyllableCharacterSeqDataset
@@ -14,9 +15,10 @@ class Model(SyllableCharacterSeqBaseModel):
         super(Model, self).__init__()
 
         no_chars = data_config['num_char_tokens']
-        print("We have %d characters" % no_chars)
+        log.info("no. characters: %d" % no_chars)
+
         no_syllables = data_config['num_tokens']
-        print("We have %d syllables" % no_syllables)
+        log.info("no. syllables: %d" % no_syllables)
 
         config = utils.parse_model_params(model_config)
         conv_filters = config['conv']

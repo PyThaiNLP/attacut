@@ -4,10 +4,15 @@ import re
 import torch
 import torch.nn as nn
 
+import attacut
+from attacut import logger
+
+log = logger.get_logger(__name__)
+
 def get_model(model_name):
     module_path = "attacut.models.%s" % model_name
-    # todo: using logger
-    print("Taking %s" % module_path)
+    log.info("Taking %s" % module_path)
+
     model_mod = importlib.import_module(module_path)
     return model_mod.Model
 
@@ -59,14 +64,14 @@ class BaseModel(nn.Module):
         model_path = "%s/model.pth" % path
         model.load_state_dict(torch.load(model_path, map_location="cpu"))
 
-        print("Loading: %s|%s (variables %d)" % (
+        log.info("loaded: %s|%s (variables %d)" % (
             model_path,
             model_config,
             model.total_trainable_params()
         ))
 
         if with_eval:
-            print("setting model to eval mode")
+            log.info("setting model to eval mode")
             model.eval()
 
         return model

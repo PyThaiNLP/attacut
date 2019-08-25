@@ -1,11 +1,11 @@
 import numpy as np
-
 import torch
-
 
 from torch.utils.data import Dataset
 
-from attacut import utils, preprocessing 
+from attacut import utils, preprocessing, logger
+
+log = logger.get_logger(__name__)
 
 class SequenceDataset(Dataset):
     def __init__(self, path: str=None):

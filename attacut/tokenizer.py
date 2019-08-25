@@ -1,9 +1,10 @@
 import re
 import torch
 
-from attacut import utils, models, dataloaders, preprocessing, artifacts
+from attacut import utils, models, dataloaders, preprocessing, artifacts, logger
 from typing import Dict
 
+log = logger.get_logger(__name__)
 
 class Tokenizer:
     def __init__(self, model: str="attacut-sc"):
@@ -13,7 +14,7 @@ class Tokenizer:
         params: Dict = utils.load_training_params(model_path)
 
         model_name = params["model_name"]
-        print("loading model %s" % model_name)
+        log.info("loading model %s" % model_name)
 
         model_cls: models.BaseModel = models.get_model(model_name)
 

@@ -4,6 +4,10 @@ import yaml
 import time
 import json
 
+from attacut import logger
+
+log = logger.get_logger(__name__)
+
 def maybe(cond, func, desc, verbose=0):
     if cond:
         func()
@@ -81,7 +85,8 @@ def load_dict(data_path):
     with open(data_path, "r") as f:
         dd = json.load(f)
 
-    print("we have %d items in dict:%s" % (len(dd), data_path))
+    log.info("loaded %d items from dict:%s" % (len(dd), data_path))
+
     return dd
 
 class Timer:

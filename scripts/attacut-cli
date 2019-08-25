@@ -21,6 +21,7 @@ import torch
 from docopt import docopt
 from tqdm import tqdm
 
+
 from attacut import utils, artifacts, preprocessing, Tokenizer, __version__
 
 def get_argument(dict, name, default):
@@ -50,10 +51,8 @@ if __name__ == "__main__":
     )
 
     print(f"Tokenizing {src}")
-    print(f"using {model}")
+    print(f"Using {src}")
     print(f"Output: {dest}")
-
-    # # todo: fall back to model_dir if None
 
     tokenizer = Tokenizer(model)
     total_lines = utils.wc_l(src)
