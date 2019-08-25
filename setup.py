@@ -4,12 +4,13 @@ with open("./requirements.txt", "r") as f:
     requirements = list(map(lambda x: x.strip(), f.readlines()))
 
 setup(
-   name="attacut",
-   version="0.4",
-   description="A useful module",
-   author="Man Foo",
-   author_email="foomail@foo.com",
-   packages=["attacut"],  #same as name
-   install_requires=requirements,
-   scripts=["scripts/attacut-cli"]
+    name="attacut",
+    version="0.4",
+    description="Yet Another Tokenizer for Thai",
+    author="Man Foo",
+    author_email="foomail@foo.com",
+    packages=["attacut", "attacut.models", "attacut.artifacts"],
+    install_requires=requirements,
+    scripts=["scripts/attacut-cli"],
+    package_data={"attacut": ["artifacts/**/*"]},
 )
