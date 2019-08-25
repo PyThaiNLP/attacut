@@ -5,7 +5,7 @@ with open("./requirements.txt", "r") as f:
 
 setup(
     name="attacut",
-    version="0.0.1-dev",
+    version="0.0.2-dev",
     description="Yet Another Tokenizer for Thai",
     author="Man Foo",
     author_email="foomail@foo.com",
