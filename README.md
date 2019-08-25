@@ -4,8 +4,10 @@
 **TDLR:** What is it?
 
 ## Installation
+
 ```
-$ pip install attacut
+# only for beta version
+$ pip install git+https://github.com/heytitle/attacut/archive/master.zip
 ```
 
 ## Usage
