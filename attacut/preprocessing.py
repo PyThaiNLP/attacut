@@ -3,7 +3,7 @@ import string
 
 import ssg
 
-from pythainlp.util import thai_digit_to_arabic_digit
+from attacut.minpythainlp import thai_digit_to_arabic_digit
 
 ARABIC_RX = re.compile(r"[A-Za-z]+")
 CAMEL_CASE_RX = re.compile(r"([a-z])([A-Z])([a-z])")
