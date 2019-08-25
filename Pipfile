@@ -17,3 +17,6 @@ ssg = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+update_deps = "bash -c \"pipenv lock -r | sed '1d;$d' > deps.txt\""

@@ -51,10 +51,25 @@
         },
         "marisa-trie": {
             "hashes": [
-                "sha256:4419abb6b603c97e863fad994abe57ed247fb12491f4bbacb2d762bd2e8958b6",
-                "sha256:c73bc25d868e8c4ea7aa7f1e19892db07bba2463351269b05340ccfa06eb2baf"
+                "sha256:0e94d38468e454718577aa6994af12f66f24099a94c202f2f13c714be0c90d45",
+                "sha256:212eb066ba52720bec8722454e80a9e29ab0454da980ebd7093148c2e7bdb63e",
+                "sha256:26b7adaaa3bd3b6b8aaa9a9d0cc33f7ce0b0e6b85c1b0d0c591a7fd8f25ba001",
+                "sha256:2a2258eacca9966325f9019378fc4621891f2482bc63e6441f70599595ed97d8",
+                "sha256:32cbf5d5a6630e8bd6015fa7600f3e076bc321bf9768e6d4d41e751004ff6657",
+                "sha256:4cf4ff5bd9a135c3d1f6ab662b8dc6357ff502adc45c031f32e4c44f74268e22",
+                "sha256:65d873f2cdf22a59ee332aef827c08051019cc701beb54f2384b31dd83865321",
+                "sha256:6c8a79ca2e469b12b0bbd2927273c850873a7780bcecc3dd4c01ab30fa8c0346",
+                "sha256:8870bc435ac9bd8aed483169f9008dbf9e40ae56cc3cb02a670fbb5d66975e11",
+                "sha256:89bd183e0f75357f074658492bb24a4bbac8e1a13fd0f54553017c122eeef134",
+                "sha256:accdaedcb86bac8fd6748c99dd577dd65a76026872bb5873626f3f401f57a043",
+                "sha256:c1200407b66dff3a31b505843f1f9c61431595c20972496a9ff4eaaecb792b35",
+                "sha256:dd1b5464d7ea2eb54758dcde40385d12e75cf74f6a44d27459ccb8c282ebc8c8",
+                "sha256:e45291a022b5e680f393b4406202bfc6e9380dccd8d79b1627b3e4c0d98d457d",
+                "sha256:e89c07d52b8f385a9afb617f6b90f0632551ab58f1467edea1158d0837c8b097",
+                "sha256:ef381b579aee59098652a5fe5b5d9a93f4c93b21cd74d825fbb84c4447c21d83",
+                "sha256:f24540335c08b64a623c3622eb69b39a23003147cbabc75e06b49aded59962eb"
             ],
-            "version": "==0.7.5"
+            "version": "==0.7.4"
         },
         "nltk": {
             "hashes": [
@@ -94,10 +109,10 @@
         },
         "pythainlp": {
             "hashes": [
-                "sha256:4cdbb45171dfda170612be29504223fe06398707d6d7132fe9d8580eb0862322"
+                "sha256:05a33a15e7094aa9515d04fa5bf59f5531ca166c601043bae097197c4eb21fcd"
             ],
             "index": "pypi",
-            "version": "==2.0.7"
+            "version": "==2.1.dev2"
         },
         "python-crfsuite": {
             "hashes": [
@@ -311,10 +326,10 @@
         },
         "zipp": {
             "hashes": [
-                "sha256:4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a",
-                "sha256:8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"
+                "sha256:3718b1cbcd963c7d4c5511a8240812904164b7f381b647143a89d3b98f9bcd8e",
+                "sha256:f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335"
             ],
-            "version": "==0.5.2"
+            "version": "==0.6.0"
         }
     }
 }
