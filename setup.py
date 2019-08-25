@@ -5,7 +5,7 @@ with open("./requirements.txt", "r") as f:
 
 setup(
    name="attacut",
-   version="0.3",
+   version="0.4",
    description="A useful module",
    author="Man Foo",
    author_email="foomail@foo.com",
