@@ -4,21 +4,24 @@
 
 Usage:
   attacut-cli <src> [--dest=<dest>] [--model=<model>]
+  attacut-cli (-v | --version)
   attacut-cli (-h | --help)
 
 Options:
   -h --help         Show this screen.
   --model=<model>   Model to be used [default: attacut-sc].
   --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
+  --version         Show version
 
 """
 
+import os
 import torch
 
 from docopt import docopt
 from tqdm import tqdm
 
-from attacut import utils, artifacts, preprocessing, Tokenizer
+from attacut import utils, artifacts, preprocessing, Tokenizer, __version__
 
 def get_argument(dict, name, default):
     v = dict.get(name)
@@ -26,6 +29,10 @@ def get_argument(dict, name, default):
   
 if __name__ == "__main__":
     arguments = docopt(__doc__)
+
+    if arguments["--version"] or arguments["-v"]:
+        print(f"AttaCut: version {__version__}")
+        os.sys.exit(0)
 
     src = arguments["<src>"]
     model = arguments["--model"]
