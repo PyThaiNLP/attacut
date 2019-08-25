@@ -3,8 +3,8 @@
 [![](https://img.shields.io/badge/-presentation-informational)](https://drive.google.com/file/d/16AUNZv1HXVmERgryfBf4JpCo1QrQyHHE/view?usp=sharing)
 ![](https://img.shields.io/badge/doi-WIP-informational)
 
-<div style="text-align: center">
-    <img src="https://i.imgur.com/8yMq7IB.png" width="300px"/>
+<div style="text-align: center;">
+    <img src="https://i.imgur.com/8yMq7IB.png" width="700px"/>
     <br/>
     <b>TLDR:</b> 
 3-Layer dilated CNN on character and syllable features
