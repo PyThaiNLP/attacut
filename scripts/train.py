@@ -229,12 +229,9 @@ def main(
     utils.maybe_create_dir(output_dir)
     utils.save_training_params(
         output_dir,
-        dict(
-            **data_config,
-            lr=lr,
-            batch_size=batch_size,
-            model_name=model_name,
-            model_params=model.model_params
+        utils.ModelParams(
+            name=model_name,
+            params=model.model_params
         )
     )
 

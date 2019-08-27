@@ -119,6 +119,4 @@ def syllable_tokenize(txt):
         if i < len(seps) - 1:
             new_tokens.append(" ")
 
-    print(new_tokens)
-
     return new_tokens

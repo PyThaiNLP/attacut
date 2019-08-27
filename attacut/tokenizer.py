@@ -1,5 +1,6 @@
 import re
 import torch
+from typing import List
 
 from attacut import utils, models, dataloaders, preprocessing, artifacts, logger
 from typing import Dict
@@ -11,9 +12,9 @@ class Tokenizer:
         # resolve model's path
         model_path = artifacts.get_path(model)
 
-        params: Dict = utils.load_training_params(model_path)
+        params = utils.load_training_params(model_path)
 
-        model_name = params["model_name"]
+        model_name = params.name
         log.info("loading model %s" % model_name)
 
         model_cls: models.BaseModel = models.get_model(model_name)
@@ -28,12 +29,12 @@ class Tokenizer:
         self.model = model_cls.load(
             model_path,
             data_config,
-            params["model_params"] # architecture of the model
+            params.params
         )
 
         self.dataset = dataset
 
-    def tokenize(self, txt:str, sep="|", device="cpu", pred_threshold=0.5):
+    def tokenize(self, txt:str, sep="|", device="cpu", pred_threshold=0.5) -> List[str]:
         tokens, features = self.dataset.make_feature(txt)
 
         inputs = (

@@ -1,6 +1,2 @@
-batch_size: 512
-dataset: CharacterSeqDataset
-lr: 0.005
-model_name: seq_ch_conv
-model_params: emb:48|conv:196|l1:32
-num_tokens: 139
+name: seq_ch_conv
+params: emb:48|conv:196|l1:32
