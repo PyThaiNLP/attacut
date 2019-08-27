@@ -66,7 +66,7 @@ def save_training_params(dir_path: str, params: ModelParams):
     dir_path = "%s/params.yml" % dir_path
     print("Saving training params to %s" % dir_path)
 
-    params = params._asdict()
+    params = dict(params._asdict())
 
     with open(dir_path, 'w') as outfile:
         yaml.dump(params, outfile, default_flow_style=False)

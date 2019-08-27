@@ -6,6 +6,8 @@ import sys
 import json
 import shutil
 
+sys.path.insert(0, os.getcwd())
+
 from collections import defaultdict
 
 import numpy as np
@@ -61,6 +63,13 @@ def print_floydhub_metrics(metrics, step=0, prefix=""):
     if 'FLOYDHUB' in os.environ and os.environ['FLOYDHUB']:
         for k, v in metrics.items():
             print('{"metric": "%s:%s", "value": %f, "step": %d}' % (k, prefix, v, step))
+
+
+def copy_files(path, dest):
+    utils.maybe_create_dir(dest)
+    for f in glob.glob(path):
+        filename = f.split("/")[-1]
+        shutil.copy(f, "%s/%s" % (dest, filename), follow_symlinks=True)
 
 
 def do_iterate(model, generator, device,
@@ -224,6 +233,12 @@ def main(
     )
 
     utils.maybe_create_dir(output_dir)
+
+    copy_files(
+        "%s/dictionary/*.json" % data_dir,
+        output_dir
+    )
+
     utils.save_training_params(
         output_dir,
         utils.ModelParams(
