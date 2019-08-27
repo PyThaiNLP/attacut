@@ -8,6 +8,10 @@ pytest = "*"
 fire = "*"
 bumpversion = "*"
 twine = "*"
+sphinx = "*"
+rst = "*"
+doc8 = "*"
+rst-linker = "*"
 
 [packages]
 torch = "*"
