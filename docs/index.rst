@@ -1,4 +1,4 @@
-Welcome to AttaCut's documentation!
+(WIP) Welcome to AttaCut's documentation!
 ===================================
 
 **Remark:** English version is in progress.
