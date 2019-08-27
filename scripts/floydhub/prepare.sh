@@ -13,4 +13,6 @@ if [ -d /syllable-dict ]; then
 fi
 
 echo "Finished preparing data directory" \
- && ls -la /home/data
+ && echo "------ /home/data -------" \
+ && ls -la /home/data/* \
+ && ls -la /home/data/dictionary/*

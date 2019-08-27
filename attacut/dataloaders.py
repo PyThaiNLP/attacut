@@ -149,18 +149,19 @@ class SyllableCharacterSeqDataset(SequenceDataset):
 
         return list(txt), (torch.from_numpy(features), torch.from_numpy(seq_lengths))
 
-    # def __getitem__(self, index):
-    #     label, character_indices, syllable_indices = self.data[index]
-    #     y = np.array(list(label)).astype(int)
+    @staticmethod
+    def _process_line(line):
+        label, ch_indices, sy_indices = line.split("::")
 
-    #     cx = np.array(character_indices.split(" ")).astype(int)
-    #     sx = np.array(syllable_indices.split(" ")).astype(int)
+        y = np.array(list(label)).astype(int)
 
-    #     seq = len(y)
+        cx = np.array(ch_indices.split(" ")).astype(int)
+        sx = np.array(sy_indices.split(" ")).astype(int)
+        x = np.stack((cx, sx), axis=0)
 
-    #     x = np.stack((cx, sx), axis=0)
+        seq = len(y)
 
-    #     return (x, seq), y
+        return (x, seq), y
 
     @staticmethod
     def collate_fn(batch):
