@@ -9,12 +9,6 @@ from attacut import logger
 
 log = logger.get_logger(__name__)
 
-def get_model(model_name):
-    module_path = "attacut.models.%s" % model_name
-    log.info("Taking %s" % module_path)
-
-    model_mod = importlib.import_module(module_path)
-    return model_mod.Model
 
 class ConvolutionBatchNorm(nn.Module):
     def __init__(self, channels, filters, kernel_size, stride=1, dilation=1):
@@ -57,6 +51,7 @@ class ConvolutionLayer(nn.Module):
         return self.conv(x)
 
 class BaseModel(nn.Module):
+    dataset = None
     @classmethod
     def load(cls, path, data_config, model_config, with_eval=True):
         model = cls(data_config, model_config)
@@ -80,23 +75,9 @@ class BaseModel(nn.Module):
         return sum(p.numel() for p in self.parameters() if p.requires_grad)
 
 
-class SyllableCharacterBaseModel(BaseModel):
-    pass
+def get_model(model_name) -> BaseModel:
+    module_path = "attacut.models.%s" % model_name
+    log.info("Taking %s" % module_path)
 
-class SyllableBaseModel(BaseModel):
-    pass
-
-class SyllableSeqBaseModel(BaseModel):
-    pass
-
-class CharacterSeqBaseModel(BaseModel):
-    pass
-
-class CharacterSeqWithChTypeBaseModel(BaseModel):
-    pass
-
-class SyllableCharacterSeqBaseModel(BaseModel):
-    pass
-
-class SyllableCharacterSeqWithChTypeBaseModel(BaseModel):
-    pass
+    model_mod = importlib.import_module(module_path)
+    return model_mod.Model

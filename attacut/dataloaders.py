@@ -25,9 +25,15 @@ class SequenceDataset(Dataset):
         with open(path) as f, \
             utils.Timer("load-seq-data--%s" % suffix) as timer:
             for line in f:
-                self.data.append(SequenceDataset._process_line(line))
+                self.data.append(self._process_line(line))
 
         self.total_samples = len(self.data)
+
+    def make_feature(self, txt: str):
+        raise NotImplementedError
+
+    def setup_featurizer(self, path: str):
+        raise NotImplementedError
 
     @staticmethod
     def prepare_model_inputs(inputs, device="cpu"):
@@ -38,15 +44,8 @@ class SequenceDataset(Dataset):
 
         return (x, seq_lengths), y, y.shape[0]
 
-
-    def make_feature(self, txt):
-        raise NotImplementedError
-
-    def setup_featurizer(self, path: str):
-        raise NotImplementedError
-
     @staticmethod
-    def _process_line(line):
+    def _process_line(line: str):
         # only use when training
         raise NotImplementedError
 
@@ -54,6 +53,13 @@ class SequenceDataset(Dataset):
     def collate_fn(batch):
         # only use when training
         raise NotImplementedError
+
+    @classmethod
+    def load_preprocessed_file_with_suffix(cls, dir: str, suffix: str) -> "SequenceDataset":
+        path = "%s/%s" % (dir, suffix)
+        log.info("Loading preprocessed data from %s" % path)
+        return cls(path=path)
+
 
 class CharacterSeqDataset(SequenceDataset):
     def setup_featurizer(self, path: str):

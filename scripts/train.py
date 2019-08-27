@@ -16,7 +16,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils import data
 
-from attacut import models, utils, dataloaders
+from attacut import models, utils, evaluation
+from attacut import dataloaders as dl
 
 def get_device():
     if torch.cuda.is_available():
@@ -24,24 +25,29 @@ def get_device():
     else:
         return "cpu"
 
-def _create_metrics(metrics=["true_pos", "false_pos", "false_neg"]):
 
+def _create_metrics(metrics=["true_pos", "false_pos", "false_neg"]):
     return dict(zip(metrics, [0]*len(metrics)))
+
 
 def accumuate_metrics(m1, m2):
     for k, v in m1.items():
         m1[k] = v + m2[k]
     return m1
 
+
 def evaluate_model(logits, labels):
     labels = labels.cpu().detach().numpy()
     preds = torch.sigmoid(logits).cpu().detach().numpy() > 0.5
 
+    metrics = evaluation.compute_metrics(labels, preds)
+
     return {
-        "true_pos": np.sum(preds * labels),
-        "false_pos": np.sum((1-preds) * labels),
-        "false_neg": np.sum(preds * (1-labels))
+        "true_pos": metrics.tp,
+        "false_pos": metrics.fp,
+        "false_neg": metrics.fn
     }
+
 
 def precision_recall(true_pos, false_pos, false_neg):
     precision = true_pos/(true_pos+false_pos)
@@ -50,32 +56,12 @@ def precision_recall(true_pos, false_pos, false_neg):
 
     return precision, recall, f1
 
-def prepare_embedding_matrix(gensim_w2v):
-    
-    shape = gensim_w2v.wv.vectors.shape 
-    print("Our embedding is size %dx%d" % (shape[0], shape[1]))
-    embedding = np.zeros((shape[0]+1, shape[1]))
-    embedding[1:, :] = gensim_w2v.wv.vectors
-    print("Final dims", embedding.shape)
-    return embedding
-
-def load_data(data_path, filenames=("x-training", "x-val", "y-training", "y-val")):
-    data = dict()
-
-    for n in filenames:
-        data[n] = np.load("%s/%s.npy" % (data_path, n))
-
-    return data
 
 def print_floydhub_metrics(metrics, step=0, prefix=""):
     if 'FLOYDHUB' in os.environ and os.environ['FLOYDHUB']:
         for k, v in metrics.items():
             print('{"metric": "%s:%s", "value": %f, "step": %d}' % (k, prefix, v, step))
 
-def tensor_to_device(tensor, device):
-    if "torch" in str(type(tensor)):
-        return tensor.to(device)
-    return tensor
 
 def do_iterate(model, generator, device,
     optimizer=None, criterion=None, prefix="", step=0):
@@ -126,30 +112,39 @@ def get_lr(optimizer):
     for param_group in optimizer.param_groups:
         return param_group['lr']
 
-""" main
-character_dict only used for SyllableCharacterSeq models
-"""
 def main(
-        model_name, data_dir, syllable_dict, character_dict="",
-        epoch=10, lr=0.001, batch_size=64, weight_decay=0.0, checkpoint=5,
-        model_params="", output_dir="", no_workers=4, lr_schedule="",
+        model_name, data_dir, 
+        epoch=10,
+        lr=0.001,
+        batch_size=64,
+        weight_decay=0.0,
+        checkpoint=5,
+        model_params="",
+        output_dir="",
+        no_workers=4,
+        lr_schedule="",
         prev_model=""
     ):
 
-    with open("%s/config.json" % data_dir, "r") as f:
-        data_config = json.load(f)
+    model_cls = models.get_model(model_name)
 
-    if character_dict:
-        ch2idx = utils.load_dict(character_dict)
-        data_config["num_char_tokens"] = len(ch2idx)
+    dataset_cls = model_cls.dataset()
+
+    training_set: dl.SequenceDataset = dataset_cls.load_preprocessed_file_with_suffix(
+        data_dir,
+        "training.txt"
+    )
+
+    validation_set: dl.SequenceDataset = dataset_cls.load_preprocessed_file_with_suffix(
+        data_dir,
+        "val.txt"
+    )
+
+    # only required
+    data_config = training_set.setup_featurizer("%s/dictionary" % data_dir)
 
     device = get_device()
     print("Using device: %s" % device)
-
-    sy2idx = utils.load_dict(syllable_dict)
-    data_config['num_tokens'] = len(sy2idx)
-
-    print(data_config)
 
     params = {}
 
@@ -196,23 +191,24 @@ def main(
             gamma=schedule_params['gamma'],
         )
     
-    ds_class = getattr(dataloaders, data_config['dataset'])
-    params = {
-        'batch_size': batch_size,
-        'num_workers': no_workers,
-    }
+    dataloader_params = dict(
+        batch_size=batch_size,
+        num_workers=no_workers,
+        collate_fn=dataset_cls.collate_fn
+    )
 
-    if hasattr(ds_class, "collate_fn"):
-        print("using collate_fn", ds_class)
-        params["collate_fn"] = ds_class.collate_fn
+    print("Using dataset: %s" % type(dataset_cls).__name__)
 
-    print("Using dataset: %s" % data_config['dataset'])
-
-    training_set = ds_class("%s/%s" % (data_dir, "training.txt"))
-    training_generator = data.DataLoader(training_set, shuffle=True, **params)
-
-    validation_set = ds_class("%s/%s" % (data_dir, "val.txt"))
-    validation_generator = data.DataLoader(validation_set, shuffle=False, **params)
+    training_generator = data.DataLoader(
+        training_set,
+        shuffle=True,
+        **dataloader_params
+    )
+    validation_generator = data.DataLoader(
+        validation_set,
+        shuffle=False,
+        **dataloader_params
+    )
 
     total_train_size = len(training_set) 
     total_test_size = len(validation_set)
@@ -221,6 +217,7 @@ def main(
         (total_train_size, total_test_size)
     )
 
+    # for FloydHub
     print(
         '{"metric": "%s:%s", "value": %s}' %
         ("model", model_name, model.total_trainable_params())
@@ -235,14 +232,7 @@ def main(
         )
     )
 
-    shutil.copy(syllable_dict, "%s/%s" % (output_dir, syllable_dict.split("/")[-1]))
-
-    if character_dict:
-        shutil.copy(character_dict, "%s/%s" % (output_dir, character_dict.split("/")[-1]))
-
-    for e in range(epoch):
-        e = e + 1
-
+    for e in range(1, epoch+1):
         print("===EPOCH %d ===" % (e))
         if lr_schedule:
             curr_lr = get_lr(optimizer)
@@ -275,10 +265,8 @@ def main(
             print("Saving model to %s" % model_path)
             torch.save(model.state_dict(), model_path)
 
-
     model_path = "%s/model.pth" % output_dir
     opt_path = "%s/optimizer.pth" % output_dir
-
 
     print("Saving model to %s" % model_path)
     torch.save(model.state_dict(), model_path)

@@ -4,10 +4,10 @@ import torch.nn.functional as F
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 from attacut import utils, dataloaders
-from . import CharacterSeqBaseModel, ConvolutionLayer
+from . import BaseModel, ConvolutionLayer
 
 
-class Model(CharacterSeqBaseModel):
+class Model(BaseModel):
     dataset = dataloaders.CharacterSeqDataset
 
     def __init__(self, data_config, model_config="emb:32|conv:48|l1:16|do:0.1"):
