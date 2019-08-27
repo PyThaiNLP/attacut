@@ -67,35 +67,6 @@ def preprocess(txt, steps=DEFAULT_PREPROCESSING_STEPS):
             txt = s(txt)
     return txt
 
-def long_txt_to_sequences(txt, sep="|", max_length=MAX_SEQUENCE_LENGTH):
-    tokens = txt.split(sep)
-
-    total_length = 0
-    sequences = []
-    cur_seq = []
-
-    for t in tokens:
-        syllables = syllable_tokenize(t)
-        total_syllables = len(syllables)
-        new_length = total_length + total_syllables
-
-        if new_length > max_length:
-            sequences.append(sep.join(cur_seq))
-            total_length, cur_seq = total_syllables, [t]
-        else:
-            cur_seq.append(t)
-            total_length = new_length
-
-    if total_length > 0 and (total_length) < max_length:
-        sequences.append(sep.join(cur_seq))
-    elif total_length == 0:
-        pass
-    else:
-        raise SystemError(
-                "last sequence is longer than %d(%d)\n>%s" % (max_length, len(cur_seq), cur_seq)
-            )
-
-    return sequences
 
 def expand_camel_case_to_tokens(w, verbose=0):
     if verbose:
@@ -135,6 +106,8 @@ def find_words_from_preds(tokens, preds):
 
 
 def syllable_tokenize(txt):
+    # Proxy function for syllable tokenization, in case we want to try
+    # a different syllable tokenizer.
     seps = txt.split(" ")
 
     new_tokens = []
@@ -144,6 +117,8 @@ def syllable_tokenize(txt):
         new_tokens.extend(tokens)
 
         if i < len(seps) - 1:
-            new_tokens.append(' ')
+            new_tokens.append(" ")
+
+    print(new_tokens)
 
     return new_tokens

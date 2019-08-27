@@ -119,3 +119,18 @@ def test_find_words_from_preds(tokens, preds, expected):
     exp = expected.split("|")
 
     assert act == exp
+
+
+@pytest.mark.parametrize(
+    ("txt", "expected"),
+    [ 
+        ("วันนี้ โรงเรียนเปิด", "วัน~นี้~ ~โรง~เรียน~เปิด"),
+        # todo: this case isn't correct, might related to #2
+        ("วันนี้   โรงเรียนเปิด", "วัน~นี้~ ~~ ~~ ~โรง~เรียน~เปิด") 
+    ]
+)
+def test_syllable_tokenize(txt, expected):
+    act = preprocessing.syllable_tokenize(txt)
+    exp = expected.split("~")
+
+    assert act == exp
