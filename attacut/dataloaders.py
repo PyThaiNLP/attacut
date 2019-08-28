@@ -69,7 +69,12 @@ class CharacterSeqDataset(SequenceDataset):
 
     def make_feature(self, txt):
         characters = list(txt)
-        ch_ix = list(map(lambda c: preprocessing.mapping_char(self.dict, c), characters))
+        ch_ix = list(
+            map(
+                lambda c: preprocessing.character2ix(self.dict, c),
+                characters
+            )
+        )
 
         features = np.array(ch_ix, dtype=np.int64).reshape((1, -1))
 
@@ -128,15 +133,19 @@ class SyllableCharacterSeqDataset(SequenceDataset):
     def make_feature(self, txt):
         syllables = preprocessing.syllable_tokenize(txt)
 
-        sy2idx, ch2idx = self.sy_dict, self.ch_dict
+        sy2ix, ch2ix = self.sy_dict, self.ch_dict
 
         ch_ix, syllable_ix = [], []
 
-        for s in syllables:
-            s_mapped = preprocessing.map_syllable_token(s)
-            six = sy2idx.get(s, sy2idx['<UNK>'])
+        for syllable in syllables:
+            six = preprocessing.syllable2ix(sy2ix, syllable)
 
-            chs = list(map(lambda c: preprocessing.mapping_char(ch2idx, c), list(s)))
+            chs = list(
+                map(
+                    lambda ch: preprocessing.character2ix(ch2ix, ch),
+                    list(syllable)
+                )
+            )
 
             ch_ix.extend(chs)
             syllable_ix.extend([six]*len(chs))

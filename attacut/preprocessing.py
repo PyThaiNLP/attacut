@@ -1,6 +1,8 @@
 import re
 import string
 
+from typing import Dict, List
+
 import ssg
 
 from attacut.minpythainlp import thai_digit_to_arabic_digit
@@ -20,23 +22,26 @@ DEFAULT_PREPROCESSING_STEPS = [
     "remove_last_pipe"
 ]
 
-MAX_SEQUENCE_LENGTH = 64
-
-def map_syllable_token(token):
-    if ARABIC_RX.match(token):
+def syllable2token(syllable: str) -> str:
+    if ARABIC_RX.match(syllable):
         return "<ENGLISH>"
-    elif NUMBER_RX.match(token):
+    elif NUMBER_RX.match(syllable):
         return "<NUMBER>"
     else:
-        return token
+        return syllable
 
-def mapping_char(ch2ix, c):
-    if c == "":
+def syllable2ix(sy2ix: Dict[str, int], syllable: str) -> int:
+    token = syllable2token(syllable)
+
+    return sy2ix.get(token, sy2ix.get("<UNK>"))
+
+def character2ix(ch2ix: Dict[str, int], character: str) -> int:
+    if character == "":
         return ch2ix.get("<PAD>")
-    elif c in string.punctuation:
+    elif character in string.punctuation:
         return ch2ix.get("<PUNC>")
-    
-    return ch2ix.get(c, ch2ix.get("<UNK>"))
+
+    return ch2ix.get(character, ch2ix.get("<UNK>"))
 
 def step_remove_tags(txt):
     return re.sub(r"<\/?[A-Z]+>", "", txt)
@@ -105,7 +110,7 @@ def find_words_from_preds(tokens, preds):
     return words
 
 
-def syllable_tokenize(txt):
+def syllable_tokenize(txt:str) -> List[str]:
     # Proxy function for syllable tokenization, in case we want to try
     # a different syllable tokenizer.
     seps = txt.split(" ")
