@@ -1,6 +1,8 @@
-(beta) Fast and Reasonably Tokenizer for Thai
-=============================================
-|travis_ic| |pypiversion_ic| |pypidownload_ic| |license_ic|
+Fast and Reasonably Tokenizer for Thai (beta)
+=========================================================
+
+
+|travis_ic| |pypiversion_ic| |pypidownload_ic| |license_ic| |github_ic|
 
 .. toctree::
     :maxdepth: 2
@@ -59,7 +61,12 @@ Higher-Level Interface
 AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates
 
 
-.. |travis_ic| image:: https://travis-ci.org/heytitle/attacut.svg?branch=master
+.. |travis_ic| image:: https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master
+    :target: https://travis-ci.org/PyThaiNLP/attacut
 .. |pypiversion_ic| image:: https://img.shields.io/pypi/v/attacut
+    :target: https://pypi.org/project/attacut/
 .. |pypidownload_ic| image:: https://img.shields.io/pypi/dw/attacut
+    :target: https://pypi.org/project/attacut/
 .. |license_ic| image:: https://img.shields.io/pypi/l/attacut
+.. |github_ic| image:: https://img.shields.io/github/stars/pythainlp/attacut?style=social
+    :target: http://google.com
