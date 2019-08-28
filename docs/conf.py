@@ -28,6 +28,7 @@ author = 'Pattarawat Chormai et al.'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'alabaster',
     'sphinx.ext.githubpages'
 ]
 
