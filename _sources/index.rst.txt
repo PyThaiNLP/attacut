@@ -4,13 +4,14 @@
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :glob:
+        pages/*
+
 
 .. figure:: figures/attacut-sych.png
     :align: center
 
     **TL;DR**: 3-Layer Dilated CNN on syllable and character features.
-
-
 
 Usage
 ----
@@ -56,7 +57,6 @@ AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNL
 
 
 
-
 Introduction
 ----
 
@@ -78,10 +78,6 @@ Development
 ----
 
 
-Acknowledgements
-----
-
-- a.ja [#aja]_
 
 
 References
