@@ -13,14 +13,15 @@
 
     **TL;DR**: 3-Layer Dilated CNN on syllable and character features.
 
-Usage
-----
-
 Installatation
-^^^^
+----
 .. code-block:: bash
 
     pip install attacut
+
+Usage
+----
+
 
 Command-Line Interface
 ^^^^
