@@ -1,5 +1,5 @@
-Acknowledgements
-----
+Acknowledgement
+----------------
 
 AttaCut was Pattarawat Chormai's project while interning at Dr. Attapol ... 's
 lab, at the Department of Linguistics, Faculty of Arts, Chulalongkorn University.

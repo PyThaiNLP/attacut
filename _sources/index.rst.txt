@@ -1,12 +1,15 @@
 (beta) Fast and Reasonably Tokenizer for Thai
-===================================
+=============================================
 |travis_ic| |pypiversion_ic| |pypidownload_ic| |license_ic|
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-   :glob:
-        pages/*
+    :maxdepth: 2
+    :hidden:
+
+    pages/overview
+    pages/benchmark
+    pages/training
+    pages/acknowledgement
 
 
 .. figure:: figures/attacut-sych.png
@@ -15,17 +18,17 @@
     **TL;DR**: 3-Layer Dilated CNN on syllable and character features.
 
 Installatation
-----
+--------------
 .. code-block:: bash
 
     pip install attacut
 
 Usage
-----
+-----
 
 
 Command-Line Interface
-^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: bash
 
     $ attacut-cli -h
@@ -42,7 +45,7 @@ Command-Line Interface
 
 
 Higher-Level Interface
-^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -52,44 +55,8 @@ Higher-Level Interface
     atta.tokenizer(txt)
 
 
-AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates.
+AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates
 
-
-
-
-
-
-Introduction
-----
-
-- What is AttaCut?
-- reason why we developed this?
-- when deepcut fails? [#deepcut]_
-
-Evaluation
-----
-
-Quality
-^^^^
-
-Speed
-^^^^
-
-
-Development
-----
-
-eee
-
-
-
-
-References
-----
-
-.. [#deepcut] `Some jee <https://colab.research.google.com/drive/1Kb_Fhh6bS0sC2k3ovi2ce8AaWqFXNgIT>`_
-
-.. [#aja] Ajavv somethinglink
 
 .. |travis_ic| image:: https://travis-ci.org/heytitle/attacut.svg?branch=master
 .. |pypiversion_ic| image:: https://img.shields.io/pypi/v/attacut
