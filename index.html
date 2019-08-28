@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>(WIP) Welcome to AttaCut’s documentation! &#8212; AttaCut  documentation</title>
+    <title>(beta) Fast and Reasonably Tokenizer for Thai &#8212; AttaCut  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -30,10 +30,48 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="wip-welcome-to-attacut-s-documentation">
-<h1>(WIP) Welcome to AttaCut’s documentation!<a class="headerlink" href="#wip-welcome-to-attacut-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p><strong>Remark:</strong> English version is in progress.</p>
+  <div class="section" id="beta-fast-and-reasonably-tokenizer-for-thai">
+<h1>(beta) Fast and Reasonably Tokenizer for Thai<a class="headerlink" href="#beta-fast-and-reasonably-tokenizer-for-thai" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+</div>
+<div class="figure align-center" id="id3">
+<img alt="figures/attacut-sych.png" src="figures/attacut-sych.png" />
+<p class="caption"><span class="caption-text"><strong>TL;DR</strong>: 3-Layer Dilated CNN on syllable and character features.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installatation">
+<h3>Installatation<a class="headerlink" href="#installatation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install attacut
+</pre></div>
+</div>
+</div>
+<div class="section" id="command-line-interface">
+<h3>Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ attacut-cli -h
+AttaCut: Fast and Reasonably Accurate Tokenizer for Thai
+
+Usage:
+attacut-cli &lt;src&gt; [--dest=&lt;dest&gt;] [--model=&lt;model&gt;]
+attacut-cli (-h | --help)
+
+Options:
+-h --help         Show this screen.
+--model=&lt;model&gt;   Model to be used [default: attacut-sc].
+--dest=&lt;dest&gt;     If not specified, it&#39;ll be &lt;src&gt;-tokenized-by-&lt;model&gt;.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="higher-level-interface">
+<h3>Higher-Level Interface<a class="headerlink" href="#higher-level-interface" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">attacut</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+
+<span class="n">atta</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">()</span> <span class="c1"># default model: attacut-sc</span>
+<span class="n">atta</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>AttaCut will be soon integrated into PyThaiNLP’s ecosystem. Please see <a class="reference external" href="https://github.com/PyThaiNLP/pythainlp/issues/258">PyThaiNLP #28</a> for recent updates.</p>
+</div>
 </div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
