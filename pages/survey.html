@@ -47,9 +47,9 @@ can be clustered into two categories, namely</p>
 <div class="line"><strong>Learning-based:</strong></div>
 <div class="line">Unlike dictionary-based, algorithms in this group learn to split words based on labelled data. The learning problem is typically formulated as <strong>binary classification</strong> on sequence of characters.</div>
 </div>
-<div class="figure align-center" id="id9">
+<div class="figure align-center" id="id10">
 <a class="reference internal image-reference" href="../_images/binary-classification.png"><img alt="../_images/binary-classification.png" src="../_images/binary-classification.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <div class="line-block">
 <div class="line">With the rise of neural networks, recent developments of Thai tokenizers are either Convolutional Neural Networks (CNNs) (i.e. DeepCut <a class="footnote-reference brackets" href="#deepcut" id="id3">3</a>) or Recurrent Neural Networks (RNNs) (i.e. <a class="footnote-reference brackets" href="#multicut" id="id4">4</a>, <a class="footnote-reference brackets" href="#cantok" id="id5">5</a>, Sertis’ Bi-GRUs <a class="footnote-reference brackets" href="#sertis" id="id6">6</a>).</div>
@@ -61,14 +61,58 @@ Dictionary-based algorithms are typically fast but with less capable when encoun
 On the other hand, learning-based approaches are usually qualitatively better and more adaptable to data from different domains; however, their computation is relatively slower.
 Figure below summarizes current solutions into two axes: <strong>Quality (Word-Level f1)</strong> and <strong>Inference time</strong>.</p>
 <blockquote>
-<div><div class="figure align-center" id="id10">
+<div><div class="figure align-center" id="id11">
 <img alt="../_images/previous-work-spectrum.png" src="../_images/previous-work-spectrum.png" />
-<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmark</span></a> for evaluation details. Device Specification <a class="footnote-reference brackets" href="#id8" id="id7">*</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmark</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id9" id="id7">*</a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
-<p>From the plot, we can see that … . Faster tokenizer needs to be in place other interesting and useful NLP applications for Thai.</p>
-<div class="section" id="why-do-we-need-a-faster-tokenizer">
-<h2>Why do we need a faster tokenizer?<a class="headerlink" href="#why-do-we-need-a-faster-tokenizer" title="Permalink to this headline">¶</a></h2>
+<p>From the plot, we can see that the DeepCut is state-of-the-art. However,
+it is significantly slower than other algorithms.
+While PyThaiNLP’s newmm is the the fastest one, lowest inference speed,
+it has the lowest tokenization quality.</p>
+<p>Because tokenization is usually the first stage in NLP pipelines,
+the efficiency and accuracy of the tokenizer are crucial towards building a
+successful NLP application. Now, a question arises whether we can build fast
+and yet accurate tokenizer for Thai.</p>
+<div class="section" id="analysis-of-deepcut">
+<h2>Analysis of Deepcut<a class="headerlink" href="#analysis-of-deepcut" title="Permalink to this headline">¶</a></h2>
+<p>DeepCut is a CNN with 13 different widths of convolution on character features or embeddings.
+Pooling is then used to combined features from these convotional layers, yeiding output to a fully-connected layer for final prediction.</p>
+<blockquote>
+<div><div class="figure align-center">
+<img alt="https://user-images.githubusercontent.com/1214890/58486992-14c1d880-8191-11e9-9122-8385750e06bd.png" src="https://user-images.githubusercontent.com/1214890/58486992-14c1d880-8191-11e9-9122-8385750e06bd.png" />
+</div>
+</div></blockquote>
+<p>In total, DeepCut has around 500,000 trainable variables. Looking at DeepCut’s
+architecture, convotion layers are
+significatnly overlapped to each other; hence, these layers are redudant.
+With this observation, we have a hyphothesis that DeepCut could be smaller
+while achieving a similar level of tokenization quality.</p>
+<div class="figure align-default" id="id12">
+<img alt="../_images/deepcut-experiment.png" src="../_images/deepcut-experiment.png" />
+<p class="caption"><span class="caption-text">Finding which layers in DeepCut could be removed.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<p>We design an experiment to verify this proposition. The experiment can be
+described as follows:</p>
+<ol class="arabic simple">
+<li><p>Disable neurons in a layer by zeroing their activitions</p></li>
+<li><p>Observe the change of tokenization quality</p></li>
+<li><p>Repeat 1-2. to other layers</p></li>
+</ol>
+<p>In short, we found that if we remove the convolution layers of kernel width 7,
+9, and 10, DeepCut will be 20% faster while its quality drops only 6%. Complete
+analysis can be found from our notebook <a class="footnote-reference brackets" href="#deepcutana" id="id8">7</a>. This result confirms
+our hyphothesis that we can have a smaller CNN model that is compentent in
+speed and quality.</p>
+</div>
+<div class="section" id="how-does-attacut-look-like">
+<h2>How does AttaCut look like?<a class="headerlink" href="#how-does-attacut-look-like" title="Permalink to this headline">¶</a></h2>
+<p>AttaCut is designed based on two observations:</p>
+<ol class="arabic simple">
+<li><p>DeepCut Analysis</p></li>
+<li><p>Liguistics..</p></li>
+</ol>
+<p>Syllable + Character features</p>
 <p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="icu"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -89,7 +133,10 @@ Figure below summarizes current solutions into two axes: <strong>Quality (Word-L
 <dt class="label" id="sertis"><span class="brackets"><a class="fn-backref" href="#id6">6</a></span></dt>
 <dd><p><a class="reference external" href="https://github.com/sertiscorp/thai-word-segmentation">Sertis Corp. Thai word segmentation with bi-directional RNN</a></p>
 </dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id7">*</a></span></dt>
+<dt class="label" id="deepcutana"><span class="brackets"><a class="fn-backref" href="#id8">7</a></span></dt>
+<dd><p><a class="reference external" href="https://colab.research.google.com/drive/1Kb_Fhh6bS0sC2k3ovi2ce8AaWqFXNgIT">P. Chormai. Analysis of DeepCut</a></p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">*</a></span></dt>
 <dd><p>For this experiment, we measured the inference time on MacBook Pro (Retina, 15”, Mid 2015), Intel Core i7 &#64; 2.2 Hz, Memory 16 GB with macOS 10.13.6.</p>
 </dd>
 </dl>
@@ -121,7 +168,8 @@ Figure below summarizes current solutions into two axes: <strong>Quality (Word-L
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Word Tokenization for Thai</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#why-do-we-need-a-faster-tokenizer">Why do we need a faster tokenizer?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analysis-of-deepcut">Analysis of Deepcut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-does-attacut-look-like">How does AttaCut look like?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a></li>
