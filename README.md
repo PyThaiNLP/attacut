@@ -1,5 +1,5 @@
 # AttaCut
-[![](https://api.travis-ci.com/heytitle/attacut.svg?token=fKbtMgf3jUWLccnyVsDw&branch=master)](https://travis-ci.com/heytitle/attacut)
+[![Build Status](https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master)](https://travis-ci.org/PyThaiNLP/attacut)
 [![](https://img.shields.io/badge/-presentation-informational)](https://drive.google.com/file/d/16AUNZv1HXVmERgryfBf4JpCo1QrQyHHE/view?usp=sharing)
 ![](https://img.shields.io/badge/doi-WIP-informational)
 
@@ -51,7 +51,7 @@ Please refer to [DEVELOPMENT.md](./docs/DEVELOPMENT.md)
 
 ## Acknowledgements
 - This repository was initially done by [Pattarawat Chormai][pat], while interning at [Dr. Attapol Thamrongrattanarit's NLP Lab][ate], Chulalongkorn University, Bangkok, Thailand.
-- Many thanks to my collegeus at Dr. Attapol's lab, PyThaiNLP team, [Ekapol Chuangsuwanich ][ake], [Noom][noom], [Can][can] for comments and feedback.
+- Many thanks to my collegeus at Dr. Attapol's lab, PyThaiNLP team, [Ekapol Chuangsuwanich ][ake], [Noom][noom], and [Can][can] for comments and feedback.
 
 
 [pat]: http://pat.chormai.org
