@@ -1,5 +1,6 @@
 (beta) Fast and Reasonably Tokenizer for Thai
 ===================================
+|travis_ic| |pypiversion_ic| |pypidownload_ic| |license_ic|
 
 .. toctree::
    :maxdepth: 2
@@ -78,6 +79,8 @@ Speed
 Development
 ----
 
+eee
+
 
 
 
@@ -87,3 +90,8 @@ References
 .. [#deepcut] `Some jee <https://colab.research.google.com/drive/1Kb_Fhh6bS0sC2k3ovi2ce8AaWqFXNgIT>`_
 
 .. [#aja] Ajavv somethinglink
+
+.. |travis_ic| image:: https://travis-ci.org/heytitle/attacut.svg?branch=master
+.. |pypiversion_ic| image:: https://img.shields.io/pypi/v/attacut
+.. |pypidownload_ic| image:: https://img.shields.io/pypi/dw/attacut
+.. |license_ic| image:: https://img.shields.io/pypi/l/attacut
