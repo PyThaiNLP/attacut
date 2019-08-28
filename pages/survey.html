@@ -47,9 +47,9 @@ can be clustered into two categories, namely</p>
 <div class="line"><strong>Learning-based:</strong></div>
 <div class="line">Unlike dictionary-based, algorithms in this group learn to split words based on labelled data. The learning problem is typically formulated as <strong>binary classification</strong> on sequence of characters.</div>
 </div>
-<div class="figure align-center" id="id10">
+<div class="figure align-center" id="id11">
 <a class="reference internal image-reference" href="../_images/binary-classification.png"><img alt="../_images/binary-classification.png" src="../_images/binary-classification.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 <div class="line-block">
 <div class="line">With the rise of neural networks, recent developments of Thai tokenizers are either Convolutional Neural Networks (CNNs) (i.e. DeepCut <a class="footnote-reference brackets" href="#deepcut" id="id3">3</a>) or Recurrent Neural Networks (RNNs) (i.e. <a class="footnote-reference brackets" href="#multicut" id="id4">4</a>, <a class="footnote-reference brackets" href="#cantok" id="id5">5</a>, Sertis’ Bi-GRUs <a class="footnote-reference brackets" href="#sertis" id="id6">6</a>).</div>
@@ -61,9 +61,9 @@ Dictionary-based algorithms are typically fast but with less capable when encoun
 On the other hand, learning-based approaches are usually qualitatively better and more adaptable to data from different domains; however, their computation is relatively slower.
 Figure below summarizes current solutions into two axes: <strong>Quality (Word-Level f1)</strong> and <strong>Inference time</strong>.</p>
 <blockquote>
-<div><div class="figure align-center" id="id11">
+<div><div class="figure align-center" id="id12">
 <img alt="../_images/previous-work-spectrum.png" src="../_images/previous-work-spectrum.png" />
-<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmark</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id9" id="id7">*</a></span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmark</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id10" id="id7">*</a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
 <p>From the plot, we can see that the DeepCut is state-of-the-art. However,
@@ -88,9 +88,9 @@ architecture, convotion layers are
 significatnly overlapped to each other; hence, these layers are redudant.
 With this observation, we have a hyphothesis that DeepCut could be smaller
 while achieving a similar level of tokenization quality.</p>
-<div class="figure align-default" id="id12">
+<div class="figure align-default" id="id13">
 <img alt="../_images/deepcut-experiment.png" src="../_images/deepcut-experiment.png" />
-<p class="caption"><span class="caption-text">Finding which layers in DeepCut could be removed.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Finding which layers in DeepCut could be removed.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 <p>We design an experiment to verify this proposition. The experiment can be
 described as follows:</p>
@@ -107,12 +107,29 @@ speed and quality.</p>
 </div>
 <div class="section" id="how-does-attacut-look-like">
 <h2>How does AttaCut look like?<a class="headerlink" href="#how-does-attacut-look-like" title="Permalink to this headline">¶</a></h2>
-<p>AttaCut is designed based on two observations:</p>
-<ol class="arabic simple">
-<li><p>DeepCut Analysis</p></li>
-<li><p>Liguistics..</p></li>
-</ol>
-<p>Syllable + Character features</p>
+<p>Recent trends in NLP have started to shift towards the use of attention and
+convolutional models (i.e. Transformer <a class="footnote-reference brackets" href="#attention" id="id9">8</a>). One of the reasons is
+due to the fact that the computation of CNNs can be parallelized, while this is
+blocked in RNNs because of recurrence dependencies in those models. Hence,
+the inference process of CNNs is usually faster than RNNs.</p>
+<div class="figure align-default" id="id14">
+<img alt="../_images/attacut-convolution.png" src="../_images/attacut-convolution.png" />
+<p class="caption"><span class="caption-text">AttaCut’s three convolutions with different filter widths and dilation rates.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<p>Together with our DeepCut analysis, we firstly constuct AttaCut using CNNs.
+AttaCut’s convolutional layers are chosen in such a way that overlapping
+between filters is minimal while covering a similar context as in DeepCut.
+We satisfy this requirement using the dilated convolutions.
+Figure below are AttaCut’s convolutions:</p>
+<div class="figure align-default" id="id15">
+<img alt="../_images/syllable-char-embedding.png" src="../_images/syllable-char-embedding.png" />
+<p class="caption"><span class="caption-text">AttaCut’s Architecture: 3 Convolutions -&gt; Pooling -&gt; Fully-connected Layer</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</div>
+<p>Secondly, lingustically, word boundary is always syllable boundary; hence, we
+incorporate syllable knowledge into AttaCut. The collaboration is done in a
+form of syllable embedding in which characters in the same syllable have
+the same syllable embedding. This augmentation contextualizes each character to
+have different embeddings depending on its neighbours.</p>
 <p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="icu"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -136,7 +153,10 @@ speed and quality.</p>
 <dt class="label" id="deepcutana"><span class="brackets"><a class="fn-backref" href="#id8">7</a></span></dt>
 <dd><p><a class="reference external" href="https://colab.research.google.com/drive/1Kb_Fhh6bS0sC2k3ovi2ce8AaWqFXNgIT">P. Chormai. Analysis of DeepCut</a></p>
 </dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">*</a></span></dt>
+<dt class="label" id="attention"><span class="brackets"><a class="fn-backref" href="#id9">8</a></span></dt>
+<dd><p><a class="reference external" href="https://arxiv.org/pdf/1706.03762.pdf">https://arxiv.org/pdf/1706.03762.pdf</a></p>
+</dd>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id7">*</a></span></dt>
 <dd><p>For this experiment, we measured the inference time on MacBook Pro (Retina, 15”, Mid 2015), Intel Core i7 &#64; 2.2 Hz, Memory 16 GB with macOS 10.13.6.</p>
 </dd>
 </dl>
