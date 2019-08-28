@@ -1,5 +1,5 @@
-Training Matters
-----------------
+Reproducibility
+---------------
 
 Module Overview
 ^^^^^^^^^^^^^^^
