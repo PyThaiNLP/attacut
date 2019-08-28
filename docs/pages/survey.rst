@@ -74,13 +74,31 @@ speed and quality.
 
 How does AttaCut look like?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttaCut is designed based on two observations:
+Recent trends in NLP have started to shift towards the use of attention and
+convolutional models (i.e. Transformer [#attention]_). One of the reasons is
+due to the fact that the computation of CNNs can be parallelized, while this is
+blocked in RNNs because of recurrence dependencies in those models. Hence,
+the inference process of CNNs is usually faster than RNNs.
 
-1. DeepCut Analysis
-2. Liguistics..
+.. figure:: ../figures/attacut-convolution.png
 
-Syllable + Character features
+    AttaCut's three convolutions with different filter widths and dilation rates.
 
+Together with our DeepCut analysis, we firstly constuct AttaCut using CNNs.
+AttaCut's convolutional layers are chosen in such a way that overlapping
+between filters is minimal while covering a similar context as in DeepCut.
+We satisfy this requirement using the dilated convolutions.
+Figure below are AttaCut's convolutions:
+
+.. figure:: ../figures/syllable-char-embedding.png
+
+    AttaCut's Architecture: 3 Convolutions -> Pooling -> Fully-connected Layer
+
+Secondly, lingustically, word boundary is always syllable boundary; hence, we
+incorporate syllable knowledge into AttaCut. The collaboration is done in a
+form of syllable embedding in which characters in the same syllable have
+the same syllable embedding. This augmentation contextualizes each character to
+have different embeddings depending on its neighbours.
 
 .. rubric:: References
 
@@ -91,4 +109,5 @@ Syllable + Character features
 .. [#cantok] `C. Udomcharoenchaikit, P. Vateekul, and P. Boonkwan. Thai Named-Entity Recognition Using Variational Long Short-Term Memory with Conditional Random Field: Selected Revised Papers from the Joint International Symposium on Artificial Intelligence and Natural Language Processing (iSAI-NLP 2017). pages 82–92. 2019. <https://www.researchgate.net/figure/Variational-LSTM-CRF-model-for-Thai-Named-Entity-Recognition_fig1_329766827>`_
 .. [#sertis] `Sertis Corp. Thai word segmentation with bi-directional RNN <https://github.com/sertiscorp/thai-word-segmentation>`_
 .. [#deepcutana] `P. Chormai. Analysis of DeepCut <https://colab.research.google.com/drive/1Kb_Fhh6bS0sC2k3ovi2ce8AaWqFXNgIT>`_
+.. [#attention] https://arxiv.org/pdf/1706.03762.pdf
 .. [*] For this experiment, we measured the inference time on MacBook Pro (Retina, 15", Mid 2015), Intel Core i7 @ 2.2 Hz, Memory 16 GB with macOS 10.13.6.
