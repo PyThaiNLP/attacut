@@ -14,12 +14,12 @@ and text understanding. Many algorithms have been proposed and developed to supp
     Typical NLP Pipeline
 
 **[TO WRITE]** Typical NLP Pipeline includes several stages.  Word Segmentation or Tokenization ...
+Refere to A'Te and A'Eck courses.
 
 Word Tokenization
 ^^^^^^^^^^^^^^^^^
 
 .. figure:: ../figures/sentiment-analysis.png
-    :width: 300px
     :align: center
 
     Text Classification on word-level features.
