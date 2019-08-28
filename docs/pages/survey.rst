@@ -29,6 +29,8 @@ Figure below summarizes current solutions into two axes: **Quality (Word-Level f
 
         Quality and Inference Time of Existing Thai Word Tokenizers. Please see :ref:`sec-benchmark` for evaluation details. Device Specification [*]_
 
+From the plot, we can see that ... . Faster tokenizer needs to be in place other interesting and useful NLP applications for Thai.
+
 Why do we need a faster tokenizer?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -41,4 +43,4 @@ Why do we need a faster tokenizer?
 .. [#multicut] `T. Lapjaturapit, K. Viriyayudhakom, and T. Theeramunkong. Multi-Candidate Word Segmentation using Bi-directional LSTM Neural Networks. pages 1–6, 2018. <https://www.researchgate.net/publication/327516094_Multi-Candidate_Word_Segmentation_using_Bi-directional_LSTM_Neural_Networks>`_
 .. [#cantok] `C. Udomcharoenchaikit, P. Vateekul, and P. Boonkwan. Thai Named-Entity Recognition Using Variational Long Short-Term Memory with Conditional Random Field: Selected Revised Papers from the Joint International Symposium on Artificial Intelligence and Natural Language Processing (iSAI-NLP 2017). pages 82–92. 2019. <https://www.researchgate.net/figure/Variational-LSTM-CRF-model-for-Thai-Named-Entity-Recognition_fig1_329766827>`_
 .. [#sertis] `Sertis Corp. Thai word segmentation with bi-directional RNN <https://github.com/sertiscorp/thai-word-segmentation>`_
-.. [*] For this experiment, we measured inference time on MacBook Pro (Retina, 15", Mid 2015), Intel Core i7 @ 2.2 Hz, Memory 16 GB with macOS 10.13.6.
+.. [*] For this experiment, we measured the inference time on MacBook Pro (Retina, 15", Mid 2015), Intel Core i7 @ 2.2 Hz, Memory 16 GB with macOS 10.13.6.
