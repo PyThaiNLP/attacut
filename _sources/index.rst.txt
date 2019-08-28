@@ -6,7 +6,8 @@
     :maxdepth: 2
     :hidden:
 
-    pages/overview
+    Overview <pages/overview>
+    pages/survey
     pages/benchmark
     pages/training
     pages/acknowledgement

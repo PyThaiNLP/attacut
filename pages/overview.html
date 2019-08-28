@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Benchmark" href="benchmark.html" />
+    <link rel="next" title="Word Tokenization for Thai" href="survey.html" />
     <link rel="prev" title="(beta) Fast and Reasonably Tokenizer for Thai" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -34,14 +34,42 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="nlp-pipeline">
-<h2>NLP Pipeline<a class="headerlink" href="#nlp-pipeline" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-is-nlp">
+<h2>What is NLP?<a class="headerlink" href="#what-is-nlp" title="Permalink to this headline">¶</a></h2>
+<p>Natural Language Processing (NLP) plays an important role in today’s digital era.
+Some of its applications are language translation, text classificaiton,
+and text understanding. Many algorithms have been proposed and developed to support problems in NLP.</p>
+<div class="figure align-center" id="id3">
+<img alt="../_images/nlp-pipeline.png" src="../_images/nlp-pipeline.png" />
+<p class="caption"><span class="caption-text">Typical NLP Pipeline</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="why-do-we-need-a-faster-tokenizer">
-<h2>Why do we need a faster tokenizer?<a class="headerlink" href="#why-do-we-need-a-faster-tokenizer" title="Permalink to this headline">¶</a></h2>
+<p><strong>[TO WRITE]</strong> Typical NLP Pipeline includes several stages.  Word Segmentation or Tokenization …</p>
 </div>
-<div class="section" id="state-of-the-art-surveys">
-<h2>State-of-the-art surveys<a class="headerlink" href="#state-of-the-art-surveys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="word-tokenization">
+<h2>Word Tokenization<a class="headerlink" href="#word-tokenization" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/sentiment-analysis.png"><img alt="../_images/sentiment-analysis.png" src="../_images/sentiment-analysis.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text">Text Classification on word-level features.
+This example is drawn from <a class="reference external" href="https://github.com/albermax/innvestigate/blob/master/examples/notebooks/sentiment_analysis.ipynb">Maximilian Alber’s Innvestigate</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>Unlike western languages, Thai language has an unique challenge of its own.
+No clear separation between words makes it difficult to tokenize Thai text into words, leaving
+this ambiguity to be solved in downstream tasks. Without good word-level features, those downstream algorithms
+may not be able to process Thai documents efficiently.</p>
+<p>To demonstate this challgenge, it is worth examining the คมเพชรเชิงกลอน ภาคสายลม peom <a class="footnote-reference brackets" href="#komped" id="id1">1</a> below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">สาวตากลมผมยาวเธอคนนั้น</span>    <span class="n">คนที่ฉันนั่งตากลมคอยเฝ้าเพ้อ</span>
+<span class="n">สาวตากลมผมสวยนั้นละเธอ</span>    <span class="n">ที่ฉันเจอนั่งตากลมอยู่ทุกวัน</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>In the peom, <strong>ตากลม</strong> appears several times. It could mean <strong>ตา|กลม</strong> (round eye) or <strong>ตาก|ลม</strong> (chilling)
+depending on context. For humans who understand Thai, it is quite clear when it should be which case.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="komped"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/PyThaiNLP/corpus-komped-poem-windy-part">คมเพชรเชิงกลอน ภาคสายลม</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -64,11 +92,11 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#nlp-pipeline">NLP Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#why-do-we-need-a-faster-tokenizer">Why do we need a faster tokenizer?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#state-of-the-art-surveys">State-of-the-art surveys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-nlp">What is NLP?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#word-tokenization">Word Tokenization</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="survey.html">Word Tokenization for Thai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="training.html">Reproducibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
@@ -79,7 +107,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="../index.html" title="previous chapter">(beta) Fast and Reasonably Tokenizer for Thai</a></li>
-      <li>Next: <a href="benchmark.html" title="next chapter">Benchmark</a></li>
+      <li>Next: <a href="survey.html" title="next chapter">Word Tokenization for Thai</a></li>
   </ul></li>
 </ul>
 </div>
