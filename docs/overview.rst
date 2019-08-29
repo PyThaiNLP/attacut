@@ -8,7 +8,7 @@ Natural Language Processing (NLP) plays an important role in today's digital era
 Some of its applications are language translation, text classificaiton,
 and text understanding. Many algorithms have been proposed and developed to support problems in NLP.
 
-.. figure:: ../figures/nlp-pipeline.png
+.. figure:: ./figures/nlp-pipeline.png
     :align: center
 
     Typical NLP Pipeline
@@ -19,7 +19,7 @@ Refere to A'Te and A'Eck courses.
 Word Tokenization
 ^^^^^^^^^^^^^^^^^
 
-.. figure:: ../figures/sentiment-analysis.png
+.. figure:: ./figures/sentiment-analysis.png
     :align: center
 
     Text Classification on word-level features.

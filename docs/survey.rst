@@ -11,7 +11,7 @@ can be clustered into two categories, namely
 2. | **Learning-based:**
    | Unlike dictionary-based, algorithms in this group learn to split words based on labelled data. The learning problem is typically formulated as **binary classification** on sequence of characters.
 
-   .. figure:: ../figures/binary-classification.png
+   .. figure:: ./figures/binary-classification.png
         :width: 300px
         :align: center
 
@@ -24,7 +24,7 @@ Dictionary-based algorithms are typically fast but with less capable when encoun
 On the other hand, learning-based approaches are usually qualitatively better and more adaptable to data from different domains; however, their computation is relatively slower.
 Figure below summarizes current solutions into two axes: **Quality (Word-Level f1)** and **Inference time**.
 
-   .. figure:: ../figures/previous-work-spectrum.png
+   .. figure:: ./figures/previous-work-spectrum.png
         :align: center
 
         Quality and Inference Time of Existing Thai Word Tokenizers. Please see :ref:`sec-benchmark` for details of evaluation metrics. Device Specification [*]_
@@ -53,7 +53,7 @@ significatnly overlapped to each other; hence, these layers are redudant.
 With this observation, we have a hyphothesis that DeepCut could be smaller
 while achieving a similar level of tokenization quality.
 
-.. figure:: ../figures/deepcut-experiment.png
+.. figure:: ./figures/deepcut-experiment.png
 
     Finding which layers in DeepCut could be removed.
 
@@ -64,7 +64,7 @@ described as follows:
 2. Observe the change of tokenization quality
 3. Repeat 1-2. to other layers
 
-.. figure:: ../figures/deepcut-experiment-result.png
+.. figure:: ./figures/deepcut-experiment-result.png
     :width: 500px
 
     Speed Comparision between original DeepCut and shrinked models
@@ -85,7 +85,7 @@ due to the fact that the computation of CNNs can be parallelized, while this is
 blocked in RNNs because of recurrence dependencies in those models. Hence,
 the inference process of CNNs is usually faster than RNNs.
 
-.. figure:: ../figures/attacut-convolution.png
+.. figure:: ./figures/attacut-convolution.png
 
     AttaCut's three convolutions with different filter widths and dilation rates.
 
@@ -95,7 +95,7 @@ between filters is minimal while covering a similar context as in DeepCut.
 We satisfy this requirement using the dilated convolutions.
 Figure below are AttaCut's convolutions:
 
-.. figure:: ../figures/syllable-char-embedding.png
+.. figure:: ./figures/syllable-char-embedding.png
 
     AttaCut's Architecture: 3 Convolutions -> Pooling -> Fully-connected Layer
 
@@ -105,7 +105,7 @@ form of syllable embedding in which characters in the same syllable have
 the same syllable embedding. This augmentation contextualizes each character to
 have different embeddings depending on its neighbours.
 
-.. figure:: ../figures/word-syllable-boundary.png
+.. figure:: ./figures/word-syllable-boundary.png
     :width: 300px
 
     Syllable and Word Boundaries
