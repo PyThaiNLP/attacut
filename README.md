@@ -14,7 +14,7 @@
 
 ```
 # only for beta version
-$ pip install attacut==0.0.3.dev0
+$ pip install attacut
 ```
 
 ## Usage
