@@ -53,8 +53,8 @@ ingredients:
 
         Tokenization Benchmark Visualization [#viz]_
 
-Results
-"""""""
+Results [#benchsheet]_
+""""""""""""""""""""""
 
 We evaluate tokenization quality on four datasets, namely BEST [#best]_, Orchid [#orchid]_,
 1000 samples from Wisesight Sentiment Corpus [#wisesight-tok]_, and Thai National Historical Corpus (TNHC) [#tnhc]_.
@@ -91,14 +91,13 @@ Benchmarking on Google Colab
 
 Due to Google Colab's accessibilty and convenience, we use Google Colab for our
 early speed benchmarking. In this experiment, we vary the length of input text
-and measure the speed of tokenizers.
+and measure the speed of tokenizers. From the figure below, we can see that
+our AttaCut models are significantly faster than DeepCut.
 
 .. figure:: ../figures/colab-speed-benchmark.png
 
     Tokenization Time of PyThaiNLP's newmm, DeepCut, and AttaCut on Google Colab
 
-From the figure above, we can see that our AttaCut models are significantly
-faster than DeepCut.
 
 
 Benchmarking on EC2 Instances
