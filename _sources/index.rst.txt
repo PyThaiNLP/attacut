@@ -41,7 +41,7 @@ Command-Line Interface
 .. code-block:: bash
 
     $ attacut-cli -h
-    AttaCut: Fast and Reasonably Accurate Tokenizer for Thai
+    AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 
     Usage:
     attacut-cli <src> [--dest=<dest>] [--model=<model>]
