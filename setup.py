@@ -9,8 +9,8 @@ with open("./requirements.txt", "r") as f:
 setup(
     name="attacut",
     version="0.0.4-dev",
-    description="Yet Another Tokenizer for Thai",
-    author="Man Foo",
+    description="Yet Another Word Tokenizer for Thai",
+    author="Pattarawat Chormai et al.",
     author_email="foomail@foo.com",
     packages=["attacut", "attacut.models", "attacut.artifacts"],
     install_requires=requirements,
