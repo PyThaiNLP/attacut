@@ -6,4 +6,4 @@ python-crfsuite==0.9.6
 pyyaml==5.1.2
 six==1.12.0
 ssg==0.0.4
-torch
+torch==1.2.0
