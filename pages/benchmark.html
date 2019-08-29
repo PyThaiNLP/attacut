@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Reproduction" href="training.html" />
+    <link rel="next" title="Retraining" href="training.html" />
     <link rel="prev" title="Word Tokenization for Thai" href="survey.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -48,9 +48,9 @@ while the latter uses only character feature.</p>
 <p>Tokenization quality is measured in terms of <strong>precision</strong>, <strong>recall</strong>, and
 <strong>f1</strong>. We do the measurements in two levels, namely character and word.
 Figure below describes how these metrics are computed:</p>
-<div class="figure align-default" id="id8">
+<div class="figure align-default" id="id9">
 <img alt="../_images/evaluation-long.png" src="../_images/evaluation-long.png" />
-<p class="caption"><span class="caption-text">Character- and Word-Level Metrics for Word Tokenization</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Character- and Word-Level Metrics for Word Tokenization</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Character</span><span class="o">-</span><span class="n">Level</span><span class="p">:</span>
 <span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="n">recision</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span> <span class="n">TP</span> <span class="o">+</span> <span class="n">FP</span> <span class="p">)</span>
@@ -76,26 +76,26 @@ ingredients:</p>
 <div class="line">This website serves as a tool for error analysis on tokenization results as well as a benchmark collection of other publicly available tokenizers.</div>
 </div>
 <blockquote>
-<div><div class="figure align-default" id="id9">
+<div><div class="figure align-default" id="id10">
 <img alt="https://camo.githubusercontent.com/85984f46bb0db3e2bb86b16969b570b7faf4535a/68747470733a2f2f692e696d6775722e636f6d2f56564159485a4d2e706e67" src="https://camo.githubusercontent.com/85984f46bb0db3e2bb86b16969b570b7faf4535a/68747470733a2f2f692e696d6775722e636f6d2f56564159485a4d2e706e67" />
-<p class="caption"><span class="caption-text">Tokenization Benchmark Visualization <a class="footnote-reference brackets" href="#viz" id="id2">2</a></span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Tokenization Benchmark Visualization <a class="footnote-reference brackets" href="#viz" id="id2">2</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
 </li>
 </ol>
 <div class="section" id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
-<p>We evaluate tokenization quality on four datasets, namely BEST <a class="footnote-reference brackets" href="#best" id="id3">4</a>, Orchid <a class="footnote-reference brackets" href="#orchid" id="id4">6</a>,
-1000 samples from Wisesight Sentiment Corpus <a class="footnote-reference brackets" href="#wisesight-tok" id="id5">8</a>, and Thai National Historical Corpus (TNHC) <a class="footnote-reference brackets" href="#tnhc" id="id6">5</a>.</p>
+<h3>Results <a class="footnote-reference brackets" href="#benchsheet" id="id3">3</a><a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<p>We evaluate tokenization quality on four datasets, namely BEST <a class="footnote-reference brackets" href="#best" id="id4">4</a>, Orchid <a class="footnote-reference brackets" href="#orchid" id="id5">6</a>,
+1000 samples from Wisesight Sentiment Corpus <a class="footnote-reference brackets" href="#wisesight-tok" id="id6">8</a>, and Thai National Historical Corpus (TNHC) <a class="footnote-reference brackets" href="#tnhc" id="id7">5</a>.</p>
 <p>Because we train on BEST, Orchid, Wisesight, and TNHC are
 out-domain evaluations, testing whether tokenizers are robust.</p>
-<div class="figure align-default" id="id10">
-<img alt="../_images/quality-benchmark-in-of-domain.png" src="../_images/quality-benchmark-in-of-domain.png" />
-<p class="caption"><span class="caption-text">Tokenization Quality on BEST (in-domain)</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
 <div class="figure align-default" id="id11">
+<img alt="../_images/quality-benchmark-in-of-domain.png" src="../_images/quality-benchmark-in-of-domain.png" />
+<p class="caption"><span class="caption-text">Tokenization Quality on BEST (in-domain)</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id12">
 <img alt="../_images/quality-benchmark-out-of-domain.png" src="../_images/quality-benchmark-out-of-domain.png" />
-<p class="caption"><span class="caption-text">Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <p>For in-domain evaluations, AttaCut-SC’s quality is quite similar
 to DeepCut only two percentage different on BEST’s test set. On the other hand,
@@ -112,13 +112,12 @@ and AWS’s EC2 instances (t2.small &amp; t2.medium).</p>
 <h3>Benchmarking on Google Colab<a class="headerlink" href="#benchmarking-on-google-colab" title="Permalink to this headline">¶</a></h3>
 <p>Due to Google Colab’s accessibilty and convenience, we use Google Colab for our
 early speed benchmarking. In this experiment, we vary the length of input text
-and measure the speed of tokenizers.</p>
-<div class="figure align-default" id="id12">
+and measure the speed of tokenizers. From the figure below, we can see that
+our AttaCut models are significantly faster than DeepCut.</p>
+<div class="figure align-default" id="id13">
 <img alt="../_images/colab-speed-benchmark.png" src="../_images/colab-speed-benchmark.png" />
-<p class="caption"><span class="caption-text">Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on Google Colab</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on Google Colab</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
-<p>From the figure above, we can see that our AttaCut models are significantly
-faster than DeepCut.</p>
 </div>
 <div class="section" id="benchmarking-on-ec2-instances">
 <h3>Benchmarking on EC2 Instances<a class="headerlink" href="#benchmarking-on-ec2-instances" title="Permalink to this headline">¶</a></h3>
@@ -128,12 +127,12 @@ Typically, these instances contain a couple of CPU cores and memory,
 posing another challenge to services, i.e. tokenization, executued there.</p>
 <p>Evaluating tokenizer’s speed on such an instance allows us to get realistic
 results and yet reproducible. We use the training set of Wisesight Sentiment
-Corpus <a class="footnote-reference brackets" href="#wisesight" id="id7">7</a> as a input dataset. The corpus contains texts from social
+Corpus <a class="footnote-reference brackets" href="#wisesight" id="id8">7</a> as a input dataset. The corpus contains texts from social
 media and online forum platforms. The training set has around 24,000 lines and
 about 1.5M characters.</p>
-<div class="figure align-default" id="id13">
+<div class="figure align-default" id="id14">
 <img alt="../_images/speed-benchmark-ec2.png" src="../_images/speed-benchmark-ec2.png" />
-<p class="caption"><span class="caption-text">Wisesight’s Training Set Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on AWS Instances.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Wisesight’s Training Set Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on AWS Instances.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 <p>From the figure above, AttaCut models are fasters than other existing ML-based
 tokenizers. More precisely, <strong>AttaCut-SC</strong> (our best model) is aroud <strong>6x</strong>
@@ -146,22 +145,22 @@ while having a similar level of tokenization quality.</p>
 <dt class="label" id="viz"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p><a class="reference external" href="https://pythainlp.github.io/tokenization-benchmark-visualization/">Tokenization Benchmark Visualization</a></p>
 </dd>
-<dt class="label" id="benchsheet"><span class="brackets">3</span></dt>
+<dt class="label" id="benchsheet"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p><a class="reference external" href="https://docs.google.com/spreadsheets/d/1hata1Y1C-j8p_d3-kJzqy6ENfNNWP195qEz08u0uFhQ/edit?usp=sharing">P. Chormai. Tokenization Quality Benchmark SpreadSheet, 2019</a></p>
 </dd>
-<dt class="label" id="best"><span class="brackets"><a class="fn-backref" href="#id3">4</a></span></dt>
+<dt class="label" id="best"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
 <dd><p>NECTEC. BEST: Benchmark for Enhancing the Standard of Thai language processing, 2010.</p>
 </dd>
-<dt class="label" id="tnhc"><span class="brackets"><a class="fn-backref" href="#id6">5</a></span></dt>
+<dt class="label" id="tnhc"><span class="brackets"><a class="fn-backref" href="#id7">5</a></span></dt>
 <dd><p><a class="reference external" href="https://attapol.github.io/tlc.html">J. Sawatphol and A. Rutherford. TNHC: Thai National Historical Corpus, 2019.</a></p>
 </dd>
-<dt class="label" id="orchid"><span class="brackets"><a class="fn-backref" href="#id4">6</a></span></dt>
+<dt class="label" id="orchid"><span class="brackets"><a class="fn-backref" href="#id5">6</a></span></dt>
 <dd><p><a class="reference external" href="https://www.semanticscholar.org/paper/ORCHID-%3A-Thai-Part-Of-Speech-Tagged-Corpus-Sornlertlamvanich-Charoenporn/f9f8dc979727e3a31c4cedcbdfad9523c28c009f">V. Sornlertlamvanich et al. ORCHID: Thai Part-Of-Speech Tagged Corpus, 2009</a></p>
 </dd>
-<dt class="label" id="wisesight"><span class="brackets"><a class="fn-backref" href="#id7">7</a></span></dt>
+<dt class="label" id="wisesight"><span class="brackets"><a class="fn-backref" href="#id8">7</a></span></dt>
 <dd><p><a class="reference external" href="https://github.com/PyThaiNLP/wisesight-sentiment">PyThaiNLP. Wisesight-Sentiment Corpus, 2019</a></p>
 </dd>
-<dt class="label" id="wisesight-tok"><span class="brackets"><a class="fn-backref" href="#id5">8</a></span></dt>
+<dt class="label" id="wisesight-tok"><span class="brackets"><a class="fn-backref" href="#id6">8</a></span></dt>
 <dd><p><a class="reference external" href="https://github.com/PyThaiNLP/wisesight-sentiment/tree/master/word-tokenization">PyThaiNLP. 1000 Samples from Wisesight-Sentiment Corpus, 2019</a></p>
 </dd>
 </dl>
@@ -199,7 +198,7 @@ while having a similar level of tokenization quality.</p>
 <li class="toctree-l2"><a class="reference internal" href="#speed">Speed</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="training.html">Reproduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Retraining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
 </ul>
 
@@ -208,7 +207,7 @@ while having a similar level of tokenization quality.</p>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="survey.html" title="previous chapter">Word Tokenization for Thai</a></li>
-      <li>Next: <a href="training.html" title="next chapter">Reproduction</a></li>
+      <li>Next: <a href="training.html" title="next chapter">Retraining</a></li>
   </ul></li>
 </ul>
 </div>

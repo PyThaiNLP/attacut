@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Reproduction &#8212; AttaCut  documentation</title>
+    <title>Retraining &#8212; AttaCut  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -32,16 +32,112 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="reproduction">
-<h1>Reproduction<a class="headerlink" href="#reproduction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-overview">
-<h2>Module Overview<a class="headerlink" href="#module-overview" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="retraining">
+<h1>Retraining<a class="headerlink" href="#retraining" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
+<p>AttaCut project is structured into several submodules. Four of them are
+important and worth knowing for further customization beyond what
+we have provided.</p>
+<ol class="arabic simple">
+<li><p><strong>Models</strong> contains definitions of models.</p></li>
+<li><p><strong>Dataloaders</strong> contains functionalities to process data for a particular model.</p></li>
+<li><p><strong>Preprocessing</strong> includes methods for cleaning data.</p></li>
+<li><p><strong>Utils</strong> contains other helper functions.</p></li>
+</ol>
 </div>
-<div class="section" id="retraining">
-<h2>Retraining<a class="headerlink" href="#retraining" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="training-data-format">
+<h2>Training Data Format<a class="headerlink" href="#training-data-format" title="Permalink to this headline">¶</a></h2>
+<p>To train an AttaCut model, one needs to prepare data as follow:</p>
+<div class="section" id="for-attacut-sc">
+<h3>For AttaCut-SC<a class="headerlink" href="#for-attacut-sc" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Character Dictionary: mapping from a character to an index</p></li>
+<li><p>Syllable Dicitonary:  mapping from a syllable to an index</p></li>
+<li><div class="line-block">
+<div class="line">Training and Validation sets. These sets have to be in the format below:</div>
 </div>
-<div class="section" id="training-environments">
-<h2>Training Environments<a class="headerlink" href="#training-environments" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1000100101</span>::CH_IX CH_IX CH_IX ...::SY_IX SY_IX ...
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Explanation</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>100010010</p></td>
+<td><p>sequence of labels. <cite>1</cite> indicates a starting-word character.</p></td>
+</tr>
+<tr class="row-odd"><td><p>CH_IX …</p></td>
+<td><p>sequence of character indices</p></td>
+</tr>
+<tr class="row-even"><td><p>SY_IX …</p></td>
+<td><p>sequence of syllable indices. Characters in the same syllable have the same <strong>SY_IX</strong></p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><div class="line-block">
+<div class="line">Each line could be a line in your original text.</div>
+</div>
+</div></blockquote>
+<p>With these ingredients, one has to create a directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># ls -la ./some-dataset</span>
+characters.json
+syllables.json
+training.txt
+val.txt
+</pre></div>
+</div>
+<p>Our AttaCut-SC training data can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/best-syllable-crf-and-character-seq-feature-sampling-0/3">https://www.floydhub.com/pattt/datasets/best-syllable-crf-and-character-seq-feature-sampling-0/3</a></p></li>
+<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2">https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2</a></p></li>
+<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/syllable-crf-dict-min-freq-10/2">https://www.floydhub.com/pattt/datasets/syllable-crf-dict-min-freq-10/2</a></p></li>
+</ul>
+</div>
+<div class="section" id="for-attacut-c">
+<h3>For AttaCut-C<a class="headerlink" href="#for-attacut-c" title="Permalink to this headline">¶</a></h3>
+<p>Every detail is similar to the preparation of AttaCut-SC, except that we do need
+the syllable dictionary and syllable indices <strong>(SY_IX SY_IX …)</strong>.</p>
+<p>Our AttaCut-C training data can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/best-character-seq-feature-sampling-0/1">https://www.floydhub.com/pattt/datasets/best-character-seq-feature-sampling-0/1</a></p></li>
+<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2">https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-to-retrain-on-custom-dataset">
+<h2>How to Retrain on Custom Dataset?<a class="headerlink" href="#how-to-retrain-on-custom-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Our training script is provided in <cite>./scripts/train.py</cite>. Several options can be specified when calling the script.</p>
+<p>This is an example of how we use it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ./scripts/train.py --model-name seq_sy_ch_conv_concat \ # seq_sy_ch_conv_concat = attacut-sc
+    --model-params &quot;embc:8|embs:8|conv:8|l1:6|do:0.1&quot;&#39; \ # emb{c,s} are embedding dimensions
+    --data-dir ./some-data  \
+    --output-dir ./sink/model-xx  \
+    --epoch 10 \
+    --batch-size 1024 \
+    --lr 0.001 \
+    --lr-schedule &quot;step:5|gamma:0.5&quot;
+</pre></div>
+</div>
+<p>AttaCut’s training code is primarily built to be used on
+<a class="reference external" href="https://www.floydhub.com/pattt/projects/attacut">FloydHub</a>. Our training jobs
+for the released models are:</p>
+<ul class="simple">
+<li><p>AttaCut-SC: <a class="reference external" href="https://www.floydhub.com/pattt/projects/attacut/50">https://www.floydhub.com/pattt/projects/attacut/50</a></p></li>
+<li><p>AttaCut-C: <a class="reference external" href="https://www.floydhub.com/pattt/projects/attacut/42">https://www.floydhub.com/pattt/projects/attacut/42</a></p></li>
+</ul>
+<p>Please let us know if you have any further questions.</p>
+<p>Happy coding and less overfitting! 🤪</p>
 </div>
 </div>
 
@@ -71,10 +167,10 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="survey.html">Word Tokenization for Thai</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmarking</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Reproduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-overview">Module Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#retraining">Retraining</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#training-environments">Training Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Retraining</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#training-data-format">Training Data Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-retrain-on-custom-dataset">How to Retrain on Custom Dataset?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
