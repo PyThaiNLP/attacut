@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <title>Word Tokenization for Thai &#8212; AttaCut  documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Benchmarking" href="benchmark.html" />
     <link rel="prev" title="Overview" href="overview.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -48,7 +48,7 @@ can be clustered into two categories, namely</p>
 <div class="line">Unlike dictionary-based, algorithms in this group learn to split words based on labelled data. The learning problem is typically formulated as <strong>binary classification</strong> on sequence of characters.</div>
 </div>
 <div class="figure align-center" id="id13">
-<a class="reference internal image-reference" href="../_images/binary-classification.png"><img alt="../_images/binary-classification.png" src="../_images/binary-classification.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/binary-classification.png"><img alt="_images/binary-classification.png" src="_images/binary-classification.png" style="width: 300px;" /></a>
 <p class="caption"><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 <div class="line-block">
@@ -62,7 +62,7 @@ On the other hand, learning-based approaches are usually qualitatively better an
 Figure below summarizes current solutions into two axes: <strong>Quality (Word-Level f1)</strong> and <strong>Inference time</strong>.</p>
 <blockquote>
 <div><div class="figure align-center" id="id14">
-<img alt="../_images/previous-work-spectrum.png" src="../_images/previous-work-spectrum.png" />
+<img alt="_images/previous-work-spectrum.png" src="_images/previous-work-spectrum.png" />
 <p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmarking</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id12" id="id7">*</a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
@@ -89,7 +89,7 @@ significatnly overlapped to each other; hence, these layers are redudant.
 With this observation, we have a hyphothesis that DeepCut could be smaller
 while achieving a similar level of tokenization quality.</p>
 <div class="figure align-default" id="id15">
-<img alt="../_images/deepcut-experiment.png" src="../_images/deepcut-experiment.png" />
+<img alt="_images/deepcut-experiment.png" src="_images/deepcut-experiment.png" />
 <p class="caption"><span class="caption-text">Finding which layers in DeepCut could be removed.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
 </div>
 <p>We design an experiment to verify this proposition. The experiment can be
@@ -100,7 +100,7 @@ described as follows:</p>
 <li><p>Repeat 1-2. to other layers</p></li>
 </ol>
 <div class="figure align-default" id="id16">
-<a class="reference internal image-reference" href="../_images/deepcut-experiment-result.png"><img alt="../_images/deepcut-experiment-result.png" src="../_images/deepcut-experiment-result.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/deepcut-experiment-result.png"><img alt="_images/deepcut-experiment-result.png" src="_images/deepcut-experiment-result.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">Speed Comparision between original DeepCut and shrinked models</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
 </div>
 <p>In short, we found that if we remove the convolution layers of kernel width 7,
@@ -117,7 +117,7 @@ due to the fact that the computation of CNNs can be parallelized, while this is
 blocked in RNNs because of recurrence dependencies in those models. Hence,
 the inference process of CNNs is usually faster than RNNs.</p>
 <div class="figure align-default" id="id17">
-<img alt="../_images/attacut-convolution.png" src="../_images/attacut-convolution.png" />
+<img alt="_images/attacut-convolution.png" src="_images/attacut-convolution.png" />
 <p class="caption"><span class="caption-text">AttaCut’s three convolutions with different filter widths and dilation rates.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
 </div>
 <p>Together with our DeepCut analysis, we firstly constuct AttaCut using CNNs.
@@ -126,7 +126,7 @@ between filters is minimal while covering a similar context as in DeepCut.
 We satisfy this requirement using the dilated convolutions.
 Figure below are AttaCut’s convolutions:</p>
 <div class="figure align-default" id="id18">
-<img alt="../_images/syllable-char-embedding.png" src="../_images/syllable-char-embedding.png" />
+<img alt="_images/syllable-char-embedding.png" src="_images/syllable-char-embedding.png" />
 <p class="caption"><span class="caption-text">AttaCut’s Architecture: 3 Convolutions -&gt; Pooling -&gt; Fully-connected Layer</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
 </div>
 <p>Secondly, lingustically, word boundary is always syllable boundary; hence, we
@@ -135,7 +135,7 @@ form of syllable embedding in which characters in the same syllable have
 the same syllable embedding. This augmentation contextualizes each character to
 have different embeddings depending on its neighbours.</p>
 <div class="figure align-default" id="id19">
-<a class="reference internal image-reference" href="../_images/word-syllable-boundary.png"><img alt="../_images/word-syllable-boundary.png" src="../_images/word-syllable-boundary.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/word-syllable-boundary.png"><img alt="_images/word-syllable-boundary.png" src="_images/word-syllable-boundary.png" style="width: 300px;" /></a>
 <p class="caption"><span class="caption-text">Syllable and Word Boundaries</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
 </div>
 <p>For syllable tokenization, we use P. Prasertsom et al’s Syllable SeGmenter
@@ -190,8 +190,8 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
-  <a href="../index.html">
-    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
     
   </a>
 </p>
@@ -214,12 +214,13 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
 <li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmarking</a></li>
 <li class="toctree-l1"><a class="reference internal" href="training.html">Retraining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQs</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="overview.html" title="previous chapter">Overview</a></li>
       <li>Next: <a href="benchmark.html" title="next chapter">Benchmarking</a></li>
   </ul></li>
@@ -228,7 +229,7 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
@@ -255,7 +256,7 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/pages/survey.rst.txt"
+      <a href="_sources/survey.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

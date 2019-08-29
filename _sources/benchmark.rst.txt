@@ -23,7 +23,7 @@ Tokenization quality is measured in terms of **precision**, **recall**, and
 Figure below describes how these metrics are computed:
 
 
-.. figure:: ../figures/evaluation-long.png
+.. figure:: ./figures/evaluation-long.png
 
     Character- and Word-Level Metrics for Word Tokenization
 
@@ -63,12 +63,12 @@ Because we train on BEST, Orchid, Wisesight, and TNHC are
 out-domain evaluations, testing whether tokenizers are robust.
 
 
-.. figure:: ../figures/quality-benchmark-in-of-domain.png
+.. figure:: ./figures/quality-benchmark-in-of-domain.png
 
     Tokenization Quality on BEST (in-domain)
 
 
-.. figure:: ../figures/quality-benchmark-out-of-domain.png
+.. figure:: ./figures/quality-benchmark-out-of-domain.png
 
     Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)
 
@@ -94,7 +94,7 @@ early speed benchmarking. In this experiment, we vary the length of input text
 and measure the speed of tokenizers. From the figure below, we can see that
 our AttaCut models are significantly faster than DeepCut.
 
-.. figure:: ../figures/colab-speed-benchmark.png
+.. figure:: ./figures/colab-speed-benchmark.png
 
     Tokenization Time of PyThaiNLP's newmm, DeepCut, and AttaCut on Google Colab
 
@@ -115,9 +115,8 @@ Corpus [#wisesight]_ as a input dataset. The corpus contains texts from social
 media and online forum platforms. The training set has around 24,000 lines and
 about 1.5M characters.
 
-.. realistic setting, low resource device.. 
 
-.. figure:: ../figures/speed-benchmark-ec2.png
+.. figure:: ./figures/speed-benchmark-ec2.png
 
     Wisesight's Training Set Tokenization Time of PyThaiNLP's newmm, DeepCut, and AttaCut on AWS Instances.
 

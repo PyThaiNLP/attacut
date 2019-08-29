@@ -8,11 +8,12 @@ Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
     :maxdepth: 2
     :hidden:
 
-    Overview <pages/overview>
-    pages/survey
-    pages/benchmark
-    pages/training
-    pages/acknowledgement
+    Overview <overview>
+    survey
+    benchmark
+    training
+    acknowledgement
+    FAQs <faqs>
 
 
 .. figure:: figures/attacut-sych.png

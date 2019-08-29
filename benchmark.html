@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8" />
     <title>Benchmarking &#8212; AttaCut  documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Retraining" href="training.html" />
     <link rel="prev" title="Word Tokenization for Thai" href="survey.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -49,7 +49,7 @@ while the latter uses only character feature.</p>
 <strong>f1</strong>. We do the measurements in two levels, namely character and word.
 Figure below describes how these metrics are computed:</p>
 <div class="figure align-default" id="id9">
-<img alt="../_images/evaluation-long.png" src="../_images/evaluation-long.png" />
+<img alt="_images/evaluation-long.png" src="_images/evaluation-long.png" />
 <p class="caption"><span class="caption-text">Character- and Word-Level Metrics for Word Tokenization</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Character</span><span class="o">-</span><span class="n">Level</span><span class="p">:</span>
@@ -90,11 +90,11 @@ ingredients:</p>
 <p>Because we train on BEST, Orchid, Wisesight, and TNHC are
 out-domain evaluations, testing whether tokenizers are robust.</p>
 <div class="figure align-default" id="id11">
-<img alt="../_images/quality-benchmark-in-of-domain.png" src="../_images/quality-benchmark-in-of-domain.png" />
+<img alt="_images/quality-benchmark-in-of-domain.png" src="_images/quality-benchmark-in-of-domain.png" />
 <p class="caption"><span class="caption-text">Tokenization Quality on BEST (in-domain)</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="id12">
-<img alt="../_images/quality-benchmark-out-of-domain.png" src="../_images/quality-benchmark-out-of-domain.png" />
+<img alt="_images/quality-benchmark-out-of-domain.png" src="_images/quality-benchmark-out-of-domain.png" />
 <p class="caption"><span class="caption-text">Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <p>For in-domain evaluations, AttaCut-SC’s quality is quite similar
@@ -115,7 +115,7 @@ early speed benchmarking. In this experiment, we vary the length of input text
 and measure the speed of tokenizers. From the figure below, we can see that
 our AttaCut models are significantly faster than DeepCut.</p>
 <div class="figure align-default" id="id13">
-<img alt="../_images/colab-speed-benchmark.png" src="../_images/colab-speed-benchmark.png" />
+<img alt="_images/colab-speed-benchmark.png" src="_images/colab-speed-benchmark.png" />
 <p class="caption"><span class="caption-text">Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on Google Colab</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
 </div>
 </div>
@@ -131,7 +131,7 @@ Corpus <a class="footnote-reference brackets" href="#wisesight" id="id8">7</a> a
 media and online forum platforms. The training set has around 24,000 lines and
 about 1.5M characters.</p>
 <div class="figure align-default" id="id14">
-<img alt="../_images/speed-benchmark-ec2.png" src="../_images/speed-benchmark-ec2.png" />
+<img alt="_images/speed-benchmark-ec2.png" src="_images/speed-benchmark-ec2.png" />
 <p class="caption"><span class="caption-text">Wisesight’s Training Set Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on AWS Instances.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
 </div>
 <p>From the figure above, AttaCut models are fasters than other existing ML-based
@@ -176,8 +176,8 @@ while having a similar level of tokenization quality.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
-  <a href="../index.html">
-    <img class="logo" src="../_static/logo.png" alt="Logo"/>
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
     
   </a>
 </p>
@@ -200,12 +200,13 @@ while having a similar level of tokenization quality.</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="training.html">Retraining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQs</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="survey.html" title="previous chapter">Word Tokenization for Thai</a></li>
       <li>Next: <a href="training.html" title="next chapter">Retraining</a></li>
   </ul></li>
@@ -214,7 +215,7 @@ while having a similar level of tokenization quality.</p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
@@ -241,7 +242,7 @@ while having a similar level of tokenization quality.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/pages/benchmark.rst.txt"
+      <a href="_sources/benchmark.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
