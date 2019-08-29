@@ -55,7 +55,29 @@ ingredients:
 
 Results
 """""""
-...
+
+We evaluate tokenization quality on four datasets, namely BEST [#best]_, Orchid [#orchid]_,
+1000 samples from Wisesight Sentiment Corpus [#wisesight-tok]_, and Thai National Historical Corpus (TNHC) [#tnhc]_.
+
+Because we train on BEST, Orchid, Wisesight, and TNHC are
+out-domain evaluations, testing whether tokenizers are robust.
+
+
+.. figure:: ../figures/quality-benchmark-in-of-domain.png
+
+    Tokenization Quality on BEST (in-domain)
+
+
+.. figure:: ../figures/quality-benchmark-out-of-domain.png
+
+    Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)
+
+For in-domain evaluations, AttaCut-SC's quality is quite similar
+to DeepCut only two percentage different on BEST's test set. On the other hand,
+ML-based tokenizers are on par on Wisesight 1000-sample set. Interestingly,
+on Orchid and TNHC, PyThaiNLP's newmm is the best. The reason might be that
+these two datasets use a different tokenization standard than BEST.
+
 
 Speed
 ^^^^^
@@ -108,4 +130,9 @@ while having a similar level of tokenization quality.
 
 .. [#milestone] `PyThaiNLP 2.1 Milestone <https://github.com/PyThaiNLP/pythainlp/milestone/11>`_
 .. [#viz] `Tokenization Benchmark Visualization <https://pythainlp.github.io/tokenization-benchmark-visualization/>`_
+.. [#benchsheet] `P. Chormai. Tokenization Quality Benchmark SpreadSheet, 2019 <https://docs.google.com/spreadsheets/d/1hata1Y1C-j8p_d3-kJzqy6ENfNNWP195qEz08u0uFhQ/edit?usp=sharing>`_
+.. [#best] NECTEC. BEST: Benchmark for Enhancing the Standard of Thai language processing, 2010.
+.. [#tnhc] `J. Sawatphol and A. Rutherford. TNHC: Thai National Historical Corpus, 2019. <https://attapol.github.io/tlc.html>`_
+.. [#orchid] `V. Sornlertlamvanich et al. ORCHID: Thai Part-Of-Speech Tagged Corpus, 2009 <https://www.semanticscholar.org/paper/ORCHID-%3A-Thai-Part-Of-Speech-Tagged-Corpus-Sornlertlamvanich-Charoenporn/f9f8dc979727e3a31c4cedcbdfad9523c28c009f>`_
 .. [#wisesight] `PyThaiNLP. Wisesight-Sentiment Corpus, 2019 <https://github.com/PyThaiNLP/wisesight-sentiment>`_
+.. [#wisesight-tok] `PyThaiNLP. 1000 Samples from Wisesight-Sentiment Corpus, 2019 <https://github.com/PyThaiNLP/wisesight-sentiment/tree/master/word-tokenization>`_
