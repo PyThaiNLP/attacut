@@ -64,6 +64,11 @@ described as follows:
 2. Observe the change of tokenization quality
 3. Repeat 1-2. to other layers
 
+.. figure:: ../figures/deepcut-experiment-result.png
+    :width: 500px
+
+    Speed Comparision between original DeepCut and shrinked models
+
 In short, we found that if we remove the convolution layers of kernel width 7,
 9, and 10, DeepCut will be 20% faster while its quality drops only 6%. Complete
 analysis can be found from our notebook [#deepcutana]_. This result confirms
@@ -106,7 +111,10 @@ have different embeddings depending on its neighbours.
     Syllable and Word Boundaries
 
 
-TODO: We use SSG .. for 
+For syllable tokenization, we use P. Prasertsom et al's Syllable SeGmenter
+(SSG) [#ssg]_. SSG uses Conditional Random Fields (CRFs) on character features.
+The released model is trained on Thai National Corpus [#tnc]_.
+
 
 .. rubric:: References
 
@@ -119,3 +127,5 @@ TODO: We use SSG .. for
 .. [#deepcutana] `P. Chormai. Analysis of DeepCut <https://colab.research.google.com/drive/1Kb_Fhh6bS0sC2k3ovi2ce8AaWqFXNgIT>`_
 .. [#attention] https://arxiv.org/pdf/1706.03762.pdf
 .. [*] For this experiment, we measured the inference time on MacBook Pro (Retina, 15", Mid 2015), Intel Core i7 @ 2.2 Hz, Memory 16 GB with macOS 10.13.6.
+.. [#ssg] `P. Prasertsom. Syllable Segmenter for Thai using Conditional Random Fields, 2019. <https://github.com/ponrawee/ssg>`_
+.. [#tnc] W. Aroonmanakun, K. Tansiri, and P. Nittayanuparp. Thai National Corpus. pages 153–158, 2009.
