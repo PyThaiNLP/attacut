@@ -100,6 +100,14 @@ form of syllable embedding in which characters in the same syllable have
 the same syllable embedding. This augmentation contextualizes each character to
 have different embeddings depending on its neighbours.
 
+.. figure:: ../figures/word-syllable-boundary.png
+    :width: 300px
+
+    Syllable and Word Boundaries
+
+
+TODO: We use SSG .. for 
+
 .. rubric:: References
 
 .. [#icu] International Components for Unicode (ICU) BreakIterator

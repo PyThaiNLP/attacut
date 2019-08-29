@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Benchmark" href="benchmark.html" />
+    <link rel="next" title="Benchmarking" href="benchmark.html" />
     <link rel="prev" title="Overview" href="overview.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -63,7 +63,7 @@ Figure below summarizes current solutions into two axes: <strong>Quality (Word-L
 <blockquote>
 <div><div class="figure align-center" id="id12">
 <img alt="../_images/previous-work-spectrum.png" src="../_images/previous-work-spectrum.png" />
-<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmark</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id10" id="id7">*</a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmarking</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id10" id="id7">*</a></span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 </div></blockquote>
 <p>From the plot, we can see that the DeepCut is state-of-the-art. However,
@@ -130,6 +130,11 @@ incorporate syllable knowledge into AttaCut. The collaboration is done in a
 form of syllable embedding in which characters in the same syllable have
 the same syllable embedding. This augmentation contextualizes each character to
 have different embeddings depending on its neighbours.</p>
+<div class="figure align-default" id="id16">
+<a class="reference internal image-reference" href="../_images/word-syllable-boundary.png"><img alt="../_images/word-syllable-boundary.png" src="../_images/word-syllable-boundary.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-text">Syllable and Word Boundaries</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</div>
+<p>TODO: We use SSG .. for</p>
 <p class="rubric">References</p>
 <dl class="footnote brackets">
 <dt class="label" id="icu"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -192,7 +197,7 @@ have different embeddings depending on its neighbours.</p>
 <li class="toctree-l2"><a class="reference internal" href="#how-does-attacut-look-like">How does AttaCut look like?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmark.html">Benchmarking</a></li>
 <li class="toctree-l1"><a class="reference internal" href="training.html">Reproduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
 </ul>
@@ -202,7 +207,7 @@ have different embeddings depending on its neighbours.</p>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
       <li>Previous: <a href="overview.html" title="previous chapter">Overview</a></li>
-      <li>Next: <a href="benchmark.html" title="next chapter">Benchmark</a></li>
+      <li>Next: <a href="benchmark.html" title="next chapter">Benchmarking</a></li>
   </ul></li>
 </ul>
 </div>

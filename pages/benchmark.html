@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Benchmark &#8212; AttaCut  documentation</title>
+    <title>Benchmarking &#8212; AttaCut  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -32,15 +32,70 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="benchmark">
-<span id="sec-benchmark"></span><h1>Benchmark<a class="headerlink" href="#benchmark" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="benchmarking">
+<span id="sec-benchmark"></span><h1>Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this headline">¶</a></h1>
+<p>We value reproducibility. Our experiments should be reproducible and expected
+to have similar results when one tries. Therefore, we 1) desrcibe our
+benchmarking procedure as complete as possible and 2) publish all the code with
+fair amount of documentation.</p>
+<p>If there is any doubt or unclear part,
+please let us know. We are happy to clarify and improve the document.</p>
 <div class="section" id="tokenization-quality">
 <h2>Tokenization Quality<a class="headerlink" href="#tokenization-quality" title="Permalink to this headline">¶</a></h2>
-<p>eee</p>
+<p>Tokenization quality is measured in terms of <strong>precision</strong>, <strong>recall</strong>, and
+<strong>f1</strong>. We do the measurements in two levels, namely character and word.
+Figure below describes how these metrics are computed:</p>
+<div class="figure align-default" id="id3">
+<img alt="../_images/evaluation-long.png" src="../_images/evaluation-long.png" />
+<p class="caption"><span class="caption-text">Character- and Word-Level Metrics for Word Tokenization</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Character</span><span class="o">-</span><span class="n">Level</span><span class="p">:</span>
+<span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="n">recision</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span> <span class="n">TP</span> <span class="o">+</span> <span class="n">FP</span> <span class="p">)</span>
+<span class="p">[</span><span class="n">R</span><span class="p">]</span><span class="n">ecall</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span> <span class="n">TP</span> <span class="o">+</span> <span class="n">FN</span> <span class="p">)</span>
+<span class="n">f1</span> <span class="o">=</span> <span class="mi">2</span><span class="n">PR</span> <span class="o">/</span> <span class="p">(</span><span class="n">P</span><span class="o">+</span><span class="n">R</span><span class="p">)</span>
+
+<span class="n">Word</span><span class="o">-</span><span class="n">Level</span><span class="p">:</span>
+<span class="n">P</span> <span class="o">=</span> <span class="c1">#✓ / #◼︎ in prediction</span>
+<span class="n">R</span> <span class="o">=</span> <span class="c1">#✓ / #◼︎ in text</span>
+</pre></div>
+</div>
+<p>To increase reproducibility and ease further research, we have developed an
+evaluation framework for this process. The framework contains two main
+ingredients:</p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line"><strong>Bechmark CLI</strong></div>
+<div class="line">At the moment, this CLI can be found at <a class="reference external" href="https://github.com/PyThaiNLP/tokenization-benchmark">&#64;pythainlp’s tokenization-benchmark</a>, but it will be soon released in the main PyThaiNLP package (version 2.1). Please see it this milestone <a class="footnote-reference brackets" href="#milestone" id="id1">1</a> for recent updates.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><strong>Result Visualization and Comparison Website</strong></div>
+<div class="line">This website serves as a tool for error analysis on tokenization results as well as a benchmark collection of other publicly available tokenizers.</div>
+</div>
+<blockquote>
+<div><div class="figure align-default" id="id4">
+<img alt="https://camo.githubusercontent.com/85984f46bb0db3e2bb86b16969b570b7faf4535a/68747470733a2f2f692e696d6775722e636f6d2f56564159485a4d2e706e67" src="https://camo.githubusercontent.com/85984f46bb0db3e2bb86b16969b570b7faf4535a/68747470733a2f2f692e696d6775722e636f6d2f56564159485a4d2e706e67" />
+<p class="caption"><span class="caption-text">Tokenization Benchmark Visualization <a class="footnote-reference brackets" href="#viz" id="id2">2</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+</ol>
 </div>
 <div class="section" id="speed">
 <h2>Speed<a class="headerlink" href="#speed" title="Permalink to this headline">¶</a></h2>
-<p>ee</p>
+<p>Our speed benchmarking is done on standardized environments, namely</p>
+<ol class="arabic simple">
+<li><p>Google Colab</p></li>
+<li><p>AWS’s EC2 instances (t2.small &amp; t2.medium)</p></li>
+</ol>
+<dl class="footnote brackets">
+<dt class="label" id="milestone"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/PyThaiNLP/pythainlp/milestone/11">PyThaiNLP 2.1 Milestone</a></p>
+</dd>
+<dt class="label" id="viz"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://pythainlp.github.io/tokenization-benchmark-visualization/">Tokenization Benchmark Visualization</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -69,7 +124,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="survey.html">Word Tokenization for Thai</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmark</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarking</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#tokenization-quality">Tokenization Quality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#speed">Speed</a></li>
 </ul>
