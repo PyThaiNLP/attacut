@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""AttaCut: Fast and Reasonably Accurate Tokenizer for Thai
+"""AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 
 Usage:
   attacut-cli <src> [--dest=<dest>] [--model=<model>]
