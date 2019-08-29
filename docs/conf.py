@@ -54,4 +54,5 @@ html_static_path = ['_static']
 
 html_theme_options = {
     'logo': 'logo.png',
+    'analytics_id': 'UA-48736618-9',
 }
