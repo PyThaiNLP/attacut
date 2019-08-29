@@ -1,5 +1,5 @@
 AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
-===========================================================
+====================================================================
 
 
 |travis_ic| |pypiversion_ic| |pypidownload_ic| |license_ic| |github_ic|

@@ -1,4 +1,5 @@
-# AttaCut
+# AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
+
 [![Build Status](https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master)](https://travis-ci.org/PyThaiNLP/attacut)
 [![](https://img.shields.io/badge/-presentation-informational)](https://drive.google.com/file/d/16AUNZv1HXVmERgryfBf4JpCo1QrQyHHE/view?usp=sharing)
 ![](https://img.shields.io/badge/doi-WIP-informational)
@@ -13,11 +14,11 @@
 ## Installation
 
 ```
-# only for beta version
 $ pip install attacut
 ```
 
 ## Usage
+
 ### Command-Line Interface
 ```
 $ attacut-cli -h
@@ -42,16 +43,28 @@ atta = Tokenizer(model="attacut-sc")
 atta.tokenizer(txt)
 ```
 
-## Development
-Please refer to [DEVELOPMENT.md](./docs/DEVELOPMENT.md)
+## Benchmark Results
+
+Belows are brief summaries. More details can be found on [our benchmarking page](https://pythainlp.github.io/attacut/benchmark.html).
+
+
+### Tokenization Quality
+![](https://pythainlp.github.io/attacut/_images/quality-benchmark-in-of-domain.png)
+
+### Speed
+![](https://pythainlp.github.io/attacut/_images/speed-benchmark-ec2.png)
+
+
+## Retraining on Custom Dataset
+Please refer to [our retraining page](https://pythainlp.github.io/attacut/)
 
 ## Related Resources
 - [Tokenization Visualization][tovis]
 - [Thai Tokenizer Dockers][docker]
 
 ## Acknowledgements
-- This repository was initially done by [Pattarawat Chormai][pat], while interning at [Dr. Attapol Thamrongrattanarit's NLP Lab][ate], Chulalongkorn University, Bangkok, Thailand.
-- Many thanks to my collegeus at Dr. Attapol's lab, PyThaiNLP team, [Ekapol Chuangsuwanich ][ake], [Noom][noom], and [Can][can] for comments and feedback.
+This repository was initially done by [Pattarawat Chormai][pat], while interning at [Dr. Attapol Thamrongrattanarit's NLP Lab][ate], Chulalongkorn University, Bangkok, Thailand.
+Many people have involed in this project. Complete list of names can be found on [Acknowledgement](https://pythainlp.github.io/attacut/acknowledgement.html).
 
 
 [pat]: http://pat.chormai.org
