@@ -1,4 +1,4 @@
-Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
+AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
 ===========================================================
 
 
@@ -26,6 +26,11 @@ Installatation
 .. code-block:: bash
 
     pip install attacut
+
+
+**Note:** For **Windows** Users, please install **torch** before installing
+running the command above. Visit `PyTorch.org <https://pytorch.org>`_ for
+further instructions.
 
 Usage
 -----
