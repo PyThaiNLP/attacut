@@ -1,7 +1,7 @@
 Other Links
 ===========
 
-NLP Learning Resouces
+NLP Learning Resources
 ^^^^^^^^^^^^^^^^^^^^^
 
 For one knows more about NLP, we have provided a list of online courses
