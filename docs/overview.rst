@@ -42,3 +42,8 @@ To demonstate this challgenge, it is worth examining the คมเพชรเ�
 
 In the peom, **ตากลม** appears several times. It could mean **ตา|กลม** (round eye) or **ตาก|ลม** (chilling)
 depending on context. For humans who understand Thai, it is quite clear when it should be which case. 
+
+
+.. rubric:: References
+
+.. [#komped] `คมเพชรเชิงกลอน ภาคสายลม <https://github.com/PyThaiNLP/corpus-komped-poem-windy-part>`_
