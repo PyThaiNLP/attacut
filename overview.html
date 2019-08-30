@@ -38,25 +38,25 @@
 era. Some of its applications are language translation, text classificaiton,
 and text understanding. Many algorithms have been proposed and developed to
 support problems in NLP.</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <img alt="_images/nlp-pipeline.png" src="_images/nlp-pipeline.png" />
-<p class="caption"><span class="caption-text">Typical NLP Pipeline</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Typical NLP Pipeline</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Typically, a word tokenization state would be in a early stage of NLP
 pipelines. After spliting text to words, word features, such as TF-IDF and
 word embedding, are computed and used in later stages.</p>
 <div class="section" id="word-tokenization">
 <h2>Word Tokenization<a class="headerlink" href="#word-tokenization" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id4">
 <img alt="_images/sentiment-analysis.png" src="_images/sentiment-analysis.png" />
 <p class="caption"><span class="caption-text">Text Classification on word-level features.
-This example is drawn from <a class="reference external" href="https://github.com/albermax/innvestigate/blob/master/examples/notebooks/sentiment_analysis.ipynb">Maximilian Alber’s Innvestigate</a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+This example is drawn from <a class="reference external" href="https://github.com/albermax/innvestigate/blob/master/examples/notebooks/sentiment_analysis.ipynb">Maximilian Alber’s Innvestigate</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>Unlike western languages, Thai language has an unique challenge of its own.
 No clear separation between words makes it difficult to tokenize Thai text into words, leaving
 this ambiguity to be solved in downstream tasks. Without good word-level features, those downstream algorithms
 may not be able to process Thai documents efficiently.</p>
-<p>To demonstate this challgenge, it is worth examining the คมเพชรเชิงกลอน ภาคสายลม peom <a href="#id5"><span class="problematic" id="id1">[#komped]_</span></a> below:</p>
+<p>To demonstate this challgenge, it is worth examining the คมเพชรเชิงกลอน ภาคสายลม peom <a class="footnote-reference brackets" href="#komped" id="id1">1</a> below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">สาวตากลมผมยาวเธอคนนั้น</span>    <span class="n">คนที่ฉันนั่งตากลมคอยเฝ้าเพ้อ</span>
 <span class="n">สาวตากลมผมสวยนั้นละเธอ</span>    <span class="n">ที่ฉันเจอนั่งตากลมอยู่ทุกวัน</span>
 <span class="o">...</span>
@@ -64,6 +64,12 @@ may not be able to process Thai documents efficiently.</p>
 </div>
 <p>In the peom, <strong>ตากลม</strong> appears several times. It could mean <strong>ตา|กลม</strong> (round eye) or <strong>ตาก|ลม</strong> (chilling)
 depending on context. For humans who understand Thai, it is quite clear when it should be which case.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="komped"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/PyThaiNLP/corpus-komped-poem-windy-part">คมเพชรเชิงกลอน ภาคสายลม</a></p>
+</dd>
+</dl>
 </div>
 </div>
 
