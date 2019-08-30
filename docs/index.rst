@@ -66,7 +66,6 @@ Higher-Level Interface
 
     # Alternatively, an AttaCut tokenizer might be instantiated directly.
     # This way allows one to specify whether to use attacut-sc or attacut-c.
-
     atta = Tokenizer(model="attacut-sc")
     words = atta.tokenizer(txt)
 
