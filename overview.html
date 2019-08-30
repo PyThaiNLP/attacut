@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Overview &#8212; AttaCut  documentation</title>
+    <title>Natural Language Processing 101 &#8212; AttaCut  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -32,32 +32,31 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="what-is-nlp">
-<h2>What is NLP?<a class="headerlink" href="#what-is-nlp" title="Permalink to this headline">¶</a></h2>
-<p>Natural Language Processing (NLP) plays an important role in today’s digital era.
-Some of its applications are language translation, text classificaiton,
-and text understanding. Many algorithms have been proposed and developed to support problems in NLP.</p>
-<div class="figure align-center" id="id3">
+  <div class="section" id="natural-language-processing-101">
+<h1>Natural Language Processing 101<a class="headerlink" href="#natural-language-processing-101" title="Permalink to this headline">¶</a></h1>
+<p>Natural Language Processing (NLP) plays an important role in today’s digital
+era. Some of its applications are language translation, text classificaiton,
+and text understanding. Many algorithms have been proposed and developed to
+support problems in NLP.</p>
+<div class="figure align-center" id="id2">
 <img alt="_images/nlp-pipeline.png" src="_images/nlp-pipeline.png" />
-<p class="caption"><span class="caption-text">Typical NLP Pipeline</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Typical NLP Pipeline</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<p><strong>[TO WRITE]</strong> Typical NLP Pipeline includes several stages.  Word Segmentation or Tokenization …
-Refere to A’Te and A’Eck courses.</p>
-</div>
+<p>Typically, a word tokenization state would be in a early stage of NLP
+pipelines. After spliting text to words, word features, such as TF-IDF and
+word embedding, are computed and used in later stages.</p>
 <div class="section" id="word-tokenization">
 <h2>Word Tokenization<a class="headerlink" href="#word-tokenization" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id3">
 <img alt="_images/sentiment-analysis.png" src="_images/sentiment-analysis.png" />
 <p class="caption"><span class="caption-text">Text Classification on word-level features.
-This example is drawn from <a class="reference external" href="https://github.com/albermax/innvestigate/blob/master/examples/notebooks/sentiment_analysis.ipynb">Maximilian Alber’s Innvestigate</a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+This example is drawn from <a class="reference external" href="https://github.com/albermax/innvestigate/blob/master/examples/notebooks/sentiment_analysis.ipynb">Maximilian Alber’s Innvestigate</a></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>Unlike western languages, Thai language has an unique challenge of its own.
 No clear separation between words makes it difficult to tokenize Thai text into words, leaving
 this ambiguity to be solved in downstream tasks. Without good word-level features, those downstream algorithms
 may not be able to process Thai documents efficiently.</p>
-<p>To demonstate this challgenge, it is worth examining the คมเพชรเชิงกลอน ภาคสายลม peom <a class="footnote-reference brackets" href="#komped" id="id1">1</a> below:</p>
+<p>To demonstate this challgenge, it is worth examining the คมเพชรเชิงกลอน ภาคสายลม peom <a href="#id5"><span class="problematic" id="id1">[#komped]_</span></a> below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">สาวตากลมผมยาวเธอคนนั้น</span>    <span class="n">คนที่ฉันนั่งตากลมคอยเฝ้าเพ้อ</span>
 <span class="n">สาวตากลมผมสวยนั้นละเธอ</span>    <span class="n">ที่ฉันเจอนั่งตากลมอยู่ทุกวัน</span>
 <span class="o">...</span>
@@ -65,12 +64,6 @@ may not be able to process Thai documents efficiently.</p>
 </div>
 <p>In the peom, <strong>ตากลม</strong> appears several times. It could mean <strong>ตา|กลม</strong> (round eye) or <strong>ตาก|ลม</strong> (chilling)
 depending on context. For humans who understand Thai, it is quite clear when it should be which case.</p>
-<p class="rubric">References</p>
-<dl class="footnote brackets">
-<dt class="label" id="komped"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p><a class="reference external" href="https://github.com/PyThaiNLP/corpus-komped-poem-windy-part">คมเพชรเชิงกลอน ภาคสายลม</a></p>
-</dd>
-</dl>
 </div>
 </div>
 
@@ -97,8 +90,7 @@ depending on context. For humans who understand Thai, it is quite clear when it 
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#what-is-nlp">What is NLP?</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NLP 101</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#word-tokenization">Word Tokenization</a></li>
 </ul>
 </li>
@@ -107,6 +99,7 @@ depending on context. For humans who understand Thai, it is quite clear when it 
 <li class="toctree-l1"><a class="reference internal" href="training.html">Retraining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc.html">Other Links</a></li>
 </ul>
 
 <div class="relations">
