@@ -1,20 +1,20 @@
-Overview
---------
+Natural Language Processing 101
+-------------------------------
 
-What is NLP?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Natural Language Processing (NLP) plays an important role in today's digital era.
-Some of its applications are language translation, text classificaiton,
-and text understanding. Many algorithms have been proposed and developed to support problems in NLP.
+Natural Language Processing (NLP) plays an important role in today's digital
+era. Some of its applications are language translation, text classificaiton,
+and text understanding. Many algorithms have been proposed and developed to
+support problems in NLP.
 
 .. figure:: ./figures/nlp-pipeline.png
     :align: center
 
     Typical NLP Pipeline
 
-**[TO WRITE]** Typical NLP Pipeline includes several stages.  Word Segmentation or Tokenization ...
-Refere to A'Te and A'Eck courses.
+Typically, a word tokenization state would be in a early stage of NLP
+pipelines. After spliting text to words, word features, such as TF-IDF and
+word embedding, are computed and used in later stages.
+
 
 Word Tokenization
 ^^^^^^^^^^^^^^^^^
@@ -42,8 +42,3 @@ To demonstate this challgenge, it is worth examining the คมเพชรเ�
 
 In the peom, **ตากลม** appears several times. It could mean **ตา|กลม** (round eye) or **ตาก|ลม** (chilling)
 depending on context. For humans who understand Thai, it is quite clear when it should be which case. 
-
-
-.. rubric:: References
-
-.. [#komped] `คมเพชรเชิงกลอน ภาคสายลม <https://github.com/PyThaiNLP/corpus-komped-poem-windy-part>`_

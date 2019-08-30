@@ -8,12 +8,13 @@ AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
     :maxdepth: 2
     :hidden:
 
-    Overview <overview>
+    NLP 101 <overview>
     survey
     benchmark
     training
     acknowledgement
     FAQs <faqs>
+    misc
 
 
 .. figure:: figures/attacut-sych.png
