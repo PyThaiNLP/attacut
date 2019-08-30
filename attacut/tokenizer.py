@@ -7,6 +7,11 @@ from typing import Dict
 
 log = logger.get_logger(__name__)
 
+
+def tokenize(txt: str) -> List[str]:
+    return SingletonTokenizer().tokenize(txt)
+
+
 class Tokenizer:
     def __init__(self, model: str="attacut-sc"):
         # resolve model's path
@@ -52,5 +57,13 @@ class Tokenizer:
         return words
 
 
-    # todo: tokenize_batch(self, generator):
-    #     ...
+class SingletonTokenizer(Tokenizer):
+    _instance = None
+    _total_object = 0 # for testing, should be not more than `1`
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(SingletonTokenizer, cls)\
+                .__new__(cls, *args, **kwargs)
+
+            cls._total_object += 1
+        return cls._instance
