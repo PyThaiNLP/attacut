@@ -59,10 +59,16 @@ Higher-Level Interface
 
 .. code-block:: python
 
-    from attacut import Tokenizer
+    from attacut import tokenize, Tokenizer
 
-    atta = Tokenizer() # default model: attacut-sc
-    atta.tokenizer(txt)
+    # tokenize `txt` using our best model `attacut-sc`
+    words = tokenizer(txt)
+
+    # Alternatively, an AttaCut tokenizer might be instantiated directly.
+    # This way allows one to specify whether to use attacut-sc or attacut-c.
+
+    atta = Tokenizer(model="attacut-sc")
+    words = atta.tokenizer(txt)
 
 
 AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates
