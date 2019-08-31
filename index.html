@@ -33,7 +33,7 @@
             
   <div class="section" id="attacut-fast-and-reasonably-accurate-word-tokenizer-for-thai-beta">
 <h1>AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)<a class="headerlink" href="#attacut-fast-and-reasonably-accurate-word-tokenizer-for-thai-beta" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://travis-ci.org/PyThaiNLP/attacut"><img alt="travis_ic" src="https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master" /></a> <a class="reference external" href="https://pypi.org/project/attacut/"><img alt="pypiversion_ic" src="https://img.shields.io/pypi/v/attacut" /></a> <a class="reference external" href="https://pypi.org/project/attacut/"><img alt="pypidownload_ic" src="https://img.shields.io/pypi/dw/attacut" /></a> <img alt="license_ic" src="https://img.shields.io/pypi/l/attacut" /> <a class="reference external" href="http://google.com"><img alt="github_ic" src="https://img.shields.io/github/stars/pythainlp/attacut?style=social" /></a></p>
+<p><a class="reference external" href="https://travis-ci.org/PyThaiNLP/attacut"><img alt="travis_ic" src="https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master" /></a> <a class="reference external" href="https://pypi.org/project/attacut/"><img alt="pypiversion_ic" src="https://img.shields.io/pypi/v/attacut" /></a> <a class="reference external" href="https://pypi.org/project/attacut/"><img alt="pypidownload_ic" src="https://img.shields.io/pypi/dw/attacut" /></a> <img alt="license_ic" src="https://img.shields.io/pypi/l/attacut" /> <a class="reference external" href="https://github.com/PyThaiNLP/attacut"><img alt="github_ic" src="https://img.shields.io/github/stars/pythainlp/attacut?style=social" /></a></p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="figure align-center" id="id1">
@@ -77,7 +77,7 @@ Options:
 <span class="c1"># Alternatively, an AttaCut tokenizer might be instantiated directly.</span>
 <span class="c1"># This way allows one to specify whether to use attacut-sc or attacut-c.</span>
 <span class="n">atta</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;attacut-sc&quot;</span><span class="p">)</span>
-<span class="n">words</span> <span class="o">=</span> <span class="n">atta</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">atta</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>AttaCut will be soon integrated into PyThaiNLP’s ecosystem. Please see <a class="reference external" href="https://github.com/PyThaiNLP/pythainlp/issues/258">PyThaiNLP #28</a> for recent updates</p>
