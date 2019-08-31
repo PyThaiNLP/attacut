@@ -67,7 +67,7 @@ Higher-Level Interface
     # Alternatively, an AttaCut tokenizer might be instantiated directly.
     # This way allows one to specify whether to use attacut-sc or attacut-c.
     atta = Tokenizer(model="attacut-sc")
-    words = atta.tokenizer(txt)
+    words = atta.tokenize(txt)
 
 
 AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates
@@ -81,4 +81,4 @@ AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNL
     :target: https://pypi.org/project/attacut/
 .. |license_ic| image:: https://img.shields.io/pypi/l/attacut
 .. |github_ic| image:: https://img.shields.io/github/stars/pythainlp/attacut?style=social
-    :target: http://google.com
+    :target: https://github.com/PyThaiNLP/attacut
