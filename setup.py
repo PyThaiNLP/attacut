@@ -9,7 +9,7 @@ with open("./requirements.txt", "r") as f:
 setup(
     name="attacut",
     version="1.0.0",
-    description="Yet Another Word Tokenizer for Thai",
+    description="Fast and Reasonably Accurate Word Tokenizer for Thai",
     author="Pattarawat Chormai et al.",
     author_email="foomail@foo.com",
     packages=["attacut", "attacut.models", "attacut.artifacts"],
