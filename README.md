@@ -4,6 +4,7 @@
 [![](https://img.shields.io/badge/-presentation-informational)](https://drive.google.com/file/d/16AUNZv1HXVmERgryfBf4JpCo1QrQyHHE/view?usp=sharing)
 ![](https://img.shields.io/badge/doi-WIP-informational)
 
+## How does AttaCut look like?
 <div align="center">
     <img src="https://i.imgur.com/8yMq7IB.png" width="700px"/>
     <br/>
@@ -16,6 +17,9 @@
 ```
 $ pip install attacut
 ```
+
+**Remarks:** Windows users need to install **PyTorch** before the command above.
+Please consult [PyTorch.org](https://pytorch.org) for more details.
 
 ## Usage
 
@@ -35,12 +39,16 @@ Options:
 ```
 
 ### Higher-Level Inferface
-aka. module importing
 ```
-from attacut import Tokenizer
+from attacut import tokenize, Tokenizer
 
+# tokenize `txt` using our best model `attacut-sc`
+words = tokenize(txt)
+
+# alternatively, an AttaCut tokenizer might be instantiated directly, allowing
+# one to specify whether to use `attacut-sc` or `attacut-c`.
 atta = Tokenizer(model="attacut-sc")
-atta.tokenizer(txt)
+words = atta.tokenize(txt)
 ```
 
 ## Benchmark Results
