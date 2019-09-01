@@ -8,7 +8,7 @@ with open("./requirements.txt", "r") as f:
 
 setup(
     name="attacut",
-    version="0.0.6-dev",
+    version="1.0.0-dev",
     description="Yet Another Word Tokenizer for Thai",
     author="Pattarawat Chormai et al.",
     author_email="foomail@foo.com",
