@@ -62,7 +62,7 @@ Higher-Level Interface
     from attacut import tokenize, Tokenizer
 
     # tokenize `txt` using our best model `attacut-sc`
-    words = tokenizer(txt)
+    words = tokenize(txt)
 
     # Alternatively, an AttaCut tokenizer might be instantiated directly.
     # This way allows one to specify whether to use attacut-sc or attacut-c.
