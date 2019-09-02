@@ -21,6 +21,7 @@ AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
     :align: center
 
     **TL;DR**: 3-Layer Dilated CNN on syllable and character features.
+    It's 6x faster than DeepCut (SOTA) while its WL-F1 is only 2% lower on BEST [#best]_.
 
 Installatation
 --------------
@@ -29,9 +30,9 @@ Installatation
     pip install attacut
 
 
-**Note:** For **Windows** Users, please install **torch** before installing
+**Note:** For **Windows** Users, please install **torch** before
 running the command above. Visit `PyTorch.org <https://pytorch.org>`_ for
-further instructions.
+further instruction.
 
 Usage
 -----
@@ -64,8 +65,8 @@ Higher-Level Interface
     # tokenize `txt` using our best model `attacut-sc`
     words = tokenize(txt)
 
-    # Alternatively, an AttaCut tokenizer might be instantiated directly.
-    # This way allows one to specify whether to use attacut-sc or attacut-c.
+    # alternatively, an AttaCut tokenizer might be instantiated directly,
+    # allowing one to specify whether to use attacut-sc or attacut-c.
     atta = Tokenizer(model="attacut-sc")
     words = atta.tokenize(txt)
 
@@ -82,3 +83,5 @@ AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNL
 .. |license_ic| image:: https://img.shields.io/pypi/l/attacut
 .. |github_ic| image:: https://img.shields.io/github/stars/pythainlp/attacut?style=social
     :target: https://github.com/PyThaiNLP/attacut
+
+.. [#best] NECTEC. BEST: Benchmark for Enhancing the Standard of Thai language processing, 2010.

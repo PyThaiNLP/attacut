@@ -36,18 +36,19 @@
 <p><a class="reference external" href="https://travis-ci.org/PyThaiNLP/attacut"><img alt="travis_ic" src="https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master" /></a> <a class="reference external" href="https://pypi.org/project/attacut/"><img alt="pypiversion_ic" src="https://img.shields.io/pypi/v/attacut" /></a> <a class="reference external" href="https://pypi.org/project/attacut/"><img alt="pypidownload_ic" src="https://img.shields.io/pypi/dw/attacut" /></a> <img alt="license_ic" src="https://img.shields.io/pypi/l/attacut" /> <a class="reference external" href="https://github.com/PyThaiNLP/attacut"><img alt="github_ic" src="https://img.shields.io/github/stars/pythainlp/attacut?style=social" /></a></p>
 <div class="toctree-wrapper compound">
 </div>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id2">
 <img alt="_images/attacut-sych.png" src="_images/attacut-sych.png" />
-<p class="caption"><span class="caption-text"><strong>TL;DR</strong>: 3-Layer Dilated CNN on syllable and character features.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><strong>TL;DR</strong>: 3-Layer Dilated CNN on syllable and character features.
+It’s 6x faster than DeepCut (SOTA) while its WL-F1 is only 2% lower on BEST <a class="footnote-reference brackets" href="#best" id="id1">1</a>.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="installatation">
 <h2>Installatation<a class="headerlink" href="#installatation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install attacut
 </pre></div>
 </div>
-<p><strong>Note:</strong> For <strong>Windows</strong> Users, please install <strong>torch</strong> before installing
+<p><strong>Note:</strong> For <strong>Windows</strong> Users, please install <strong>torch</strong> before
 running the command above. Visit <a class="reference external" href="https://pytorch.org">PyTorch.org</a> for
-further instructions.</p>
+further instruction.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
@@ -74,13 +75,18 @@ Options:
 <span class="c1"># tokenize `txt` using our best model `attacut-sc`</span>
 <span class="n">words</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
 
-<span class="c1"># Alternatively, an AttaCut tokenizer might be instantiated directly.</span>
-<span class="c1"># This way allows one to specify whether to use attacut-sc or attacut-c.</span>
+<span class="c1"># alternatively, an AttaCut tokenizer might be instantiated directly,</span>
+<span class="c1"># allowing one to specify whether to use attacut-sc or attacut-c.</span>
 <span class="n">atta</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;attacut-sc&quot;</span><span class="p">)</span>
 <span class="n">words</span> <span class="o">=</span> <span class="n">atta</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>AttaCut will be soon integrated into PyThaiNLP’s ecosystem. Please see <a class="reference external" href="https://github.com/PyThaiNLP/pythainlp/issues/258">PyThaiNLP #28</a> for recent updates</p>
+<dl class="footnote brackets">
+<dt class="label" id="best"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>NECTEC. BEST: Benchmark for Enhancing the Standard of Thai language processing, 2010.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
