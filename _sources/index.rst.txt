@@ -21,7 +21,7 @@ AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
     :align: center
 
     **TL;DR**: 3-Layer Dilated CNN on syllable and character features.
-    It's 6x faster than DeepCut (SOTA) while its WL-F1 is only 2% lower on BEST [#best]_.
+    It's **6x faster** than DeepCut (SOTA) while its WL-f1 on BEST [#best]_ is **91%**, only 2% lower.
 
 Installatation
 --------------
