@@ -10,7 +10,7 @@
     <img src="https://i.imgur.com/8yMq7IB.png" width="700px"/>
     <br/>
     <b>TL;DR:</b> 
-3-Layer Dilated CNN on syllable and character features. It’s 6x faster than DeepCut (SOTA) while its WL-F1 is only 2% lower on BEST.
+3-Layer Dilated CNN on syllable and character features. It’s <b>6x faster</b> than DeepCut (SOTA) while its WL-f1 on BEST is <b>91%</b>, only 2% lower.
 </div>
 
 ## Installation
