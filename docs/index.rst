@@ -55,7 +55,7 @@ Command-Line Interface
     --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
 
 
-Higher-Level Interface
+High-Level API
 ^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python

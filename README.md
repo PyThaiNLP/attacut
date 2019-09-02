@@ -5,11 +5,12 @@
 ![](https://img.shields.io/badge/doi-WIP-informational)
 
 ## How does AttaCut look like?
+
 <div align="center">
     <img src="https://i.imgur.com/8yMq7IB.png" width="700px"/>
     <br/>
-    <b>TLDR:</b> 
-3-Layer dilated CNN on character and syllable features
+    <b>TL;DR:</b> 
+3-Layer Dilated CNN on syllable and character features. It’s 6x faster than DeepCut (SOTA) while its WL-F1 is only 2% lower on BEST.
 </div>
 
 ## Installation
@@ -38,7 +39,7 @@ Options:
   --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
 ```
 
-### Higher-Level Inferface
+### High-Level API 
 ```
 from attacut import tokenize, Tokenizer
 
