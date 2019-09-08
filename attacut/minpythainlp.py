@@ -13,6 +13,7 @@ _thai_arabic = {
     "๙": "9",
 }
 
+
 def thai_digit_to_arabic_digit(text: str) -> str:
     """
     This function convert Thai digits (i.e. ๑, ๓, ๑๐) to Arabic digits

@@ -7,7 +7,6 @@ import yaml
 
 from attacut import logger
 
-
 log = logger.get_logger(__name__)
 
 

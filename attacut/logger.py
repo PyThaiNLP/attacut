@@ -7,5 +7,6 @@ logging.basicConfig(
     level=os.getenv("ATTACUT_LOG_LEVEL", "warning").upper()
 )
 
+
 def get_logger(name):
     return logging.getLogger(name)

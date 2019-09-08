@@ -1,9 +1,9 @@
-import re
-import torch
-from typing import List
+from typing import Dict, List
 
-from attacut import utils, models, dataloaders, preprocessing, artifacts, logger
-from typing import Dict
+import torch
+
+from attacut import (artifacts, dataloaders, logger, models, preprocessing,
+                     utils)
 
 log = logger.get_logger(__name__)
 
@@ -13,7 +13,7 @@ def tokenize(txt: str) -> List[str]:
 
 
 class Tokenizer:
-    def __init__(self, model: str="attacut-sc"):
+    def __init__(self, model: str = "attacut-sc"):
         # resolve model's path
         model_path = artifacts.get_path(model)
 
@@ -28,7 +28,7 @@ class Tokenizer:
         dataset: dataloaders.SequenceDataset = model_cls.dataset()
 
         # load necessary dicts into memory
-        data_config: Dict  = dataset.setup_featurizer(model_path)
+        data_config: Dict = dataset.setup_featurizer(model_path)
 
         # instantiate model
         self.model = model_cls.load(
@@ -39,12 +39,12 @@ class Tokenizer:
 
         self.dataset = dataset
 
-    def tokenize(self, txt:str, sep="|", device="cpu", pred_threshold=0.5) -> List[str]:
+    def tokenize(self, txt: str, sep="|", device="cpu", pred_threshold=0.5) -> List[str]:
         tokens, features = self.dataset.make_feature(txt)
 
         inputs = (
             features,
-            torch.Tensor(0) # dummy label when won't need it here
+            torch.Tensor(0)  # dummy label when won't need it here
         )
 
         x, _, _ = self.dataset.prepare_model_inputs(inputs, device=device)
@@ -59,7 +59,8 @@ class Tokenizer:
 
 class SingletonTokenizer(Tokenizer):
     _instance = None
-    _total_object = 0 # for testing, should be not more than `1`
+    _total_object = 0  # for testing, should be not more than `1`
+
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(SingletonTokenizer, cls)\
