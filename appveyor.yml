@@ -24,8 +24,6 @@ install:
   - "chcp 65001"
   - "set PYTHONIOENCODING=utf-8"
   - "%PYTHON%\\python.exe -m pip install wheel"
-  - IF "%ARCH%"=="32" (call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86) ELSE (ECHO "probably a 64bit build")
-  - IF "%ARCH%"=="64" (call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" amd64) ELSE (ECHO "probably a 32bit build")
   - '"%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" %PLATFORM%'
   - ps: if (-not(Test-Path($env:PYTHON))) { & appveyor\install.ps1 }
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
