@@ -1,15 +1,7 @@
-import glob
-import json
-import os
-import sys
-import re
-import string
-import numpy as np
-from collections import Counter, defaultdict
-
 import fire
+import numpy as np
 
-from attacut import utils, preprocessing
+from attacut import preprocessing, utils
 
 DATA_PATH = "../slim-cut/data/best"
 SYALLABLE_TOKENIZED_DATA = "./data/best-syllabled-tokenized"
@@ -17,16 +9,18 @@ SYALLABLE_TOKENIZED_DATA = "./data/best-syllabled-tokenized"
 CHARACTER_DICT = "./attacut/artifacts/attacut-sc/characters.json"
 SYLLABLE_DICT = "./attacut/artifacts/attacut-sc/syllables.json"
 
-def get_actual_filename(path):
+
+def get_actual_filename(path: str) -> str:
     return "%s/%s" % (SYALLABLE_TOKENIZED_DATA, path.split("/")[-1])
 
-def prepare_syllable_charater_seq_data(files, ch2ix, sy2ix, sampling=10, output_dir=""):    
+
+def prepare_syllable_charater_seq_data(files, ch2ix, sy2ix, sampling=10, output_dir=""):
     training, validation = files
 
     if sampling:
         training = training[:sampling]
         validation = validation[:sampling]
-        
+
     output_dir = "%s/best-syllable-crf-and-character-seq-feature-sampling-%d" % (output_dir, sampling)
 
     print("Saving data to %s" % output_dir)
@@ -49,24 +43,23 @@ def prepare_syllable_charater_seq_data(files, ch2ix, sy2ix, sampling=10, output_
 
                         label = label.strip()
                         syllables = txt.split("~")
-                        
+
                         chars_idx = []
                         char_labels = []
                         syllable_idx = []
-                        
+
                         syllable_indices = list(map(
                             lambda sy: preprocessing.syllable2ix(sy2ix, sy),
                             syllables
                         ))
 
-                        
                         if len(syllables) != len(label):
                             print(txt, path)
                             print(len(syllables), len(label))
                             print(syllables)
                             print(label)
                             raise SystemExit("xx")
-                                                
+
                         label = list(label)
                         for ii, (syllable, six, l) in enumerate(zip(syllables, syllable_indices, label)):
                             if not syllable:
@@ -85,7 +78,6 @@ def prepare_syllable_charater_seq_data(files, ch2ix, sy2ix, sampling=10, output_
                                     list(syllable)
                                 )
                             )
-                            
 
                             total_chs = len(chs)
                             syllable_idx.extend([six] * total_chs)
@@ -111,21 +103,20 @@ def prepare_syllable_charater_seq_data(files, ch2ix, sy2ix, sampling=10, output_
                             " ".join(np.array(chars_idx).astype(str)),
                             " ".join(np.array(syllable_idx).astype(str)),
                         ))
-                    
+
                     if has_space_problem:
                         print("problem with space in %s" % path)
-                        
+
         finally:
             fout_txt.close()
 
 
 def main(sampling=10, output_dir="./data"):
-
     with open("%s/training.files" % DATA_PATH, "r") as f:
         training_files = []
         for l in f:
             training_files.append(get_actual_filename(l.strip()))
-        
+
     with open("%s/validation.files" % DATA_PATH, "r") as f:
         val_files = []
         for l in f:
@@ -133,7 +124,7 @@ def main(sampling=10, output_dir="./data"):
 
     ch2ix = utils.load_dict(CHARACTER_DICT)
     sy2ix = utils.load_dict(SYLLABLE_DICT)
-    
+
     prepare_syllable_charater_seq_data(
         (training_files, val_files),
         ch2ix,
@@ -144,5 +135,4 @@ def main(sampling=10, output_dir="./data"):
 
 
 if __name__ == "__main__":
-    
     fire.Fire(main)

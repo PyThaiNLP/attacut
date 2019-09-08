@@ -16,3 +16,4 @@ echo "Finished preparing data directory" \
  && echo "------ /home/data -------" \
  && ls -la /home/data/* \
  && ls -la /home/data/dictionary/*
+ 

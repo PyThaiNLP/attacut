@@ -1,25 +1,20 @@
 #!/usr/bin/env python
 
-import os
 import glob
-import sys
-import json
+import os
 import shutil
+import sys
 
 sys.path.insert(0, os.getcwd())
 
-from collections import defaultdict
-
-import numpy as np
 import fire
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils import data
 
-from attacut import models, utils, evaluation
 from attacut import dataloaders as dl
+from attacut import evaluation, models, utils
+
 
 def get_device():
     if torch.cuda.is_available():
@@ -75,51 +70,53 @@ def copy_files(path, dest):
 def do_iterate(model, generator, device,
     optimizer=None, criterion=None, prefix="", step=0):
 
-        total_loss, total_preds = 0, 0
-        metrics = _create_metrics()
+    total_loss, total_preds = 0, 0
+    metrics = _create_metrics()
 
-        for i, inputs in enumerate(generator):
-            xd, yd, total_batch_preds = generator.dataset.prepare_model_inputs(
-                inputs, device
-            )
-
-            if optimizer:
-                model.zero_grad()
-
-            logits = model(xd).view(-1)
-            loss = criterion(logits, yd)
-
-            if optimizer:
-                loss.backward()
-                optimizer.step()
-
-            total_preds += total_batch_preds
-            total_loss += loss.item() * total_batch_preds
-
-            accumuate_metrics(metrics, evaluate_model(logits, yd))
-
-        avg_loss = total_loss / total_preds 
-        pc_values = precision_recall(**metrics)
-        print("[%s] loss %f | precision %f | recall %f | f1 %f" % (
-            prefix,
-            avg_loss,
-            *pc_values
-        ))
-
-        print_floydhub_metrics(
-            dict(
-                loss=avg_loss,
-                precision=pc_values[0],
-                recall=pc_values[1],
-                f1=pc_values[2]
-            ),
-            step=step, prefix=prefix
+    for _, inputs in enumerate(generator):
+        xd, yd, total_batch_preds = generator.dataset.prepare_model_inputs(
+            inputs, device
         )
+
+        if optimizer:
+            model.zero_grad()
+
+        logits = model(xd).view(-1)
+        loss = criterion(logits, yd)
+
+        if optimizer:
+            loss.backward()
+            optimizer.step()
+
+        total_preds += total_batch_preds
+        total_loss += loss.item() * total_batch_preds
+
+        accumuate_metrics(metrics, evaluate_model(logits, yd))
+
+    avg_loss = total_loss / total_preds
+    pc_values = precision_recall(**metrics)
+    print("[%s] loss %f | precision %f | recall %f | f1 %f" % (
+        prefix,
+        avg_loss,
+        *pc_values
+    ))
+
+    print_floydhub_metrics(
+        dict(
+            loss=avg_loss,
+            precision=pc_values[0],
+            recall=pc_values[1],
+            f1=pc_values[2]
+        ),
+        step=step, prefix=prefix
+    )
+
 
 # taken from https://stackoverflow.com/questions/52660985/pytorch-how-to-get-learning-rate-during-training
 def get_lr(optimizer):
     for param_group in optimizer.param_groups:
         return param_group['lr']
+
 
 def main(
         model_name, data_dir, 
@@ -160,7 +157,7 @@ def main(
     if model_params:
         params['model_config'] = model_params
         print(">> model configuration: %s" % model_params)
-    
+
     if prev_model:
         print("Initiate model from %s" % prev_model)
         model = models.get_model(model_name).load(
@@ -173,7 +170,7 @@ def main(
             data_config,
             **params
         )
-        
+
     model = model.to(device)
 
     criterion = torch.nn.BCEWithLogitsLoss()
@@ -195,11 +192,11 @@ def main(
     if lr_schedule:
         schedule_params = utils.parse_model_params(lr_schedule)
         scheduler = optim.lr_scheduler.StepLR(
-            optimizer, 
+            optimizer,
             step_size=schedule_params['step'],
             gamma=schedule_params['gamma'],
         )
-    
+
     dataloader_params = dict(
         batch_size=batch_size,
         num_workers=no_workers,
@@ -286,6 +283,7 @@ def main(
     print("Saving model to %s" % model_path)
     torch.save(model.state_dict(), model_path)
     torch.save(optimizer.state_dict(), opt_path)
+
 
 if __name__ == "__main__":
     fire.Fire(main)
