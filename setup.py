@@ -10,6 +10,7 @@ setup(
     name="attacut",
     version="1.0.2",
     description="Fast and Reasonably Accurate Word Tokenizer for Thai",
+    url="https://github.com/PyThaiNLP/attacut",
     author="Pattarawat Chormai et al.",
     author_email="foomail@foo.com",
     packages=["attacut", "attacut.models", "attacut.artifacts"],
