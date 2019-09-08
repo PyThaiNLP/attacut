@@ -1,14 +1,14 @@
 import numpy as np
 import torch
-
 from torch.utils.data import Dataset
 
-from attacut import utils, preprocessing, logger
+from attacut import logger, preprocessing, utils
 
 log = logger.get_logger(__name__)
 
+
 class SequenceDataset(Dataset):
-    def __init__(self, path: str=None):
+    def __init__(self, path: str = None):
         if path:
             self.load_preprocessed_data(path)
 
@@ -112,7 +112,6 @@ class CharacterSeqDataset(SequenceDataset):
         seq_lengths = torch.from_numpy(seq_lengths)
         seq_lengths, perm_idx = seq_lengths.sort(0, descending=True)
 
-
         inputs = (torch.from_numpy(features)[perm_idx], seq_lengths)
 
         labels = torch.from_numpy(labels)[perm_idx]
@@ -129,7 +128,7 @@ class SyllableCharacterSeqDataset(SequenceDataset):
             num_char_tokens=len(self.ch_dict),
             num_tokens=len(self.sy_dict)
         )
-    
+
     def make_feature(self, txt):
         syllables = preprocessing.syllable_tokenize(txt)
 
