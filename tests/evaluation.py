@@ -1,8 +1,8 @@
+import numpy as np
 import pytest
 
-import numpy as np
-
 from attacut import evaluation
+
 
 @pytest.mark.parametrize(
     ("labels", "preds", "expected"),

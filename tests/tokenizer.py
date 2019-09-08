@@ -1,7 +1,7 @@
 import pytest
-import re
 
-from attacut import Tokenizer, SingletonTokenizer, tokenize
+from attacut import SingletonTokenizer, Tokenizer, tokenize
+
 
 @pytest.mark.parametrize(
     ("model", "txt", "expected"),
@@ -22,6 +22,7 @@ def test_singleton_tokenizer():
     tok2 = SingletonTokenizer()
 
     assert tok1 == tok2
+
 
 def test_tokenize():
     t1 = tokenize("ไปโรงเรียนดีกว่า")

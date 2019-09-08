@@ -16,19 +16,21 @@ Options:
 """
 
 import os
-import torch
 
-from docopt import docopt
+import torch
 from tqdm import tqdm
 
-from attacut import utils, artifacts, preprocessing, Tokenizer, __version__
+from attacut import Tokenizer, __version__, preprocessing, utils
+from docopt import docopt
 
 SEP = "|"
+
 
 def get_argument(dict, name, default):
     v = dict.get(name)
     return v if v is not None else default
-  
+
+
 if __name__ == "__main__":
     arguments = docopt(__doc__)
 

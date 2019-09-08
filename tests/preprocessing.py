@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import numpy as np
-import pytest
 import re
 
+import numpy as np
+import pytest
+
 from attacut import preprocessing
+
 
 @pytest.mark.parametrize(
     ("txt", "expected", "steps"),
@@ -51,7 +53,7 @@ def test_long_txt_sequences(txt, expected, max_length):
 
     assert len(sequences) == len(expected)
 
-    for e, s in zip(expected, sequences):
+    for _, s in zip(expected, sequences):
         syllables = preprocessing.syllable_tokenize(s.replace("|", ""))
         assert len(syllables) <= max_length
 

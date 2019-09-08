@@ -1,7 +1,7 @@
 import pytest
-import re
 
 from attacut import utils
+
 
 @pytest.mark.parametrize(
     ("seq", "expected"),
