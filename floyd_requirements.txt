@@ -1,6 +1,6 @@
 fire==0.1.3
 nptyping==0.2.0
-numpy==1.17.0
+numpy==1.17.2
 python-crfsuite==0.9.6
 pyyaml==5.1.2
 six==1.12.0
