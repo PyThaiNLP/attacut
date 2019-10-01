@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="attacut",
-    version="1.0.4-dev",
+    version="1.0.4",
     description="Fast and Reasonably Accurate Word Tokenizer for Thai",
     url="https://github.com/PyThaiNLP/attacut",
     author="Pattarawat Chormai et al.",
