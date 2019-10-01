@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="attacut",
-    version="1.0.2",
+    version="1.0.3-dev",
     description="Fast and Reasonably Accurate Word Tokenizer for Thai",
     author="Pattarawat Chormai et al.",
     author_email="foomail@foo.com",
