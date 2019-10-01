@@ -17,3 +17,5 @@ git checkout $TAG \
     && twine upload dist/* \
 
 git checkout -
+
+echo "Please don't forget to push: git push && git push --tags"
