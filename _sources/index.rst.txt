@@ -1,4 +1,4 @@
-AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai (beta)
+AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 ====================================================================
 
 
