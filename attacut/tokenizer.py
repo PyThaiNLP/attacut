@@ -40,6 +40,9 @@ class Tokenizer:
         self.dataset = dataset
 
     def tokenize(self, txt: str, sep="|", device="cpu", pred_threshold=0.5) -> List[str]:
+        if txt == '': #handle empty string input
+            return ['']
+
         tokens, features = self.dataset.make_feature(txt)
 
         inputs = (
