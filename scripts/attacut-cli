@@ -7,6 +7,9 @@ Usage:
   attacut-cli [-v | --version]
   attacut-cli [-h | --help]
 
+Arguments:
+  <src>             Path to input text file to be tokenized
+
 Options:
   -h --help         Show this screen.
   --model=<model>   Model to be used [default: attacut-sc].
