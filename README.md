@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master)](https://travis-ci.org/PyThaiNLP/attacut)
 [![Build status](https://ci.appveyor.com/api/projects/status/ittfnb2pyg95kpxk/branch/master?svg=true)](https://ci.appveyor.com/project/wannaphongcom/attacut/branch/master)
 [![](https://img.shields.io/badge/-presentation-informational)](https://drive.google.com/file/d/16AUNZv1HXVmERgryfBf4JpCo1QrQyHHE/view?usp=sharing)
-![](https://img.shields.io/badge/doi-WIP-informational)
+![](http://img.shields.io/badge/arXiv-1911.07056-yellow.svg?style=flat)
 
 ## How does AttaCut look like?
 
