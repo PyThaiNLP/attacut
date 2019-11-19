@@ -2,7 +2,7 @@ AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 ====================================================================
 
 
-|travis_ic| |pypiversion_ic| |pypidownload_ic| |license_ic| |github_ic|
+|travis_ic| |pypiversion_ic| |pypidownload_ic| |arxiv_ic| |license_ic| |github_ic|
 
 .. toctree::
     :maxdepth: 2
@@ -83,5 +83,7 @@ AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNL
 .. |license_ic| image:: https://img.shields.io/pypi/l/attacut
 .. |github_ic| image:: https://img.shields.io/github/stars/pythainlp/attacut?style=social
     :target: https://github.com/PyThaiNLP/attacut
+.. |arxiv_ic| image:: http://img.shields.io/badge/arXiv-1911.07056-yellow.svg?style=flat
+    :target: https://arxiv.org/abs/1911.07056
 
 .. [#best] NECTEC. BEST: Benchmark for Enhancing the Standard of Thai language processing, 2010.
