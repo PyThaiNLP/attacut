@@ -43,12 +43,11 @@ def maybe_create_dir(path: str):
 
 
 def add_suffix_to_file_path(path: str, suffix: str) -> str:
-    components = path.split("/")
-    filename, ext = components[-1].split(".")
+    dirname = os.path.dirname(path)
+    basename = os.path.basename(path)
+    filename, ext = basename.split('.')
 
-    components[-1] = "%s-%s.%s" % (filename, suffix, ext)
-
-    return "/".join(components)
+    return os.path.join(dirname, "%s-%s.%s" % (filename, suffix, ext))
 
 
 def wc_l(path: str) -> int:

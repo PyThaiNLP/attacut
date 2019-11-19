@@ -4,14 +4,14 @@
 
 Usage:
   attacut-cli <src> [--dest=<dest>] [--model=<model>]
-  attacut-cli (-v | --version)
-  attacut-cli (-h | --help)
+  attacut-cli [-v | --version]
+  attacut-cli [-h | --help]
 
 Options:
   -h --help         Show this screen.
   --model=<model>   Model to be used [default: attacut-sc].
   --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
-  --version         Show version
+  -v --version      Show version
 
 """
 
@@ -32,11 +32,7 @@ def get_argument(dict, name, default):
 
 
 if __name__ == "__main__":
-    arguments = docopt(__doc__)
-
-    if arguments["--version"] or arguments["-v"]:
-        print(f"AttaCut: version {__version__}")
-        os.sys.exit(0)
+    arguments = docopt(__doc__, version=f"AttaCut: version {__version__}")
 
     src = arguments["<src>"]
     model = arguments["--model"]
@@ -49,7 +45,7 @@ if __name__ == "__main__":
         "--dest",
         utils.add_suffix_to_file_path(
             src,
-            f"-tokenized-by-{model_name}"
+            f"tokenized-by-{model_name}"
         )
     )
 
