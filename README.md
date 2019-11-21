@@ -26,18 +26,24 @@ Please consult [PyTorch.org](https://pytorch.org) for more details.
 ## Usage
 
 ### Command-Line Interface
+
 ```
 $ attacut-cli -h
-AttaCut: Fast and Reasonably Accurate Tokenizer for Thai
+AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 
 Usage:
   attacut-cli <src> [--dest=<dest>] [--model=<model>]
-  attacut-cli (-h | --help)
+  attacut-cli [-v | --version]
+  attacut-cli [-h | --help]
+
+Arguments:
+  <src>             Path to input text file to be tokenized
 
 Options:
   -h --help         Show this screen.
   --model=<model>   Model to be used [default: attacut-sc].
   --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
+  -v --version      Show version
 ```
 
 ### High-Level API 
