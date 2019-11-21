@@ -1,4 +1,4 @@
-AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
+AttaCut: A Fast and Accurate Neural Thai Word Segmenter
 ====================================================================
 
 
