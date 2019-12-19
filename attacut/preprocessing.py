@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 import string
 from typing import Dict, List
