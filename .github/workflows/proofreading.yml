@@ -11,6 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Yaspeller Action
-        uses: heytitle/github-action-yaspeller
+        uses: heytitle/github-action-yaspeller/@v0.0.1
         with:
           filepath: "*.html"
