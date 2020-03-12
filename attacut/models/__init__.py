@@ -10,6 +10,13 @@ from attacut import logger
 log = logger.get_logger(__name__)
 
 
+def get_device():
+    if torch.cuda.is_available():
+        return "cuda"
+    else:
+        return "cpu"
+
+
 class ConvolutionBatchNorm(nn.Module):
     def __init__(self, channels, filters, kernel_size, stride=1, dilation=1):
         super(ConvolutionBatchNorm, self).__init__()

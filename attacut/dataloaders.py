@@ -105,7 +105,7 @@ class CharacterSeqDataset(SequenceDataset):
 
         for i, s in enumerate(batch):
             b_feature = s[0][0]
-            total_features = len(b_feature)
+            total_features = b_feature.shape[1]
             features[i, :total_features] = b_feature
             labels[i, :total_features] = s[1]
 
@@ -116,7 +116,7 @@ class CharacterSeqDataset(SequenceDataset):
 
         labels = torch.from_numpy(labels)[perm_idx]
 
-        return inputs, labels
+        return inputs, labels, perm_idx
 
 
 class SyllableCharacterSeqDataset(SequenceDataset):
@@ -194,4 +194,4 @@ class SyllableCharacterSeqDataset(SequenceDataset):
 
         labels = torch.from_numpy(labels)[perm_idx]
 
-        return inputs, labels
+        return inputs, labels, perm_idx

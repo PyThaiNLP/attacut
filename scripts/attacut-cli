@@ -3,7 +3,7 @@
 """AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 
 Usage:
-  attacut-cli <src> [--dest=<dest>] [--model=<model>]
+  attacut-cli <src> [--dest=<dest>] [--model=<model>] [--num-cores=<num-cores>] [--batch-size=<batch-size>] [--gpu]
   attacut-cli [-v | --version]
   attacut-cli [-h | --help]
 
@@ -15,23 +15,70 @@ Options:
   --model=<model>   Model to be used [default: attacut-sc].
   --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
   -v --version      Show version
-
+  --num-cores=<num-cores>  Use multiple-core processing [default: 4]
+  --batch-size=<batch-size>  Batch size [default: 20]
 """
 
+import sys
 import os
+from multiprocessing import Pool
 
+import numpy as np
 import torch
+from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 
-from attacut import Tokenizer, __version__, preprocessing, utils
+
+from attacut import Tokenizer, __version__, preprocessing, utils, models
 from docopt import docopt
 
 SEP = "|"
 
-
 def get_argument(dict, name, default):
     v = dict.get(name)
     return v if v is not None else default
+
+class AttaCutCLIDataset(Dataset):
+      def __init__(self, src, tokenizer, device):
+          self.src = src
+          self.total_lines = utils.wc_l(self.src)
+
+          self.tokenizer = tokenizer
+
+          self.device = device
+
+          self.data = []
+          with open(self.src, "r") as fin:
+              for txt in fin:
+                txt = preprocessing.TRAILING_SPACE_RX.sub("", txt)
+
+                tokens, features = self.tokenizer.dataset.make_feature(txt)
+
+                inputs = (
+                    features,
+                    torch.zeros(features[1])  # dummy label when won't need it here
+                )
+
+                x, labels, _= self.tokenizer.dataset.prepare_model_inputs(
+                  inputs, device=self.device
+                )
+
+                self.data.append(((x, labels), tokens))
+
+      def __len__(self):
+          return self.total_lines
+
+      def __getitem__(self, idx):
+          return self.data[idx]
+
+def collate_fn(tokenizer, batch):
+    inputs, tokens = [], []
+
+    for x, t in batch:
+      inputs.append(x)
+      tokens.append(t)
+
+    return tokenizer.dataset.collate_fn(inputs), tokens
 
 
 if __name__ == "__main__":
@@ -39,6 +86,14 @@ if __name__ == "__main__":
 
     src = arguments["<src>"]
     model = arguments["--model"]
+    num_cores = int(arguments["--num-cores"])
+    batch_size = int(arguments["--batch-size"])
+
+    assert num_cores >= 1, "Input given to <num-thread> should greather than or equal one"
+
+    if not src:
+      print(__doc__)
+      sys.exit(0)
 
     # for a custom model, use the last dir's name.
     model_name = model.split("/")[-1]
@@ -57,22 +112,48 @@ if __name__ == "__main__":
     print(f"Output: {dest}")
 
     tokenizer = Tokenizer(model)
+
     total_lines = utils.wc_l(src)
 
+    print(f"Use {num_cores} workers for processing for {total_lines} lines")
+
+    device = "cuda" if arguments["--gpu"] else "cpu"
+    print("device")
+
+    ds = AttaCutCLIDataset(src, tokenizer, device)
+    dataloader = DataLoader(
+      ds,
+      batch_size=batch_size,
+      shuffle=False,
+      num_workers=num_cores, 
+      collate_fn=lambda batch: collate_fn(tokenizer, batch)
+    )
+
+    tokenizer.model.to(device)
+
+
+    results = []
+
     with torch.no_grad(), \
-        open(src, "r") as fin, \
+        tqdm(total=total_lines) as tq, \
         open(dest, "w") as fout:
-        # todo: dataloader generator
-        # todo: tokenize by batch and write results
-        for line in tqdm(fin, total=total_lines):
+          for batch in dataloader:
+              (x, labels, perm_idx), tokens = batch
+              probs = tokenizer.model(x)
 
-            line = preprocessing.TRAILING_SPACE_RX.sub("", line)
+              preds = probs.cpu().detach().numpy() > 0.5
+              max_seq = x[1].max().cpu().detach().numpy()
 
-            if not line:
-                fout.write("\n")
-                continue
+              perm_idx = perm_idx.cpu().detach()
+              preds = preds.reshape((-1, max_seq))
 
-            words = tokenizer.tokenize(line)
-            tokenized_line = SEP.join(words)
 
-            fout.write(f"{tokenized_line}\n")
+              for ori_ix, after_sorting_ix in enumerate(np.argsort(perm_idx)):
+                  pred = preds[after_sorting_ix, :]
+                  token = tokens[ori_ix]
+
+
+                  words = preprocessing.find_words_from_preds(token, pred)
+                  fout.write("%s\n" % SEP.join(words))
+
+              tq.update(n=preds.shape[0])
