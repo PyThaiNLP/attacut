@@ -15,7 +15,7 @@ Options:
   --model=<model>   Model to be used [default: attacut-sc].
   --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
   -v --version      Show version
-  --num-cores=<num-cores>  Use multiple-core processing [default: 4]
+  --num-cores=<num-cores>  Use multiple-core processing [default: 0]
   --batch-size=<batch-size>  Batch size [default: 20]
 """
 
@@ -78,7 +78,7 @@ class AttaCutCLIDataset(Dataset):
       def __getitem__(self, idx):
           return self.data[idx]
 
-def collate_fn(tokenizer, batch, devicw):
+def collate_fn(tokenizer, batch, device):
     inputs, tokens = [], []
 
     for x, t in batch:
@@ -87,8 +87,7 @@ def collate_fn(tokenizer, batch, devicw):
 
     (x, seq), labels, perm_idx = tokenizer.dataset.collate_fn(inputs)
 
-    return ((x.to(device), seq.to(device)), labels.to(device), perm_idx) \
-      , tokens
+    return ((x.to(device), seq.to(device)), labels, perm_idx), tokens
 
 
 if __name__ == "__main__":
@@ -99,7 +98,7 @@ if __name__ == "__main__":
     num_cores = int(arguments["--num-cores"])
     batch_size = int(arguments["--batch-size"])
 
-    assert num_cores >= 1, "Input given to <num-thread> should greather than or equal one"
+    assert num_cores >= 0, "Input given to <num-thread> should greather than or equal zero"
 
     if not src:
       print(__doc__)
@@ -140,7 +139,6 @@ if __name__ == "__main__":
     )
 
     tokenizer.model.to(device)
-
 
     results = []
 
