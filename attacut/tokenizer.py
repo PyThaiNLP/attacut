@@ -53,9 +53,9 @@ class Tokenizer:
         )
 
         x, _, _ = self.dataset.prepare_model_inputs(inputs, device=device)
-        logits = torch.sigmoid(self.model(x))
+        probs = torch.sigmoid(self.model(x))
 
-        preds = logits.cpu().detach().numpy() > pred_threshold
+        preds = probs.cpu().detach().numpy() > pred_threshold
 
         words = preprocessing.find_words_from_preds(tokens, preds)
 
