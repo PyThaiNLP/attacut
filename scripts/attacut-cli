@@ -60,7 +60,7 @@ class AttaCutCLIDataset(Dataset):
                 )
 
                 x, labels, _= self.tokenizer.dataset.prepare_model_inputs(
-                  inputs, device=self.device
+                  inputs,
                 )
 
                 self.data.append(((x, labels), tokens))
@@ -71,14 +71,17 @@ class AttaCutCLIDataset(Dataset):
       def __getitem__(self, idx):
           return self.data[idx]
 
-def collate_fn(tokenizer, batch):
+def collate_fn(tokenizer, batch, devicw):
     inputs, tokens = [], []
 
     for x, t in batch:
       inputs.append(x)
       tokens.append(t)
 
-    return tokenizer.dataset.collate_fn(inputs), tokens
+    (x, seq), labels, perm_idx = tokenizer.dataset.collate_fn(inputs)
+
+    return ((x.to(device), seq.to(device)), labels.to(device), perm_idx) \
+      , tokens
 
 
 if __name__ == "__main__":
@@ -115,10 +118,10 @@ if __name__ == "__main__":
 
     total_lines = utils.wc_l(src)
 
-    print(f"Use {num_cores} workers for processing for {total_lines} lines")
 
     device = "cuda" if arguments["--gpu"] else "cpu"
-    print("device")
+    print(f"Use {num_cores} workers for processing for {total_lines} lines")
+    print(f"device={device}")
 
     ds = AttaCutCLIDataset(src, tokenizer, device)
     dataloader = DataLoader(
@@ -126,7 +129,7 @@ if __name__ == "__main__":
       batch_size=batch_size,
       shuffle=False,
       num_workers=num_cores, 
-      collate_fn=lambda batch: collate_fn(tokenizer, batch)
+      collate_fn=lambda batch: collate_fn(tokenizer, batch, device)
     )
 
     tokenizer.model.to(device)
