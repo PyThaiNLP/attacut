@@ -32,6 +32,13 @@ from tqdm import tqdm
 from attacut import Tokenizer, __version__, preprocessing, utils, models
 from docopt import docopt
 
+# from https://github.com/pytorch/pytorch/issues/1494#issuecomment-305993854
+from multiprocessing import set_start_method
+try:
+    set_start_method('spawn')
+except RuntimeError:
+    pass
+
 SEP = "|"
 
 def get_argument(dict, name, default):
