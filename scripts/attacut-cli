@@ -66,11 +66,13 @@ class AttaCutCLIDataset(Dataset):
                     torch.zeros(features[1])  # dummy label when won't need it here
                 )
 
-                x, labels, _= self.tokenizer.dataset.prepare_model_inputs(
+                (x, seq), labels, _= self.tokenizer.dataset.prepare_model_inputs(
                   inputs,
                 )
 
-                self.data.append(((x, labels), tokens))
+                x = torch.squeeze(x)
+
+                self.data.append((((x, seq), labels), tokens))
 
       def __len__(self):
           return self.total_lines
@@ -98,7 +100,7 @@ if __name__ == "__main__":
     num_cores = int(arguments["--num-cores"])
     batch_size = int(arguments["--batch-size"])
 
-    assert num_cores >= 0, "Input given to <num-thread> should greather than or equal zero"
+    assert num_cores >= 1, "Input given to <num-thread> should greather than or equal one"
 
     if not src:
       print(__doc__)

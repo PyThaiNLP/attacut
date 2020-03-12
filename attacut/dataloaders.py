@@ -105,7 +105,7 @@ class CharacterSeqDataset(SequenceDataset):
 
         for i, s in enumerate(batch):
             b_feature = s[0][0]
-            total_features = b_feature.shape[1]
+            total_features = b_feature.shape[0]
             features[i, :total_features] = b_feature
             labels[i, :total_features] = s[1]
 
