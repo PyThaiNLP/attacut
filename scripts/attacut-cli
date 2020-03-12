@@ -124,9 +124,10 @@ if __name__ == "__main__":
 
     total_lines = utils.wc_l(src)
 
+    torch.set_num_threads(num_cores)
 
     device = "cuda" if arguments["--gpu"] else "cpu"
-    print(f"Use {num_cores} workers for processing for {total_lines} lines")
+    print(f"Use {num_cores} cores for processing for {total_lines} lines")
     print(f"device={device}")
 
     ds = AttaCutCLIDataset(src, tokenizer, device)
@@ -134,7 +135,7 @@ if __name__ == "__main__":
       ds,
       batch_size=batch_size,
       shuffle=False,
-      num_workers=num_cores, 
+      num_workers=0, # only use main process
       collate_fn=lambda batch: collate_fn(tokenizer, batch, device)
     )
 
