@@ -46,13 +46,20 @@ Command-Line Interface
     AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 
     Usage:
-    attacut-cli <src> [--dest=<dest>] [--model=<model>]
-    attacut-cli (-h | --help)
+    attacut-cli <src> [--dest=<dest>] [--model=<model>] [--num-cores=<num-cores>] [--batch-size=<batch-size>] [--gpu]
+    attacut-cli [-v | --version]
+    attacut-cli [-h | --help]
+
+    Arguments:
+    <src>             Path to input text file to be tokenized
 
     Options:
     -h --help         Show this screen.
     --model=<model>   Model to be used [default: attacut-sc].
     --dest=<dest>     If not specified, it'll be <src>-tokenized-by-<model>.txt
+    -v --version      Show version
+    --num-cores=<num-cores>  Use multiple-core processing [default: 0]
+    --batch-size=<batch-size>  Batch size [default: 20]
 
 
 High-Level API
@@ -72,6 +79,8 @@ High-Level API
 
 
 AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates
+
+For better efficiency, we recommend using **attacut-cli**. Please consult `our Google Colab tutorial <https://colab.research.google.com/drive/1-JM19BnSMAWaF4aFgb8jcSiISfKr0PyH>` for more detials.
 
 
 .. |travis_ic| image:: https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master

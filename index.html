@@ -58,13 +58,20 @@ further instruction.</p>
 AttaCut: Fast and Reasonably Accurate Word Tokenizer for Thai
 
 Usage:
-attacut-cli &lt;src&gt; [--dest=&lt;dest&gt;] [--model=&lt;model&gt;]
-attacut-cli (-h | --help)
+attacut-cli &lt;src&gt; [--dest=&lt;dest&gt;] [--model=&lt;model&gt;] [--num-cores=&lt;num-cores&gt;] [--batch-size=&lt;batch-size&gt;] [--gpu]
+attacut-cli [-v | --version]
+attacut-cli [-h | --help]
+
+Arguments:
+&lt;src&gt;             Path to input text file to be tokenized
 
 Options:
 -h --help         Show this screen.
 --model=&lt;model&gt;   Model to be used [default: attacut-sc].
 --dest=&lt;dest&gt;     If not specified, it&#39;ll be &lt;src&gt;-tokenized-by-&lt;model&gt;.txt
+-v --version      Show version
+--num-cores=&lt;num-cores&gt;  Use multiple-core processing [default: 0]
+--batch-size=&lt;batch-size&gt;  Batch size [default: 20]
 </pre></div>
 </div>
 </div>
@@ -82,6 +89,7 @@ Options:
 </pre></div>
 </div>
 <p>AttaCut will be soon integrated into PyThaiNLP’s ecosystem. Please see <a class="reference external" href="https://github.com/PyThaiNLP/pythainlp/issues/258">PyThaiNLP #28</a> for recent updates</p>
+<p>For better efficiency, we recommend using <strong>attacut-cli</strong>. Please consult <cite>our Google Colab tutorial &lt;https://colab.research.google.com/drive/1-JM19BnSMAWaF4aFgb8jcSiISfKr0PyH&gt;</cite> for more detials.</p>
 <dl class="footnote brackets">
 <dt class="label" id="best"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>NECTEC. BEST: Benchmark for Enhancing the Standard of Thai language processing, 2010.</p>
