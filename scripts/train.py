@@ -66,9 +66,9 @@ def do_iterate(model, generator, device,
     metrics = _create_metrics()
 
     for _, batch in enumerate(generator):
-        inputs, perm_ix = batch
+        (x, seq), labels, perm_ix = batch
         xd, yd, total_batch_preds = generator.dataset.prepare_model_inputs(
-            inputs, device
+            ((x, seq), labels), device
         )
 
         if optimizer:
