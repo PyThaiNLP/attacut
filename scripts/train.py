@@ -15,14 +15,6 @@ from torch.utils import data
 from attacut import dataloaders as dl
 from attacut import evaluation, models, utils
 
-
-def get_device():
-    if torch.cuda.is_available():
-        return "cuda"
-    else:
-        return "cpu"
-
-
 def _create_metrics(metrics=["true_pos", "false_pos", "false_neg"]):
     return dict(zip(metrics, [0]*len(metrics)))
 
@@ -73,9 +65,10 @@ def do_iterate(model, generator, device,
     total_loss, total_preds = 0, 0
     metrics = _create_metrics()
 
-    for _, inputs in enumerate(generator):
+    for _, batch in enumerate(generator):
+        (x, seq), labels, perm_ix = batch
         xd, yd, total_batch_preds = generator.dataset.prepare_model_inputs(
-            inputs, device
+            ((x, seq), labels), device
         )
 
         if optimizer:
@@ -149,7 +142,7 @@ def main(
     # only required
     data_config = training_set.setup_featurizer("%s/dictionary" % data_dir)
 
-    device = get_device()
+    device = models.get_device()
     print("Using device: %s" % device)
 
     params = {}
