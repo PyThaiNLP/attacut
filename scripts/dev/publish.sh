@@ -15,7 +15,5 @@ git checkout $TAG \
     && python setup.py sdist bdist_wheel \
     && twine check dist/* \
     && twine upload dist/* \
-
-git checkout -
-
-echo "Please don't forget to push: git push && git push --tags"
+    && git checkout - \
+    && echo "Please don't forget to push: git push && git push --tags"
