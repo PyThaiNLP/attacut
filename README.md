@@ -59,6 +59,8 @@ atta = Tokenizer(model="attacut-sc")
 words = atta.tokenize(txt)
 ```
 
+For better efficiency, we recommend using attacut-cli. Please consult [our Google Colab tutorial ](https://colab.research.google.com/drive/1-JM19BnSMAWaF4aFgb8jcSiISfKr0PyH) for more detials.
+
 ## Benchmark Results
 
 Belows are brief summaries. More details can be found on [our benchmarking page](https://pythainlp.github.io/attacut/benchmark.html).
