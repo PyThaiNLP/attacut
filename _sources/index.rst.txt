@@ -80,7 +80,7 @@ High-Level API
 
 AttaCut will be soon integrated into PyThaiNLP's ecosystem. Please see `PyThaiNLP #28 <https://github.com/PyThaiNLP/pythainlp/issues/258>`_ for recent updates
 
-For better efficiency, we recommend using **attacut-cli**. Please consult `our Google Colab tutorial <https://colab.research.google.com/drive/1-JM19BnSMAWaF4aFgb8jcSiISfKr0PyH>` for more detials.
+For better efficiency, we recommend using **attacut-cli**. Please consult `our Google Colab tutorial <https://colab.research.google.com/drive/1-JM19BnSMAWaF4aFgb8jcSiISfKr0PyH>`_ for more detials.
 
 
 .. |travis_ic| image:: https://travis-ci.org/PyThaiNLP/attacut.svg?branch=master
