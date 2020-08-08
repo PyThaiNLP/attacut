@@ -77,7 +77,7 @@ This is an example of how we use it:
 .. code-block:: bash
 
     $ python ./scripts/train.py --model-name seq_sy_ch_conv_concat \ # seq_sy_ch_conv_concat = attacut-sc
-        --model-params "embc:8|embs:8|conv:8|l1:6|do:0.1"' \ # emb{c,s} are embedding dimensions
+        --model-params "embc:8|embs:8|conv:8|l1:6|do:0.1" \ # emb{c,s} are embedding dimensions
         --data-dir ./some-data  \
         --output-dir ./sink/model-xx  \
         --epoch 10 \

@@ -119,14 +119,14 @@ the syllable dictionary and syllable indices <strong>(SY_IX SY_IX …)</strong>.
 <h2>How to Retrain on Custom Dataset?<a class="headerlink" href="#how-to-retrain-on-custom-dataset" title="Permalink to this headline">¶</a></h2>
 <p>Our training script is provided in <cite>./scripts/train.py</cite>. Several options can be specified when calling the script.</p>
 <p>This is an example of how we use it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ./scripts/train.py --model-name seq_sy_ch_conv_concat \ # seq_sy_ch_conv_concat = attacut-sc
-    --model-params &quot;embc:8|embs:8|conv:8|l1:6|do:0.1&quot;&#39; \ # emb{c,s} are embedding dimensions
-    --data-dir ./some-data  \
-    --output-dir ./sink/model-xx  \
-    --epoch 10 \
-    --batch-size 1024 \
-    --lr 0.001 \
-    --lr-schedule &quot;step:5|gamma:0.5&quot;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python ./scripts/train.py --model-name seq_sy_ch_conv_concat <span class="se">\ </span><span class="c1"># seq_sy_ch_conv_concat = attacut-sc</span>
+    --model-params <span class="s2">&quot;embc:8|embs:8|conv:8|l1:6|do:0.1&quot;</span> <span class="se">\ </span><span class="c1"># emb{c,s} are embedding dimensions</span>
+    --data-dir ./some-data  <span class="se">\</span>
+    --output-dir ./sink/model-xx  <span class="se">\</span>
+    --epoch <span class="m">10</span> <span class="se">\</span>
+    --batch-size <span class="m">1024</span> <span class="se">\</span>
+    --lr <span class="m">0</span>.001 <span class="se">\</span>
+    --lr-schedule <span class="s2">&quot;step:5|gamma:0.5&quot;</span>
 </pre></div>
 </div>
 <p>AttaCut’s training code is primarily built to be used on
