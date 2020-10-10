@@ -14,7 +14,7 @@ setup(
     install_requires=[
         "docopt>=0.6.2",
         "fire>=0.1.3",
-        "nptyping>=0.2.0",
+        "nptyping>=0.2.0<=0.3.1",
         "numpy>=1.17.0",
         "pyyaml>=5.1.2",
         "six>=1.12.0",
