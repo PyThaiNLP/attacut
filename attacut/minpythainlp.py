@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Code below is taken from PyThaiNLP
 
 _thai_arabic = {
