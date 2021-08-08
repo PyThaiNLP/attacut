@@ -52,9 +52,7 @@ With these ingredients, one has to create a directory:
 
 Our AttaCut-SC training data can be found here:
 
-- https://www.floydhub.com/pattt/datasets/best-syllable-crf-and-character-seq-feature-sampling-0/3
-- https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2
-- https://www.floydhub.com/pattt/datasets/syllable-crf-dict-min-freq-10/2
+- https://codeforthailand.s3-ap-southeast-1.amazonaws.com/attacut-related/data.zip
 
 
 For AttaCut-C
@@ -64,8 +62,7 @@ the syllable dictionary and syllable indices **(SY_IX SY_IX ...)**.
 
 Our AttaCut-C training data can be found here:
 
-- https://www.floydhub.com/pattt/datasets/best-character-seq-feature-sampling-0/1
-- https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2
+- https://codeforthailand.s3-ap-southeast-1.amazonaws.com/attacut-related/data.zip
 
 
 How to Retrain on Custom Dataset?
