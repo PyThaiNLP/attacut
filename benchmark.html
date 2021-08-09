@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Benchmarking &#8212; AttaCut  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Retraining" href="training.html" />
@@ -32,7 +33,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="benchmarking">
+  <section id="benchmarking">
 <span id="sec-benchmark"></span><h1>Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this headline">¶</a></h1>
 <p>We value reproducibility. Our experiments should be reproducible and expected
 to have similar results when one tries. Therefore, we 1) desrcibe our
@@ -43,15 +44,17 @@ please let us know. We are happy to clarify and improve the document.</p>
 <p>Please note here that AttaCut models are denoted as <strong>AttaCut-SC</strong> and
 <strong>AttaCut-C</strong>. The former is AttaCut with syllable and character features,
 while the latter uses only character feature.</p>
-<div class="section" id="tokenization-quality">
+<section id="tokenization-quality">
 <h2>Tokenization Quality<a class="headerlink" href="#tokenization-quality" title="Permalink to this headline">¶</a></h2>
 <p>Tokenization quality is measured in terms of <strong>precision</strong>, <strong>recall</strong>, and
 <strong>f1</strong>. We do the measurements in two levels, namely character and word.
 Figure below describes how these metrics are computed:</p>
-<div class="figure align-default" id="id9">
+<figure class="align-default" id="id9">
 <img alt="_images/evaluation-long.png" src="_images/evaluation-long.png" />
-<p class="caption"><span class="caption-text">Character- and Word-Level Metrics for Word Tokenization</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Character- and Word-Level Metrics for Word Tokenization</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Character</span><span class="o">-</span><span class="n">Level</span><span class="p">:</span>
 <span class="p">[</span><span class="n">P</span><span class="p">]</span><span class="n">recision</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span> <span class="n">TP</span> <span class="o">+</span> <span class="n">FP</span> <span class="p">)</span>
 <span class="p">[</span><span class="n">R</span><span class="p">]</span><span class="n">ecall</span> <span class="o">=</span> <span class="n">TP</span> <span class="o">/</span> <span class="p">(</span> <span class="n">TP</span> <span class="o">+</span> <span class="n">FN</span> <span class="p">)</span>
@@ -76,50 +79,58 @@ ingredients:</p>
 <div class="line">This website serves as a tool for error analysis on tokenization results as well as a benchmark collection of other publicly available tokenizers.</div>
 </div>
 <blockquote>
-<div><div class="figure align-default" id="id10">
+<div><figure class="align-default" id="id10">
 <img alt="https://camo.githubusercontent.com/85984f46bb0db3e2bb86b16969b570b7faf4535a/68747470733a2f2f692e696d6775722e636f6d2f56564159485a4d2e706e67" src="https://camo.githubusercontent.com/85984f46bb0db3e2bb86b16969b570b7faf4535a/68747470733a2f2f692e696d6775722e636f6d2f56564159485a4d2e706e67" />
-<p class="caption"><span class="caption-text">Tokenization Benchmark Visualization <a class="footnote-reference brackets" href="#viz" id="id2">2</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Tokenization Benchmark Visualization <a class="footnote-reference brackets" href="#viz" id="id2">2</a></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></blockquote>
 </li>
 </ol>
-<div class="section" id="results">
+<section id="results">
 <h3>Results <a class="footnote-reference brackets" href="#benchsheet" id="id3">3</a><a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
 <p>We evaluate tokenization quality on four datasets, namely BEST <a class="footnote-reference brackets" href="#best" id="id4">4</a>, Orchid <a class="footnote-reference brackets" href="#orchid" id="id5">6</a>,
 1000 samples from Wisesight Sentiment Corpus <a class="footnote-reference brackets" href="#wisesight-tok" id="id6">8</a>, and Thai National Historical Corpus (TNHC) <a class="footnote-reference brackets" href="#tnhc" id="id7">5</a>.</p>
 <p>Because we train on BEST, Orchid, Wisesight, and TNHC are
 out-domain evaluations, testing whether tokenizers are robust.</p>
-<div class="figure align-default" id="id11">
+<figure class="align-default" id="id11">
 <img alt="_images/quality-benchmark-in-of-domain.png" src="_images/quality-benchmark-in-of-domain.png" />
-<p class="caption"><span class="caption-text">Tokenization Quality on BEST (in-domain)</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
-</div>
-<div class="figure align-default" id="id12">
+<figcaption>
+<p><span class="caption-text">Tokenization Quality on BEST (in-domain)</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id12">
 <img alt="_images/quality-benchmark-out-of-domain.png" src="_images/quality-benchmark-out-of-domain.png" />
-<p class="caption"><span class="caption-text">Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Tokenization Quality on Wisesight, Orchid, and TNHC (out-domain)</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>For in-domain evaluations, AttaCut-SC’s quality is quite similar
 to DeepCut only two percentage different on BEST’s test set. On the other hand,
 ML-based tokenizers are on par on Wisesight 1000-sample set. Interestingly,
 on Orchid and TNHC, PyThaiNLP’s newmm is the best. The reason might be that
 these two datasets use a different tokenization standard than BEST.</p>
-</div>
-</div>
-<div class="section" id="speed">
+</section>
+</section>
+<section id="speed">
 <h2>Speed<a class="headerlink" href="#speed" title="Permalink to this headline">¶</a></h2>
 <p>Our speed benchmarking is done on standardized environments, namely Google Colab
 and AWS’s EC2 instances (t2.small &amp; t2.medium).</p>
-<div class="section" id="benchmarking-on-google-colab">
+<section id="benchmarking-on-google-colab">
 <h3>Benchmarking on Google Colab<a class="headerlink" href="#benchmarking-on-google-colab" title="Permalink to this headline">¶</a></h3>
 <p>Due to Google Colab’s accessibilty and convenience, we use Google Colab for our
 early speed benchmarking. In this experiment, we vary the length of input text
 and measure the speed of tokenizers. From the figure below, we can see that
 our AttaCut models are significantly faster than DeepCut.</p>
-<div class="figure align-default" id="id13">
+<figure class="align-default" id="id13">
 <img alt="_images/colab-speed-benchmark.png" src="_images/colab-speed-benchmark.png" />
-<p class="caption"><span class="caption-text">Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on Google Colab</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="benchmarking-on-ec2-instances">
+<figcaption>
+<p><span class="caption-text">Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on Google Colab</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="benchmarking-on-ec2-instances">
 <h3>Benchmarking on EC2 Instances<a class="headerlink" href="#benchmarking-on-ec2-instances" title="Permalink to this headline">¶</a></h3>
 <p>Practically, tokenization is part of NLP pipelines that is usually done on
 cloud instances, such as AWS EC2, due to scalibility and cost efficiency.
@@ -130,10 +141,12 @@ results and yet reproducible. We use the training set of Wisesight Sentiment
 Corpus <a class="footnote-reference brackets" href="#wisesight" id="id8">7</a> as a input dataset. The corpus contains texts from social
 media and online forum platforms. The training set has around 24,000 lines and
 about 1.5M characters.</p>
-<div class="figure align-default" id="id14">
+<figure class="align-default" id="id14">
 <img alt="_images/speed-benchmark-ec2.png" src="_images/speed-benchmark-ec2.png" />
-<p class="caption"><span class="caption-text">Wisesight’s Training Set Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on AWS Instances.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Wisesight’s Training Set Tokenization Time of PyThaiNLP’s newmm, DeepCut, and AttaCut on AWS Instances.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>From the figure above, AttaCut models are fasters than other existing ML-based
 tokenizers. More precisely, <strong>AttaCut-SC</strong> (our best model) is aroud <strong>6x</strong>
 faster than <strong>DeepCut</strong>, the current state of the art word tokenizer for Thai,
@@ -164,9 +177,9 @@ while having a similar level of tokenization quality.</p>
 <dd><p><a class="reference external" href="https://github.com/PyThaiNLP/wisesight-sentiment/tree/master/word-tokenization">PyThaiNLP. 1000 Samples from Wisesight-Sentiment Corpus, 2019</a></p>
 </dd>
 </dl>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -217,12 +230,12 @@ while having a similar level of tokenization quality.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -239,7 +252,7 @@ while having a similar level of tokenization quality.</p>
       &copy;2019, Pattarawat Chormai et al..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

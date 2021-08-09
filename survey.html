@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Word Tokenization for Thai &#8212; AttaCut  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Benchmarking" href="benchmark.html" />
@@ -32,7 +33,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="word-tokenization-for-thai">
+  <section id="word-tokenization-for-thai">
 <h1>Word Tokenization for Thai<a class="headerlink" href="#word-tokenization-for-thai" title="Permalink to this headline">¶</a></h1>
 <p>Research in word tokenization for Thai started around 1990. Over these 20 years,
 there have been sevaral algorithms being prosed to address the problem. These algorithms
@@ -47,10 +48,12 @@ can be clustered into two categories, namely</p>
 <div class="line"><strong>Learning-based:</strong></div>
 <div class="line">Unlike dictionary-based, algorithms in this group learn to split words based on labelled data. The learning problem is typically formulated as <strong>binary classification</strong> on sequence of characters.</div>
 </div>
-<div class="figure align-center" id="id13">
+<figure class="align-center" id="id13">
 <a class="reference internal image-reference" href="_images/binary-classification.png"><img alt="_images/binary-classification.png" src="_images/binary-classification.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Binary Classification for Word Tokenization. <strong>B</strong> denotes a starting-word character, while <strong>I</strong> represents the opposite.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <div class="line-block">
 <div class="line">With the rise of neural networks, recent developments of Thai tokenizers are either Convolutional Neural Networks (CNNs) (i.e. DeepCut <a class="footnote-reference brackets" href="#deepcut" id="id3">3</a>) or Recurrent Neural Networks (RNNs) (i.e. <a class="footnote-reference brackets" href="#multicut" id="id4">4</a>, <a class="footnote-reference brackets" href="#cantok" id="id5">5</a>, Sertis’ Bi-GRUs <a class="footnote-reference brackets" href="#sertis" id="id6">6</a>).</div>
 </div>
@@ -61,10 +64,12 @@ Dictionary-based algorithms are typically fast but with less capable when encoun
 On the other hand, learning-based approaches are usually qualitatively better and more adaptable to data from different domains; however, their computation is relatively slower.
 Figure below summarizes current solutions into two axes: <strong>Quality (Word-Level f1)</strong> and <strong>Inference time</strong>.</p>
 <blockquote>
-<div><div class="figure align-center" id="id14">
+<div><figure class="align-center" id="id14">
 <img alt="_images/previous-work-spectrum.png" src="_images/previous-work-spectrum.png" />
-<p class="caption"><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmarking</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id12" id="id7">*</a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Quality and Inference Time of Existing Thai Word Tokenizers. Please see <a class="reference internal" href="benchmark.html#sec-benchmark"><span class="std std-ref">Benchmarking</span></a> for details of evaluation metrics. Device Specification <a class="footnote-reference brackets" href="#id12" id="id7">*</a></span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></blockquote>
 <p>From the plot, we can see that the DeepCut is state-of-the-art. However,
 it is significantly slower than other algorithms.
@@ -74,24 +79,26 @@ it has the lowest tokenization quality.</p>
 the efficiency and accuracy of the tokenizer are crucial towards building a
 successful NLP application. Now, a question arises whether we can build fast
 and yet accurate tokenizer for Thai.</p>
-<div class="section" id="analysis-of-deepcut">
+<section id="analysis-of-deepcut">
 <h2>Analysis of Deepcut<a class="headerlink" href="#analysis-of-deepcut" title="Permalink to this headline">¶</a></h2>
 <p>DeepCut is a CNN with 13 different widths of convolution on character features or embeddings.
 Pooling is then used to combined features from these convotional layers, yeiding output to a fully-connected layer for final prediction.</p>
 <blockquote>
-<div><div class="figure align-center">
+<div><figure class="align-center">
 <img alt="https://user-images.githubusercontent.com/1214890/58486992-14c1d880-8191-11e9-9122-8385750e06bd.png" src="https://user-images.githubusercontent.com/1214890/58486992-14c1d880-8191-11e9-9122-8385750e06bd.png" />
-</div>
+</figure>
 </div></blockquote>
 <p>In total, DeepCut has around 500,000 trainable variables. Looking at DeepCut’s
 architecture, convotion layers are
 significatnly overlapped to each other; hence, these layers are redudant.
 With this observation, we have a hyphothesis that DeepCut could be smaller
 while achieving a similar level of tokenization quality.</p>
-<div class="figure align-default" id="id15">
+<figure class="align-default" id="id15">
 <img alt="_images/deepcut-experiment.png" src="_images/deepcut-experiment.png" />
-<p class="caption"><span class="caption-text">Finding which layers in DeepCut could be removed.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Finding which layers in DeepCut could be removed.</span><a class="headerlink" href="#id15" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>We design an experiment to verify this proposition. The experiment can be
 described as follows:</p>
 <ol class="arabic simple">
@@ -99,45 +106,53 @@ described as follows:</p>
 <li><p>Observe the change of tokenization quality</p></li>
 <li><p>Repeat 1-2. to other layers</p></li>
 </ol>
-<div class="figure align-default" id="id16">
+<figure class="align-default" id="id16">
 <a class="reference internal image-reference" href="_images/deepcut-experiment-result.png"><img alt="_images/deepcut-experiment-result.png" src="_images/deepcut-experiment-result.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Speed Comparision between original DeepCut and shrinked models</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Speed Comparision between original DeepCut and shrinked models</span><a class="headerlink" href="#id16" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>In short, we found that if we remove the convolution layers of kernel width 7,
 9, and 10, DeepCut will be 20% faster while its quality drops only 6%. Complete
 analysis can be found from our notebook <a class="footnote-reference brackets" href="#deepcutana" id="id8">7</a>. This result confirms
 our hyphothesis that we can have a smaller CNN model that is compentent in
 speed and quality.</p>
-</div>
-<div class="section" id="how-does-attacut-look-like">
+</section>
+<section id="how-does-attacut-look-like">
 <h2>How does AttaCut look like?<a class="headerlink" href="#how-does-attacut-look-like" title="Permalink to this headline">¶</a></h2>
 <p>Recent trends in NLP have started to shift towards the use of attention and
 convolutional models (i.e. Transformer <a class="footnote-reference brackets" href="#attention" id="id9">8</a>). One of the reasons is
 due to the fact that the computation of CNNs can be parallelized, while this is
 blocked in RNNs because of recurrence dependencies in those models. Hence,
 the inference process of CNNs is usually faster than RNNs.</p>
-<div class="figure align-default" id="id17">
+<figure class="align-default" id="id17">
 <img alt="_images/attacut-convolution.png" src="_images/attacut-convolution.png" />
-<p class="caption"><span class="caption-text">AttaCut’s three convolutions with different filter widths and dilation rates.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">AttaCut’s three convolutions with different filter widths and dilation rates.</span><a class="headerlink" href="#id17" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Together with our DeepCut analysis, we firstly constuct AttaCut using CNNs.
 AttaCut’s convolutional layers are chosen in such a way that overlapping
 between filters is minimal while covering a similar context as in DeepCut.
 We satisfy this requirement using the dilated convolutions.
 Figure below are AttaCut’s convolutions:</p>
-<div class="figure align-default" id="id18">
+<figure class="align-default" id="id18">
 <img alt="_images/syllable-char-embedding.png" src="_images/syllable-char-embedding.png" />
-<p class="caption"><span class="caption-text">AttaCut’s Architecture: 3 Convolutions -&gt; Pooling -&gt; Fully-connected Layer</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">AttaCut’s Architecture: 3 Convolutions -&gt; Pooling -&gt; Fully-connected Layer</span><a class="headerlink" href="#id18" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Secondly, lingustically, word boundary is always syllable boundary; hence, we
 incorporate syllable knowledge into AttaCut. The collaboration is done in a
 form of syllable embedding in which characters in the same syllable have
 the same syllable embedding. This augmentation contextualizes each character to
 have different embeddings depending on its neighbours.</p>
-<div class="figure align-default" id="id19">
+<figure class="align-default" id="id19">
 <a class="reference internal image-reference" href="_images/word-syllable-boundary.png"><img alt="_images/word-syllable-boundary.png" src="_images/word-syllable-boundary.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Syllable and Word Boundaries</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Syllable and Word Boundaries</span><a class="headerlink" href="#id19" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>For syllable tokenization, we use P. Prasertsom et al’s Syllable SeGmenter
 (SSG) <a class="footnote-reference brackets" href="#ssg" id="id10">9</a>. SSG uses Conditional Random Fields (CRFs) on character features.
 The released model is trained on Thai National Corpus <a class="footnote-reference brackets" href="#tnc" id="id11">10</a>.</p>
@@ -179,8 +194,8 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
 </ol>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -231,12 +246,12 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -253,7 +268,7 @@ The released model is trained on Thai National Corpus <a class="footnote-referen
       &copy;2019, Pattarawat Chormai et al..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

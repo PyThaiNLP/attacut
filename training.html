@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Retraining &#8212; AttaCut  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Acknowledgement" href="acknowledgement.html" />
@@ -32,9 +33,9 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="retraining">
+  <section id="retraining">
 <h1>Retraining<a class="headerlink" href="#retraining" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="project-overview">
+<section id="project-overview">
 <h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
 <p>AttaCut project is structured into several submodules. Four of them are
 important and worth knowing for further customization beyond what
@@ -45,11 +46,11 @@ we have provided.</p>
 <li><p><strong>Preprocessing</strong> includes methods for cleaning data.</p></li>
 <li><p><strong>Utils</strong> contains other helper functions.</p></li>
 </ol>
-</div>
-<div class="section" id="training-data-format">
+</section>
+<section id="training-data-format">
 <h2>Training Data Format<a class="headerlink" href="#training-data-format" title="Permalink to this headline">¶</a></h2>
 <p>To train an AttaCut model, one needs to prepare data as follow:</p>
-<div class="section" id="for-attacut-sc">
+<section id="for-attacut-sc">
 <h3>For AttaCut-SC<a class="headerlink" href="#for-attacut-sc" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p>Character Dictionary: mapping from a character to an index</p></li>
@@ -99,23 +100,20 @@ val.txt
 </div>
 <p>Our AttaCut-SC training data can be found here:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/best-syllable-crf-and-character-seq-feature-sampling-0/3">https://www.floydhub.com/pattt/datasets/best-syllable-crf-and-character-seq-feature-sampling-0/3</a></p></li>
-<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2">https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2</a></p></li>
-<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/syllable-crf-dict-min-freq-10/2">https://www.floydhub.com/pattt/datasets/syllable-crf-dict-min-freq-10/2</a></p></li>
+<li><p><a class="reference external" href="https://codeforthailand.s3-ap-southeast-1.amazonaws.com/attacut-related/data.zip">https://codeforthailand.s3-ap-southeast-1.amazonaws.com/attacut-related/data.zip</a></p></li>
 </ul>
-</div>
-<div class="section" id="for-attacut-c">
+</section>
+<section id="for-attacut-c">
 <h3>For AttaCut-C<a class="headerlink" href="#for-attacut-c" title="Permalink to this headline">¶</a></h3>
 <p>Every detail is similar to the preparation of AttaCut-SC, except that we do need
 the syllable dictionary and syllable indices <strong>(SY_IX SY_IX …)</strong>.</p>
 <p>Our AttaCut-C training data can be found here:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/best-character-seq-feature-sampling-0/1">https://www.floydhub.com/pattt/datasets/best-character-seq-feature-sampling-0/1</a></p></li>
-<li><p><a class="reference external" href="https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2">https://www.floydhub.com/pattt/datasets/character-dict-min-freq-10/2</a></p></li>
+<li><p><a class="reference external" href="https://codeforthailand.s3-ap-southeast-1.amazonaws.com/attacut-related/data.zip">https://codeforthailand.s3-ap-southeast-1.amazonaws.com/attacut-related/data.zip</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="how-to-retrain-on-custom-dataset">
+</section>
+</section>
+<section id="how-to-retrain-on-custom-dataset">
 <h2>How to Retrain on Custom Dataset?<a class="headerlink" href="#how-to-retrain-on-custom-dataset" title="Permalink to this headline">¶</a></h2>
 <p>Our training script is provided in <cite>./scripts/train.py</cite>. Several options can be specified when calling the script.</p>
 <p>This is an example of how we use it:</p>
@@ -138,8 +136,8 @@ for the released models are:</p>
 </ul>
 <p>Please let us know if you have any further questions.</p>
 <p>Happy coding and less overfitting! 🤪</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -191,12 +189,12 @@ for the released models are:</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -213,7 +211,7 @@ for the released models are:</p>
       &copy;2019, Pattarawat Chormai et al..
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
