@@ -20,6 +20,7 @@ jobs:
           pip install pipenv
           pipenv install --dev
           pip install -e .
+          pip install boto smart_open sphinx
           cd docs && make html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
