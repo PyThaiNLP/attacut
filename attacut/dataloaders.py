@@ -176,7 +176,7 @@ class SyllableCharacterSeqDataset(SequenceDataset):
     def collate_fn(batch):
         total_samples = len(batch)
 
-        seq_lengths = np.array(list(map(lambda x: x[0][1], batch)))
+        seq_lengths = np.array(list(map(lambda x: x[0][1], batch)), dtype=np.int64)
         max_length = np.max(seq_lengths)
 
         features = np.zeros((total_samples, 2, max_length), dtype=np.int64)
