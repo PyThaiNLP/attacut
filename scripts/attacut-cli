@@ -165,8 +165,10 @@ if __name__ == "__main__":
                   pred = preds[after_sorting_ix, :]
                   token = tokens[ori_ix]
 
-
-                  words = preprocessing.find_words_from_preds(token, pred)
+                  if len(token) != 0:
+                      words = preprocessing.find_words_from_preds(token, pred)
+                  else:
+                      words = ""
                   fout.write("%s\n" % SEP.join(words))
 
               tq.update(n=preds.shape[0])
