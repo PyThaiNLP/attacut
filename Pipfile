@@ -16,7 +16,6 @@ rst-linker = "*"
 [packages]
 torch = "*"
 numpy = "*"
-nptyping = "*"
 pyyaml = "*"
 ssg = "*"
 docopt = "*"
