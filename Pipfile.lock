@@ -29,14 +29,6 @@
             ],
             "version": "==0.1.3"
         },
-        "nptyping": {
-            "hashes": [
-                "sha256:8823b7422be989751b9bfdba9155fa3ab06d98db9e57678f0c9a1dae07f452ac",
-                "sha256:f2f8f8b2987ce01731b5ef3a8b9ab2fbc4bf79fde1d57f5287049def379320cc"
-            ],
-            "index": "pypi",
-            "version": "==0.2.0"
-        },
         "numpy": {
             "hashes": [
                 "sha256:03f2ebcbffcce2dec8860633b89a93e80c6a239d21a77ae8b241450dc21e8c35",

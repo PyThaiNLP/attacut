@@ -2,8 +2,7 @@
 from collections import namedtuple
 
 import numpy as np
-
-from nptyping import Array
+from numpy.typing import NDArray
 
 EvaluationMetrics = namedtuple(
     "EvaluationMetrics",
@@ -11,8 +10,8 @@ EvaluationMetrics = namedtuple(
 )
 
 def compute_metrics(
-    labels: Array[np.int32],
-    preds: Array[np.int32]
+    labels: NDArray[np.int32],
+    preds: NDArray[np.int32]
 ) -> EvaluationMetrics:
 
     # manually implemented due to keep no. of dependencies minimal
